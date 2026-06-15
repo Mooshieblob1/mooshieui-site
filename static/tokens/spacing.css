@@ -1,0 +1,43 @@
+/* ==========================================================================
+   MooshieUI — Spacing, radii & layout tokens
+   The UI is dense: a 4px base step, compact paddings, generous panel rounding.
+   Radius values trace directly to the app shell (--app-shell-radius etc.).
+   ========================================================================== */
+
+:root {
+  /* ---- Spacing scale (4px base) ----------------------------------------- */
+  --space-0:   0;
+  --space-0\.5: 0.125rem;  /* 2px */
+  --space-1:   0.25rem;    /* 4px */
+  --space-1\.5: 0.375rem;  /* 6px */
+  --space-2:   0.5rem;     /* 8px */
+  --space-2\.5: 0.625rem;  /* 10px */
+  --space-3:   0.75rem;    /* 12px — default gap between controls */
+  --space-4:   1rem;       /* 16px */
+  --space-5:   1.25rem;    /* 20px */
+  --space-6:   1.5rem;     /* 24px — panel padding */
+  --space-8:   2rem;       /* 32px */
+  --space-10:  2.5rem;     /* 40px */
+  --space-12:  3rem;       /* 48px */
+
+  /* ---- Corner radii ----------------------------------------------------- */
+  --radius-sm:    0.25rem;   /* 4px — chips, pills, small toggles */
+  --radius-md:    0.5rem;    /* 8px — inputs, buttons, list rows */
+  --radius-lg:    0.75rem;   /* 12px — panels (--app-panel-radius), CTA */
+  --radius-xl:    1rem;      /* 16px — app shell, dialogs (--app-shell-radius) */
+  --radius-2xl:   1.25rem;   /* 20px — large surfaces */
+  --radius-full:  9999px;    /* switches, status dots, avatars */
+  --app-shell-radius: var(--radius-xl);
+  --app-panel-radius: var(--radius-lg);
+
+  /* ---- Control sizing --------------------------------------------------- */
+  --control-h-sm:  28px;   /* compact chips / small buttons */
+  --control-h-md:  34px;   /* standard input / button height */
+  --control-h-lg:  44px;   /* primary CTA / mobile touch target (min) */
+  --touch-target:  44px;   /* accessibility minimum hit area */
+
+  /* ---- Layout rails ----------------------------------------------------- */
+  --rail-width:    56px;   /* far-left icon navigation rail */
+  --panel-min:     280px;  /* min width of a resizable side panel */
+  --scrollbar:     8px;    /* custom scrollbar thickness */
+}

@@ -1,0 +1,58 @@
+/* ==========================================================================
+   MooshieUI — Base layer
+   Minimal element defaults so specimens & components inherit the brand surface
+   without a framework. Mirrors the app's body defaults and custom scrollbar.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Dyslexic-friendly mode (html.dyslexic-font) */
+html.dyslexic-font body,
+html.dyslexic-font input,
+html.dyslexic-font textarea,
+html.dyslexic-font select,
+html.dyslexic-font button {
+  font-family: var(--font-dyslexic) !important;
+}
+
+a {
+  color: var(--accent-400);
+  text-underline-offset: 2px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent-500) 40%, transparent);
+  color: var(--text-strong);
+}
+
+/* Custom scrollbar — matches the app (8px, neutral thumb) */
+::-webkit-scrollbar { width: var(--scrollbar); height: var(--scrollbar); }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--neutral-700); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--neutral-600); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

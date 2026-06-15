@@ -1,0 +1,43 @@
+/* ==========================================================================
+   MooshieUI — Typography tokens
+   The brand typeface is Hanken Grotesk — a warm humanist grotesque, friendlier and
+   rounder than a geometric grotesk while staying highly legible at small
+   sizes. The native system stack is the fallback. Mono uses the system
+   monospace stack. OpenDyslexic is an opt-in accessibility face (see fonts.css).
+   ========================================================================== */
+
+:root {
+  /* ---- Families --------------------------------------------------------- */
+  --font-sans: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-dyslexic: "OpenDyslexic", var(--font-sans);
+
+  /* ---- Size ramp (Tailwind-aligned; what the app actually uses) ---------- */
+  --text-10:   0.625rem;  /* 10px — micro sub-labels, badges */
+  --text-xs:   0.75rem;   /* 12px — field labels, hints, chips */
+  --text-sm:   0.875rem;  /* 14px — body, inputs, buttons (default UI size) */
+  --text-base: 1rem;      /* 16px — emphasized body */
+  --text-lg:   1.125rem;  /* 18px — sub-headings */
+  --text-xl:   1.25rem;   /* 20px — panel / section headings */
+  --text-2xl:  1.5rem;    /* 24px — page / dialog titles */
+  --text-3xl:  1.875rem;  /* 30px — marketing / hero only */
+
+  /* ---- Line heights ----------------------------------------------------- */
+  --leading-tight:  1.2;
+  --leading-snug:   1.35;
+  --leading-normal: 1.5;
+
+  /* ---- Weights ---------------------------------------------------------- */
+  --weight-normal:   400;
+  --weight-medium:   500;
+  --weight-semibold: 600;   /* buttons, headings, emphasis */
+  --weight-bold:     700;
+
+  /* ---- Tracking --------------------------------------------------------- */
+  --tracking-tight:  -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;   /* ALL-CAPS section eyebrows ("NEW STYLE") */
+
+  /* Runtime font scale hook (Accessibility → text size). Scales text, not layout. */
+  --font-scale: 1;
+}
