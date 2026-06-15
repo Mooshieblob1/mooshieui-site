@@ -8,7 +8,7 @@
 		},
 		{
 			title: 'Dial it in',
-			body: “Choose a checkpoint, stack LoRAs, and set your sampler. Or hit “Apply” to load the model's recommended steps, CFG, and scheduler.”
+			body: "Choose a checkpoint, stack LoRAs, and set your sampler. Or hit “Apply” to load the model's recommended steps, CFG, and scheduler."
 		},
 		{
 			title: 'Generate & refine',
