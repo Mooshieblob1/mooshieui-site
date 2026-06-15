@@ -46,8 +46,7 @@
 	<div class="wrap hero-inner">
 		<h1>All the power of ComfyUI.<br /><span class="hl">None of the node graph.</span></h1>
 		<p class="sub">
-			A clean, guided interface for ComfyUI — prompts, LoRAs, samplers, and one-click upscaling as
-			plain controls, on your desktop or any browser.
+			Make images. Not node graphs.
 		</p>
 		<div class="hero-cta">
 			<a class="btn btn-primary" href="#download">
