@@ -1,17 +1,7 @@
 <script>
 	import '../app.css';
-	import { tweaks, bodyClass } from '$lib/theme.js';
-	import { browser } from '$app/environment';
-	import Tweaks from '$lib/components/Tweaks.svelte';
 
 	let { children } = $props();
-
-	// Keep the <body> class in sync with the active tweaks.
-	$effect(() => {
-		if (browser) {
-			document.body.className = bodyClass($tweaks);
-		}
-	});
 </script>
 
 <svelte:head>
@@ -28,5 +18,3 @@
 </div>
 
 {@render children()}
-
-<Tweaks />
