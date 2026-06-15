@@ -6,14 +6,16 @@
 	import CloserLook from '$lib/components/CloserLook.svelte';
 	import Download from '$lib/components/Download.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+
+	let { data } = $props();
 </script>
 
 <Nav variant="landing" />
 <main id="top">
 	<Hero />
 	<Features />
-	<Modes />
+	<Modes release={data.release} />
 	<CloserLook />
-	<Download />
+	<Download release={data.release} />
 </main>
 <Footer />

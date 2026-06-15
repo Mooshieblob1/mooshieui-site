@@ -3,10 +3,11 @@
 	import { reveal } from '$lib/actions/reveal.js';
 	import { base } from '$app/paths';
 
-	const v = 'v1.4.18';
 	const repo = 'https://github.com/Mooshieblob1/MooshieUI';
-	const winUrl = `${repo}/releases/download/${v}/MooshieUI_1.4.18_x64-setup.exe`;
-	const linuxUrl = `${repo}/releases/download/${v}/MooshieUI_1.4.18_amd64.AppImage`;
+
+	let { release = null } = $props();
+	const winUrl = $derived(release?.winUrl ?? `${repo}/releases`);
+	const linuxUrl = $derived(release?.appimageUrl ?? `${repo}/releases`);
 
 	const desktopPoints = [
 		'Native window, system tray, and file dialogs',
@@ -43,11 +44,6 @@
 						<li><Icon name="check" size={15} stroke={2.5} />{point}</li>
 					{/each}
 				</ul>
-				<div class="mode-platforms">
-					<span class="pchip">Windows</span>
-					<span class="pchip">Linux</span>
-					<span class="pchip">macOS (source)</span>
-				</div>
 				<div class="mode-downloads">
 					<a class="dl-btn dl-primary" href={winUrl}>
 						<Icon name="download" size={14} />Windows
@@ -72,11 +68,6 @@
 						<li><Icon name="check" size={15} stroke={2.5} />{point}</li>
 					{/each}
 				</ul>
-				<div class="mode-platforms">
-					<span class="pchip">Web server</span>
-					<span class="pchip">Docker</span>
-					<span class="pchip">LAN / mobile</span>
-				</div>
 				<div class="mode-downloads">
 					<a class="dl-btn dl-primary" href="{base}/docker">
 						<Icon name="server" size={14} />Docker guide
