@@ -1,6 +1,9 @@
 <script>
 	import { base } from '$app/paths';
 	const repo = 'https://github.com/Mooshieblob1/MooshieUI';
+
+	let { release = null } = $props();
+	const version = $derived(release?.tag ?? 'v1.4.19');
 </script>
 
 <footer class="site">
@@ -45,7 +48,7 @@
 				Open source · AGPL-3.0 · © 2026 MooshieUI · Created by
 				<a href="https://mooshieblob.com" target="_blank" rel="noopener">Mooshieblob</a>
 			</span>
-			<span class="status"><span class="dot"></span>Open source · v1.4.18</span>
+			<span class="status">{version}</span>
 		</div>
 	</div>
 </footer>
@@ -128,16 +131,8 @@
 		color: var(--accent-400);
 	}
 	.foot-bottom .status {
-		display: inline-flex;
-		align-items: center;
-		gap: 7px;
 		font-size: var(--text-xs);
 		color: var(--text-muted);
-	}
-	.foot-bottom .status .dot {
-		width: 7px;
-		height: 7px;
-		border-radius: 9999px;
-		background: var(--success);
+		font-family: var(--font-mono);
 	}
 </style>

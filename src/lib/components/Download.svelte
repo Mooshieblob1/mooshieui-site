@@ -6,7 +6,7 @@
 	const repo = 'https://github.com/Mooshieblob1/MooshieUI';
 
 	let { release = null } = $props();
-	const tag = $derived(release?.tag ?? 'v1.4.18');
+	const tag = $derived(release?.tag ?? 'v1.4.19');
 	const winUrl = $derived(release?.winUrl ?? `${repo}/releases`);
 	const appimageUrl = $derived(release?.appimageUrl ?? `${repo}/releases`);
 	const debUrl = $derived(release?.debUrl ?? `${repo}/releases`);
