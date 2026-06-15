@@ -41,7 +41,10 @@
 			</div>
 		</div>
 		<div class="foot-bottom">
-			<span class="meta">Open source · MIT-style license · © 2026 MooshieUI</span>
+			<span class="meta">
+				Open source · MIT-style license · © 2026 MooshieUI · Created by
+				<a href="https://mooshieblob.com" target="_blank" rel="noopener">Mooshieblob</a>
+			</span>
 			<span class="status"><span class="dot"></span>Open source · v1.4.11</span>
 		</div>
 	</div>
@@ -115,6 +118,14 @@
 	.foot-bottom .meta {
 		font-size: var(--text-xs);
 		color: var(--text-subtle);
+	}
+	.foot-bottom .meta a {
+		color: var(--text-muted);
+		font-weight: var(--weight-semibold);
+		transition: color var(--dur-fast);
+	}
+	.foot-bottom .meta a:hover {
+		color: var(--accent-400);
 	}
 	.foot-bottom .status {
 		display: inline-flex;
