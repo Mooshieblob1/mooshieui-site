@@ -1,11 +1,17 @@
 <script>
 	import Icon from '$lib/icons/Icon.svelte';
 	import { reveal } from '$lib/actions/reveal.js';
+	import { base } from '$app/paths';
+
+	const v = 'v1.4.18';
+	const repo = 'https://github.com/Mooshieblob1/MooshieUI';
+	const winUrl = `${repo}/releases/download/${v}/MooshieUI_1.4.18_x64-setup.exe`;
+	const linuxUrl = `${repo}/releases/download/${v}/MooshieUI_1.4.18_amd64.AppImage`;
 
 	const desktopPoints = [
 		'Native window, system tray, and file dialogs',
 		'Tiny footprint thanks to the Rust backend',
-		'Point it at a local or remote ComfyUI'
+		'Bundles ComfyUI with one-click setup'
 	];
 	const browserPoints = [
 		'One server, many devices over your network',
@@ -42,6 +48,17 @@
 					<span class="pchip">Linux</span>
 					<span class="pchip">macOS (source)</span>
 				</div>
+				<div class="mode-downloads">
+					<a class="dl-btn dl-primary" href={winUrl}>
+						<Icon name="download" size={14} />Windows
+					</a>
+					<a class="dl-btn dl-primary" href={linuxUrl}>
+						<Icon name="download" size={14} />Linux
+					</a>
+					<a class="dl-btn dl-ghost" href={repo} target="_blank" rel="noopener">
+						<Icon name="github" size={14} />macOS (source)
+					</a>
+				</div>
 			</div>
 			<div class="mode browser" use:reveal>
 				<span class="tag">Browser &amp; server</span>
@@ -59,6 +76,11 @@
 					<span class="pchip">Web server</span>
 					<span class="pchip">Docker</span>
 					<span class="pchip">LAN / mobile</span>
+				</div>
+				<div class="mode-downloads">
+					<a class="dl-btn dl-primary" href="{base}/docker">
+						<Icon name="server" size={14} />Docker guide
+					</a>
 				</div>
 			</div>
 		</div>
@@ -107,6 +129,8 @@
 		border-radius: var(--radius-xl);
 		padding: 30px;
 		overflow: hidden;
+		display: flex;
+		flex-direction: column;
 	}
 	.mode .tag {
 		font-size: var(--text-10);
@@ -176,4 +200,35 @@
 		font-size: var(--text-xs);
 		color: var(--text-muted);
 	}
+	.mode-downloads {
+		margin-top: 16px;
+		display: flex;
+		gap: 8px;
+		flex-wrap: wrap;
+	}
+	.dl-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		height: 34px;
+		padding: 0 14px;
+		border-radius: var(--radius-md);
+		font-size: var(--text-xs);
+		font-weight: var(--weight-semibold);
+		text-decoration: none;
+		border: 1px solid transparent;
+		transition: background var(--dur-fast), border-color var(--dur-fast), color var(--dur-fast);
+	}
+	.dl-btn :global(svg) { flex-shrink: 0; }
+	.dl-primary {
+		background: var(--accent-500);
+		color: var(--accent-foreground);
+	}
+	.dl-primary:hover { background: var(--accent-400); }
+	.dl-ghost {
+		background: var(--surface-800);
+		color: var(--text-muted);
+		border-color: var(--border-700);
+	}
+	.dl-ghost:hover { color: var(--text); background: var(--neutral-700); }
 </style>

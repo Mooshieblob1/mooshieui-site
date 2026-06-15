@@ -42,10 +42,10 @@
 		</div>
 		<div class="foot-bottom">
 			<span class="meta">
-				Open source · MIT-style license · © 2026 MooshieUI · Created by
+				Open source · AGPL-3.0 · © 2026 MooshieUI · Created by
 				<a href="https://mooshieblob.com" target="_blank" rel="noopener">Mooshieblob</a>
 			</span>
-			<span class="status"><span class="dot"></span>Open source · v1.4.11</span>
+			<span class="status"><span class="dot"></span>Open source · v1.4.18</span>
 		</div>
 	</div>
 </footer>
