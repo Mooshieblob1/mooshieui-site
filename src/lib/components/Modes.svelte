@@ -21,7 +21,7 @@
 			<h2>Same interface, desktop or browser</h2>
 			<p>
 				MooshieUI ships as a native desktop app and a self-hostable web server. Pick whichever fits
-				your setup — the UI is identical.
+				your setup. The UI is identical.
 			</p>
 		</div>
 		<div class="modes">
@@ -29,7 +29,7 @@
 				<span class="tag">Desktop app</span>
 				<h3>Install &amp; launch</h3>
 				<p>
-					A native app built with Tauri and a Rust core — fast to start, light on memory, no Electron
+					A native app built with Tauri and a Rust core. Fast to start, light on memory, no Electron
 					bloat. Windows and Linux ship as ready-to-run builds; macOS builds from source.
 				</p>
 				<ul>
@@ -48,7 +48,7 @@
 				<h3>Self-host &amp; share</h3>
 				<p>
 					Run the built-in web server and reach MooshieUI from any device on your LAN. Docker-friendly
-					and mobile-aware — perfect for a GPU box in the closet and a laptop on the couch.
+					and mobile-aware. Perfect for a GPU box in the closet and a laptop on the couch.
 				</p>
 				<ul>
 					{#each browserPoints as point}

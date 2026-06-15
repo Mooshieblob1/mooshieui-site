@@ -11,7 +11,7 @@
 		{
 			icon: 'image',
 			title: 'Three generation modes',
-			body: 'Text to image, image to image, and inpainting — switchable with a single click, sharing the same prompt and model setup.'
+			body: 'Text to image, image to image, and inpainting. Switchable with a single click, sharing the same prompt and model setup.'
 		},
 		{
 			icon: 'layers',

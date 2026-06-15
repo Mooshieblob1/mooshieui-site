@@ -12,7 +12,7 @@
 			<span class="eyebrow">Get MooshieUI</span>
 			<h2>Get started in minutes</h2>
 			<p>
-				Free and open source — no installers to chase. Build the desktop app from source or self-host
+				Free and open source. No installers to chase. Build the desktop app from source or self-host
 				the server; the interface is identical either way.
 			</p>
 		</div>
@@ -26,7 +26,7 @@
 					</div>
 				</div>
 				<p class="dl-note">
-					Clone the repo and build the desktop app — the same steps work on Windows, Linux, and
+					Clone the repo and build the desktop app. The same steps work on Windows, Linux, and
 					macOS. The setup wizard installs Python, PyTorch, and ComfyUI on first launch.
 				</p>
 				<a class="btn btn-primary" href="{base}/build">
@@ -43,7 +43,7 @@
 					</div>
 				</div>
 				<p class="dl-note">
-					Run <code>docker compose up</code> and open MooshieUI in your browser — then reach it from any
+					Run <code>docker compose up</code> and open MooshieUI in your browser, then reach it from any
 					device on your network, phones included.
 				</p>
 				<a class="btn btn-primary" href="{base}/docker">
@@ -60,7 +60,7 @@
 					</div>
 				</div>
 				<p class="dl-note">
-					Run ComfyUI on a cloud GPU and point MooshieUI at it. No local install — validate the
+					Run ComfyUI on a cloud GPU and point MooshieUI at it. No local install. Validate the
 					endpoint and start generating.
 				</p>
 				<a
@@ -79,7 +79,7 @@
 			<span>
 				MooshieUI is a front-end. You'll need a running
 				<a href="https://github.com/comfyanonymous/ComfyUI" target="_blank" rel="noopener">ComfyUI</a>
-				backend — point MooshieUI at it and go.
+				backend. Point MooshieUI at it and go.
 			</span>
 		</div>
 	</div>

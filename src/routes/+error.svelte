@@ -59,7 +59,7 @@
 </script>
 
 <svelte:head>
-	<title>Page not found — MooshieUI</title>
+	<title>Page not found · MooshieUI</title>
 	<meta name="description" content="That page couldn't be found. Head back to MooshieUI." />
 </svelte:head>
 
@@ -122,7 +122,7 @@
 <footer class="site">
 	<div class="foot-inner">
 		<span class="meta">MooshieUI · a friendly front-end for ComfyUI</span>
-		<span class="status"><span class="dot"></span>Error 404 — page not found</span>
+		<span class="status"><span class="dot"></span>Error 404, page not found</span>
 	</div>
 </footer>
 

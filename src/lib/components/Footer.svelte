@@ -12,7 +12,7 @@
 					<span class="word">Mooshie<b>UI</b></span>
 				</a>
 				<p>
-					A beginner-friendly interface for ComfyUI. Generate without hand-editing graphs — on your
+					A beginner-friendly interface for ComfyUI. Generate without hand-editing graphs, on your
 					desktop or in any browser.
 				</p>
 			</div>

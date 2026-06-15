@@ -20,7 +20,7 @@
 		},
 		{
 			name: 'NVIDIA Container Toolkit',
-			body: 'Optional — exposes your GPU to the container for fast generation.',
+			body: 'Optional. Exposes your GPU to the container for fast generation.',
 			link: 'https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/',
 			linkText: 'toolkit setup'
 		}
@@ -28,7 +28,7 @@
 </script>
 
 <svelte:head>
-	<title>Docker guide — MooshieUI</title>
+	<title>Docker guide · MooshieUI</title>
 	<meta
 		name="description"
 		content="Self-host MooshieUI with Docker. Run the built-in web server in a container and reach it from any device on your network."
@@ -45,7 +45,7 @@
 	<h1>Self-host MooshieUI with Docker</h1>
 	<p class="lede">
 		Run the built-in web server in a container and reach the same interface from any device on your
-		network — desktop, laptop, or phone. One file, one command.
+		network: desktop, laptop, or phone. One file, one command.
 	</p>
 	<div class="platforms">
 		<span class="pchip">Web server</span>
@@ -62,7 +62,7 @@
 				<h3>Install the prerequisites</h3>
 				<p>
 					You'll need Docker and Compose. For GPU-accelerated generation on an NVIDIA card, add the
-					container toolkit — CPU-only works too, just slower.
+					container toolkit. CPU-only works too, just slower.
 				</p>
 				<div class="prereq">
 					{#each prereqs as p}
@@ -127,7 +127,7 @@
 					<Icon name="info" size={18} />
 					<span>
 						<b>Heads up:</b> first-time setup downloads ~5–10&nbsp;GB (Python + PyTorch + ComfyUI) into
-						the <span class="inline-code">./data</span> volume. Keep that folder around — subsequent starts
+						the <span class="inline-code">./data</span> volume. Keep that folder around; subsequent starts
 						are near-instant.
 					</span>
 				</div>
@@ -152,7 +152,7 @@
 		<div class="callout">
 			<Icon name="code" size={18} />
 			<span>
-				Want a native window instead? <a href="{base}/build">Build the desktop app from source</a> — the
+				Want a native window instead? <a href="{base}/build">Build the desktop app from source.</a> The
 				interface is identical either way.
 			</span>
 		</div>

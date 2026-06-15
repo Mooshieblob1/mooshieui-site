@@ -5,10 +5,10 @@
 </script>
 
 <svelte:head>
-	<title>MooshieUI — A friendly interface for ComfyUI</title>
+	<title>MooshieUI · A friendly interface for ComfyUI</title>
 	<meta
 		name="description"
-		content="MooshieUI is a clean, guided interface for ComfyUI. Generate images with prompts, LoRAs, and one-click upscaling — on your desktop or in any browser. No Python, no pip, no manual configuration."
+		content="MooshieUI is a clean, guided interface for ComfyUI. Generate images with prompts, LoRAs, and one-click upscaling, on your desktop or in any browser. No Python, no pip, no manual configuration."
 	/>
 </svelte:head>
 

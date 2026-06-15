@@ -65,7 +65,7 @@
 			<div class="window-bar">
 				<div class="traffic"><i></i><i></i><i></i></div>
 				<span class="window-title">
-					<img src="{base}/assets/favicon.png" alt="" />MooshieUI — Generate
+					<img src="{base}/assets/favicon.png" alt="" />MooshieUI: Generate
 				</span>
 				<span style="width:54px"></span>
 			</div>

@@ -28,7 +28,7 @@
 </script>
 
 <svelte:head>
-	<title>Build from source — MooshieUI</title>
+	<title>Build from source · MooshieUI</title>
 	<meta
 		name="description"
 		content="Build the MooshieUI desktop app from source. The same steps work on Windows, Linux, and macOS."
@@ -45,7 +45,7 @@
 	<h1>Build the desktop app from source</h1>
 	<p class="lede">
 		MooshieUI builds with one toolchain on every platform. The same five steps work on Windows,
-		Linux, and macOS — there are no prebuilt binaries to chase.
+		Linux, and macOS. There are no prebuilt binaries to chase.
 	</p>
 	<div class="platforms">
 		<span class="pchip">Windows</span>
@@ -109,7 +109,7 @@
 				<h3>Run in development</h3>
 				<p>
 					Launch the app with hot-reload. The first run opens the setup wizard, which installs
-					<span class="inline-code">uv</span>, Python 3.11, ComfyUI, and PyTorch — auto-detecting your
+					<span class="inline-code">uv</span>, Python 3.11, ComfyUI, and PyTorch, auto-detecting your
 					GPU (NVIDIA / AMD / Intel / CPU). No manual ComfyUI install needed.
 				</p>
 				<CodeBlock lines={[{ text: 'npm run tauri dev' }]} />
