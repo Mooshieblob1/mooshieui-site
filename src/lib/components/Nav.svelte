@@ -1,6 +1,7 @@
 <script>
 	import Icon from '$lib/icons/Icon.svelte';
 	import { base } from '$app/paths';
+	import { Button } from '$lib/components/ui/button';
 
 	let { variant = 'landing' } = $props();
 
@@ -34,11 +35,11 @@
 				<a href="#download">Get started</a>
 			</nav>
 			<div class="nav-right">
-				<a class="btn btn-ghost btn-sm" href={repo} target="_blank" rel="noopener">
+				<Button variant="ghost" size="sm" href={repo} target="_blank" rel="noopener">
 					<Icon name="github" size={15} />
 					GitHub
-				</a>
-				<a class="btn btn-primary btn-sm" href="#download">Get started</a>
+				</Button>
+				<Button size="sm" href="#download">Get started</Button>
 			</div>
 		{:else}
 			<div class="nav-right">
