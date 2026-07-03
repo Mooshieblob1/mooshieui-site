@@ -1,15 +1,19 @@
-<script>
+<script lang="ts">
 	import { base } from '$app/paths';
+	import { motion } from '@humanspeak/svelte-motion';
+	import { fadeUp } from '$lib/motion.js';
+	import type { Release } from '$lib/types';
+
 	const repo = 'https://github.com/Mooshieblob1/MooshieUI';
 
-	let { release = null } = $props();
+	let { release = null }: { release?: Release | null } = $props();
 	const version = $derived(release?.tag ?? 'v1.4.19');
 </script>
 
 <footer class="site">
 	<div class="wrap">
 		<div class="foot-top">
-			<div class="foot-brand">
+			<motion.div class="foot-brand" {...fadeUp(0)}>
 				<a class="brand" href="{base}/">
 					<img src="{base}/assets/logo.png" alt="" />
 					<span class="word">Mooshie<b>UI</b></span>
@@ -18,8 +22,8 @@
 					A beginner-friendly interface for ComfyUI. Generate without hand-editing graphs, on your
 					desktop or in any browser.
 				</p>
-			</div>
-			<div class="foot-cols">
+			</motion.div>
+			<motion.div class="foot-cols" {...fadeUp(0.1)}>
 				<div class="foot-col">
 					<h5>Product</h5>
 					<a href="{base}/#features">Features</a>
@@ -41,7 +45,7 @@
 						>ComfyUI</a
 					>
 				</div>
-			</div>
+			</motion.div>
 		</div>
 		<div class="foot-bottom">
 			<span class="meta">
@@ -65,7 +69,7 @@
 		padding-bottom: 32px;
 		border-bottom: 1px solid var(--border-700);
 	}
-	.foot-brand {
+	:global(.foot-brand) {
 		max-width: 300px;
 	}
 	.foot-brand .brand {
@@ -87,7 +91,7 @@
 		color: var(--text-muted);
 		line-height: var(--leading-snug);
 	}
-	.foot-cols {
+	:global(.foot-cols) {
 		display: flex;
 		gap: 56px;
 		flex-wrap: wrap;
