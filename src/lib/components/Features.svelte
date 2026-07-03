@@ -1,6 +1,7 @@
 <script>
 	import Icon from '$lib/icons/Icon.svelte';
-	import { reveal } from '$lib/actions/reveal.js';
+	import { motion } from '@humanspeak/svelte-motion';
+	import { fadeUp } from '$lib/motion.js';
 
 	const features = [
 		{
@@ -38,18 +39,18 @@
 
 <section class="block" id="features">
 	<div class="wrap">
-		<div class="sec-head" use:reveal>
+		<motion.div class="sec-head" {...fadeUp(0)}>
 			<span class="eyebrow muted">What's inside</span>
-			<h2>Everything you generate, none of the graph-wrangling</h2>
+			<h2>Everything you generate, none of the <span class="accent-serif">graph-wrangling</span></h2>
 			<p>MooshieUI keeps ComfyUI's power and hides its complexity behind controls that make sense.</p>
-		</div>
+		</motion.div>
 		<div class="features">
-			{#each features as f}
-				<div class="feature" use:reveal>
+			{#each features as f, i}
+				<motion.div class="feature liquid-glass" {...fadeUp(i * 0.1)}>
 					<div class="ficon"><Icon name={f.icon} /></div>
 					<h3>{f.title}</h3>
 					<p>{f.body}</p>
-				</div>
+				</motion.div>
 			{/each}
 		</div>
 	</div>
@@ -59,7 +60,7 @@
 	.block {
 		padding: 86px 0;
 	}
-	.sec-head {
+	:global(.sec-head) {
 		max-width: 640px;
 		margin: 0 auto 48px;
 		text-align: center;
@@ -95,18 +96,12 @@
 			grid-template-columns: 1fr;
 		}
 	}
-	.feature {
-		background: var(--surface-900);
-		border: 1px solid var(--border-700);
-		border-radius: var(--radius-lg);
+	:global(.feature) {
+		border-radius: 24px;
 		padding: 22px;
-		transition:
-			border-color var(--dur-base),
-			transform var(--dur-base),
-			background var(--dur-base);
+		transition: transform var(--dur-base);
 	}
-	.feature:hover {
-		border-color: color-mix(in srgb, var(--accent-500) 40%, var(--border-700));
+	:global(.feature:hover) {
 		transform: translateY(-2px);
 	}
 	.ficon {
