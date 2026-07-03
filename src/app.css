@@ -5,12 +5,36 @@
    landing/guide pages mirror from the design system.
    ========================================================================== */
 
+@import 'tailwindcss';
 @import './lib/styles/fonts.css';
 @import './lib/styles/colors.css';
 @import './lib/styles/typography.css';
 @import './lib/styles/spacing.css';
 @import './lib/styles/effects.css';
 @import './lib/styles/base.css';
+
+@theme inline {
+	--color-bg: var(--bg);
+	--color-surface-950: var(--surface-950);
+	--color-surface-900: var(--surface-900);
+	--color-surface-800: var(--surface-800);
+	--color-border-700: var(--border-700);
+	--color-text: var(--text);
+	--color-text-strong: var(--text-strong);
+	--color-text-muted: var(--text-muted);
+	--color-text-subtle: var(--text-subtle);
+	--color-accent-300: var(--accent-300);
+	--color-accent-400: var(--accent-400);
+	--color-accent-500: var(--accent-500);
+	--color-accent-600: var(--accent-600);
+	--color-accent-foreground: var(--accent-foreground);
+	--font-sans: var(--font-sans);
+	--radius-sm: var(--radius-sm);
+	--radius-md: var(--radius-md);
+	--radius-lg: var(--radius-lg);
+	--radius-xl: var(--radius-xl);
+	--radius-2xl: var(--radius-2xl);
+}
 
 html {
 	scroll-behavior: smooth;
