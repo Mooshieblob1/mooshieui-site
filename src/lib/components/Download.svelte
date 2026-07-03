@@ -1,11 +1,13 @@
-<script>
+<script lang="ts">
 	import Icon from '$lib/icons/Icon.svelte';
-	import { reveal } from '$lib/actions/reveal.js';
+	import { motion } from '@humanspeak/svelte-motion';
+	import { fadeUp } from '$lib/motion.js';
 	import { base } from '$app/paths';
+	import type { Release } from '$lib/types';
 
 	const repo = 'https://github.com/Mooshieblob1/MooshieUI';
 
-	let { release = null } = $props();
+	let { release = null }: { release?: Release | null } = $props();
 	const tag = $derived(release?.tag ?? 'v1.4.19');
 	const winUrl = $derived(release?.winUrl ?? `${repo}/releases`);
 	const appimageUrl = $derived(release?.appimageUrl ?? `${repo}/releases`);
@@ -14,16 +16,16 @@
 
 <section class="block download" id="download">
 	<div class="wrap">
-		<div class="sec-head" use:reveal>
+		<motion.div class="sec-head" {...fadeUp(0)}>
 			<span class="eyebrow">Get MooshieUI</span>
-			<h2>Get started in minutes</h2>
+			<h2>Get started in <span class="accent-serif">minutes</span></h2>
 			<p>
 				Free and open source. Download the installer and run it. The setup wizard installs ComfyUI,
 				Python, and PyTorch automatically on first launch.
 			</p>
-		</div>
+		</motion.div>
 		<div class="dl-grid">
-			<div class="dl-card" use:reveal>
+			<motion.div class="dl-card liquid-glass" {...fadeUp(0)}>
 				<div class="dl-os">
 					<span class="osicon">
 						<!-- Windows logo -->
@@ -44,9 +46,9 @@
 					<Icon name="download" />
 					Download .exe
 				</a>
-			</div>
+			</motion.div>
 
-			<div class="dl-card" use:reveal>
+			<motion.div class="dl-card liquid-glass" {...fadeUp(0.1)}>
 				<div class="dl-os">
 					<span class="osicon">
 						<!-- Tux (Linux) -->
@@ -72,9 +74,9 @@
 						.deb
 					</a>
 				</div>
-			</div>
+			</motion.div>
 
-			<div class="dl-card" use:reveal>
+			<motion.div class="dl-card liquid-glass" {...fadeUp(0.2)}>
 				<div class="dl-os">
 					<span class="osicon"><Icon name="code" size={22} /></span>
 					<div>
@@ -96,7 +98,7 @@
 						Docker guide
 					</a>
 				</div>
-			</div>
+			</motion.div>
 		</div>
 	</div>
 </section>
@@ -110,7 +112,7 @@
 		border-top: 1px solid var(--border-700);
 		border-bottom: 1px solid var(--border-700);
 	}
-	.sec-head {
+	:global(.sec-head) {
 		max-width: 640px;
 		margin: 0 auto 48px;
 		text-align: center;
@@ -141,20 +143,15 @@
 			grid-template-columns: 1fr;
 		}
 	}
-	.dl-card {
-		background: var(--surface-900);
-		border: 1px solid var(--border-700);
-		border-radius: var(--radius-lg);
+	:global(.dl-card) {
+		border-radius: 24px;
 		padding: 24px;
 		display: flex;
 		flex-direction: column;
 		gap: 14px;
-		transition:
-			border-color var(--dur-base),
-			transform var(--dur-base);
+		transition: transform var(--dur-base);
 	}
-	.dl-card:hover {
-		border-color: color-mix(in srgb, var(--accent-500) 40%, var(--border-700));
+	:global(.dl-card:hover) {
 		transform: translateY(-2px);
 	}
 	.dl-os {
