@@ -12,9 +12,4 @@
 	/>
 </svelte:head>
 
-<div class="organic-bg" aria-hidden="true">
-	<span class="blob b1"></span>
-	<span class="blob b2"></span>
-</div>
-
 {@render children()}
