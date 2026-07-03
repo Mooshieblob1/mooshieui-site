@@ -20,7 +20,7 @@
 	const repo = 'https://github.com/Mooshieblob1/MooshieUI';
 </script>
 
-<header class="nav" class:scrolled class:guide={variant === 'guide'}>
+<header class="nav" class:scrolled class:guide={variant === 'guide'} class:liquid-glass={scrolled || variant === 'guide'}>
 	<div class="wrap nav-inner">
 		<a class="brand" href="{base}/">
 			<img src="{base}/assets/logo.png" alt="" />
@@ -35,11 +35,11 @@
 				<a href="#download">Get started</a>
 			</nav>
 			<div class="nav-right">
-				<Button variant="ghost" size="sm" href={repo} target="_blank" rel="noopener">
+				<Button variant="ghost" size="sm" href={repo} target="_blank" rel="noopener" class="liquid-glass">
 					<Icon name="github" size={15} />
 					GitHub
 				</Button>
-				<Button size="sm" href="#download">Get started</Button>
+				<Button size="sm" href="#download" class="liquid-glass">Get started</Button>
 			</div>
 		{:else}
 			<div class="nav-right">
@@ -61,21 +61,10 @@
 		position: sticky;
 		top: 0;
 		z-index: 50;
-		border-bottom: 1px solid transparent;
 		background: color-mix(in srgb, var(--bg) 72%, transparent);
 		backdrop-filter: blur(12px);
 		-webkit-backdrop-filter: blur(12px);
-		transition:
-			border-color var(--dur-base),
-			background var(--dur-base);
-	}
-	.nav.scrolled {
-		border-bottom-color: var(--border-700);
-		background: color-mix(in srgb, var(--bg) 86%, transparent);
-	}
-	.nav.guide {
-		border-bottom-color: var(--border-700);
-		background: color-mix(in srgb, var(--bg) 86%, transparent);
+		transition: background var(--dur-base);
 	}
 	.nav-inner {
 		display: flex;
