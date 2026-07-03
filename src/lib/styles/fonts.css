@@ -1,14 +1,12 @@
 /* ==========================================================================
    MooshieUI — Fonts
-   Primary brand typeface is Hanken Grotesk (a warm humanist grotesque; see the
-   @import below), with the native system UI stack as fallback. The other bundled
-   webface is OpenDyslexic, an opt-in accessibility font enabled in Settings → Appearance.
+   Primary brand typeface is Inter, with Instrument Serif (italic) as a one-word
+   accent face for section headings, and the native system UI stack as fallback.
+   The other bundled webface is OpenDyslexic, an opt-in accessibility font enabled
+   in Settings → Appearance.
    ========================================================================== */
 
-/* Hanken Grotesk — primary brand typeface. A warm, rounded humanist grotesque that
-   stays highly legible at the small, dense UI sizes this system lives in. Served from
-   Google Fonts; swap for self-hosted woff2 @font-face rules for fully offline delivery. */
-@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap');
 
 @font-face {
   font-family: 'OpenDyslexic';

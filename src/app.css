@@ -29,6 +29,7 @@
 	--color-accent-600: var(--accent-600);
 	--color-accent-foreground: var(--accent-foreground);
 	--font-sans: var(--font-sans);
+	--font-serif: var(--font-serif);
 	--radius-sm: var(--radius-sm);
 	--radius-md: var(--radius-md);
 	--radius-lg: var(--radius-lg);
@@ -150,6 +151,11 @@ a {
 .brand b {
 	color: var(--accent-500);
 	font-weight: var(--weight-bold);
+}
+
+.accent-serif {
+	font-family: var(--font-serif);
+	font-style: italic;
 }
 
 /* ---- entrance reveal ----------------------------------------------------- */
