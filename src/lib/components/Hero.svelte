@@ -1,6 +1,7 @@
 <script>
 	import Icon from '$lib/icons/Icon.svelte';
-	import { reveal } from '$lib/actions/reveal.js';
+	import { motion } from '@humanspeak/svelte-motion';
+	import { fadeUp } from '$lib/motion.js';
 	import { base } from '$app/paths';
 
 	let showcase = $state(null);
@@ -43,7 +44,7 @@
 
 <section class="hero">
 	<div class="hero-glow"></div>
-	<div class="wrap hero-inner">
+	<motion.div class="wrap hero-inner" {...fadeUp(0)}>
 		<h1>All the power of ComfyUI.<br /><span class="hl">None of the node graph.</span></h1>
 		<p class="sub">
 			Make images. Not node graphs.
@@ -58,10 +59,11 @@
 				Try the browser build
 			</a>
 		</div>
-	</div>
+	</motion.div>
 
-	<div class="wrap showcase" bind:this={showcase} use:tilt use:reveal>
-		<div class="window" bind:this={win}>
+	<motion.div {...fadeUp(0.2)}>
+		<div class="wrap showcase" bind:this={showcase} use:tilt>
+			<div class="window" bind:this={win}>
 			<div class="window-bar">
 				<div class="traffic"><i></i><i></i><i></i></div>
 				<span class="window-title">
@@ -76,7 +78,8 @@
 			/>
 			<div class="window-sheen" aria-hidden="true"></div>
 		</div>
-	</div>
+		</div>
+	</motion.div>
 </section>
 
 <style>
@@ -95,7 +98,7 @@
 		pointer-events: none;
 		z-index: 0;
 	}
-	.hero-inner {
+	:global(.hero-inner) {
 		position: relative;
 		z-index: 1;
 		text-align: center;
@@ -113,6 +116,8 @@
 	}
 	.hero h1 :global(.hl) {
 		color: var(--accent-500);
+		font-family: var(--font-serif);
+		font-style: italic;
 	}
 	.hero .sub {
 		margin: 22px auto 0;
