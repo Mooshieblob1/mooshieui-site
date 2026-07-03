@@ -72,7 +72,7 @@
 	:global(.foot-brand) {
 		max-width: 300px;
 	}
-	.foot-brand .brand {
+	:global(.foot-brand .brand) {
 		margin-bottom: 12px;
 		display: flex;
 		align-items: center;
@@ -81,11 +81,11 @@
 		font-size: var(--text-lg);
 		letter-spacing: -0.02em;
 	}
-	.foot-brand .brand img {
+	:global(.foot-brand .brand img) {
 		width: 30px;
 		height: 30px;
 	}
-	.foot-brand p {
+	:global(.foot-brand p) {
 		margin: 0;
 		font-size: var(--text-sm);
 		color: var(--text-muted);

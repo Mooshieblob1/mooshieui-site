@@ -89,7 +89,7 @@
 		margin: 0 auto 48px;
 		text-align: center;
 	}
-	.sec-head h2 {
+	:global(.sec-head h2) {
 		margin: 12px 0 0;
 		font-size: clamp(26px, 3.4vw, 38px);
 		font-weight: var(--weight-bold);
@@ -97,7 +97,7 @@
 		color: var(--text-strong);
 		text-wrap: balance;
 	}
-	.sec-head p {
+	:global(.sec-head p) {
 		margin: 14px auto 0;
 		max-width: 520px;
 		font-size: var(--text-base);
@@ -121,32 +121,32 @@
 		display: flex;
 		flex-direction: column;
 	}
-	.mode .tag {
+	:global(.mode .tag) {
 		font-size: var(--text-10);
 		font-weight: var(--weight-semibold);
 		letter-spacing: var(--tracking-wide);
 		text-transform: uppercase;
 	}
-	.mode.desktop .tag {
+	:global(.mode.desktop .tag) {
 		color: var(--accent-400);
 	}
-	.mode.browser .tag {
+	:global(.mode.browser .tag) {
 		color: var(--success-text);
 	}
-	.mode h3 {
+	:global(.mode h3) {
 		margin: 12px 0 0;
 		font-size: var(--text-2xl);
 		font-weight: var(--weight-bold);
 		letter-spacing: -0.02em;
 		color: var(--text-strong);
 	}
-	.mode p {
+	:global(.mode p) {
 		margin: 12px 0 0;
 		font-size: var(--text-sm);
 		color: var(--text-muted);
 		line-height: var(--leading-normal);
 	}
-	.mode ul {
+	:global(.mode ul) {
 		margin: 20px 0 0;
 		padding: 0;
 		list-style: none;
@@ -154,21 +154,21 @@
 		flex-direction: column;
 		gap: 11px;
 	}
-	.mode li {
+	:global(.mode li) {
 		display: flex;
 		align-items: flex-start;
 		gap: 10px;
 		font-size: var(--text-sm);
 		color: var(--text);
 	}
-	.mode li :global(svg) {
+	:global(.mode li svg) {
 		flex-shrink: 0;
 		margin-top: 1px;
 	}
-	.mode.desktop li :global(svg) {
+	:global(.mode.desktop li svg) {
 		color: var(--accent-500);
 	}
-	.mode.browser li :global(svg) {
+	:global(.mode.browser li svg) {
 		color: var(--success);
 	}
 	.mode-platforms {

@@ -65,7 +65,7 @@
 		margin: 0 auto 48px;
 		text-align: center;
 	}
-	.sec-head h2 {
+	:global(.sec-head h2) {
 		margin: 12px 0 0;
 		font-size: clamp(26px, 3.4vw, 38px);
 		font-weight: var(--weight-bold);
@@ -73,7 +73,7 @@
 		color: var(--text-strong);
 		text-wrap: balance;
 	}
-	.sec-head p {
+	:global(.sec-head p) {
 		margin: 14px auto 0;
 		max-width: 520px;
 		font-size: var(--text-base);
@@ -116,13 +116,13 @@
 		color: var(--accent-400);
 		border: 1px solid color-mix(in srgb, var(--accent-500) 20%, var(--border-700));
 	}
-	.feature h3 {
+	:global(.feature h3) {
 		margin: 0 0 8px;
 		font-size: var(--text-base);
 		font-weight: var(--weight-semibold);
 		color: var(--text-strong);
 	}
-	.feature p {
+	:global(.feature p) {
 		margin: 0;
 		font-size: var(--text-sm);
 		color: var(--text-muted);

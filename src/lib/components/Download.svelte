@@ -117,7 +117,7 @@
 		margin: 0 auto 48px;
 		text-align: center;
 	}
-	.sec-head h2 {
+	:global(.sec-head h2) {
 		margin: 12px 0 0;
 		font-size: clamp(26px, 3.4vw, 38px);
 		font-weight: var(--weight-bold);
@@ -125,7 +125,7 @@
 		color: var(--text-strong);
 		text-wrap: balance;
 	}
-	.sec-head p {
+	:global(.sec-head p) {
 		margin: 14px auto 0;
 		max-width: 520px;
 		font-size: var(--text-base);
@@ -195,7 +195,7 @@
 		padding: 1px 5px;
 		color: var(--accent-300);
 	}
-	.dl-card .btn {
+	:global(.dl-card .btn) {
 		width: 100%;
 	}
 	.btn-row {
