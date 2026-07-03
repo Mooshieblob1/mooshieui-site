@@ -1,5 +1,6 @@
 <script>
-	import { reveal } from '$lib/actions/reveal.js';
+	import { motion } from '@humanspeak/svelte-motion';
+	import { fadeUp } from '$lib/motion.js';
 
 	const steps = [
 		{
@@ -20,7 +21,7 @@
 <section class="block" id="look">
 	<div class="wrap closer">
 		<!-- on-brand CSS mock of the generate panel -->
-		<div class="closer-media" use:reveal>
+		<motion.div class="closer-media liquid-glass" {...fadeUp(0)}>
 			<div class="mock">
 				<div class="mock-row">
 					<span class="mock-label">Checkpoint</span>
@@ -41,10 +42,10 @@
 				</div>
 				<div class="mock-generate">Generate</div>
 			</div>
-		</div>
-		<div use:reveal>
+		</motion.div>
+		<motion.div {...fadeUp(0.15)}>
 			<span class="eyebrow">From prompt to polished</span>
-			<h2>Three steps to a finished image</h2>
+			<h2>Three steps to a <span class="accent-serif">finished</span> image</h2>
 			<ol class="closer-points">
 				{#each steps as step, i}
 					<li>
@@ -56,7 +57,7 @@
 					</li>
 				{/each}
 			</ol>
-		</div>
+		</motion.div>
 	</div>
 </section>
 
@@ -76,12 +77,8 @@
 			gap: 28px;
 		}
 	}
-	.closer-media {
-		border: 1px solid var(--border-700);
+	:global(.closer-media) {
 		border-radius: var(--radius-lg);
-		overflow: hidden;
-		background: var(--surface-900);
-		box-shadow: var(--shadow-panel);
 		padding: 22px;
 	}
 	.mock {
