@@ -1,11 +1,13 @@
-<script>
+<script lang="ts">
 	import Icon from '$lib/icons/Icon.svelte';
-	import { reveal } from '$lib/actions/reveal.js';
+	import { motion } from '@humanspeak/svelte-motion';
+	import { fadeUp } from '$lib/motion.js';
 	import { base } from '$app/paths';
+	import type { Release } from '$lib/types';
 
 	const repo = 'https://github.com/Mooshieblob1/MooshieUI';
 
-	let { release = null } = $props();
+	let { release = null }: { release?: Release | null } = $props();
 	const winUrl = $derived(release?.winUrl ?? `${repo}/releases`);
 	const linuxUrl = $derived(release?.appimageUrl ?? `${repo}/releases`);
 
@@ -23,16 +25,16 @@
 
 <section class="block" id="modes" style="padding-top: 24px;">
 	<div class="wrap">
-		<div class="sec-head" use:reveal>
+		<motion.div class="sec-head" {...fadeUp(0)}>
 			<span class="eyebrow muted">Two ways to run</span>
-			<h2>Same interface, desktop or browser</h2>
+			<h2>Same interface, <span class="accent-serif">desktop</span> or browser</h2>
 			<p>
 				MooshieUI ships as a native desktop app and a self-hostable web server. Pick whichever fits
 				your setup. The UI is identical.
 			</p>
-		</div>
+		</motion.div>
 		<div class="modes">
-			<div class="mode desktop" use:reveal>
+			<motion.div class="mode desktop liquid-glass" {...fadeUp(0.1)}>
 				<span class="tag">Desktop app</span>
 				<h3>Install &amp; launch</h3>
 				<p>
@@ -55,8 +57,8 @@
 						<Icon name="github" size={14} />macOS (source)
 					</a>
 				</div>
-			</div>
-			<div class="mode browser" use:reveal>
+			</motion.div>
+			<motion.div class="mode browser liquid-glass" {...fadeUp(0.2)}>
 				<span class="tag">Browser &amp; server</span>
 				<h3>Self-host &amp; share</h3>
 				<p>
@@ -73,7 +75,7 @@
 						<Icon name="server" size={14} />Docker guide
 					</a>
 				</div>
-			</div>
+			</motion.div>
 		</div>
 	</div>
 </section>
@@ -82,7 +84,7 @@
 	.block {
 		padding: 86px 0;
 	}
-	.sec-head {
+	:global(.sec-head) {
 		max-width: 640px;
 		margin: 0 auto 48px;
 		text-align: center;
@@ -113,13 +115,9 @@
 			grid-template-columns: 1fr;
 		}
 	}
-	.mode {
-		position: relative;
-		background: var(--surface-900);
-		border: 1px solid var(--border-700);
-		border-radius: var(--radius-xl);
+	:global(.mode) {
+		border-radius: 24px;
 		padding: 30px;
-		overflow: hidden;
 		display: flex;
 		flex-direction: column;
 	}
