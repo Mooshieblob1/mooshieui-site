@@ -84,27 +84,6 @@
 	.block {
 		padding: 86px 0;
 	}
-	:global(.sec-head) {
-		max-width: 640px;
-		margin: 0 auto 48px;
-		text-align: center;
-	}
-	:global(.sec-head h2) {
-		margin: 12px 0 0;
-		font-size: clamp(26px, 3.4vw, 38px);
-		font-weight: var(--weight-bold);
-		letter-spacing: -0.025em;
-		color: var(--text-strong);
-		text-wrap: balance;
-	}
-	:global(.sec-head p) {
-		margin: 14px auto 0;
-		max-width: 520px;
-		font-size: var(--text-base);
-		color: var(--text-muted);
-		line-height: var(--leading-snug);
-		text-wrap: pretty;
-	}
 	.modes {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -170,24 +149,6 @@
 	}
 	:global(.mode.browser li svg) {
 		color: var(--success);
-	}
-	.mode-platforms {
-		margin-top: 22px;
-		display: flex;
-		gap: 8px;
-		flex-wrap: wrap;
-	}
-	.pchip {
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-		height: 28px;
-		padding: 0 11px;
-		border-radius: var(--radius-sm);
-		background: var(--surface-800);
-		border: 1px solid var(--border-700);
-		font-size: var(--text-xs);
-		color: var(--text-muted);
 	}
 	.mode-downloads {
 		margin-top: 16px;
