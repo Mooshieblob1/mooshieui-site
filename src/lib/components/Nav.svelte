@@ -109,6 +109,12 @@
 		align-items: center;
 		gap: 10px;
 	}
+	.nav-right :global(.btn-primary) {
+		color: #fff;
+	}
+	.nav-right :global(.btn-primary:hover) {
+		color: var(--accent-foreground);
+	}
 	.back {
 		display: inline-flex;
 		align-items: center;
