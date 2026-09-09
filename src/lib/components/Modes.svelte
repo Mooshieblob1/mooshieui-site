@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Icon from '$lib/icons/Icon.svelte';
-	import { motion } from '@humanspeak/svelte-motion';
-	import { fadeUp } from '$lib/motion.js';
+	import { reveal } from '$lib/actions/reveal';
 	import { base } from '$app/paths';
 	import type { Release } from '$lib/types';
 
@@ -24,18 +23,18 @@
 	];
 </script>
 
-<section class="block" id="modes" style="padding-top: 24px;">
+<section class="section modes-section" id="modes" aria-labelledby="modes-heading">
 	<div class="wrap">
-		<motion.div class="sec-head" {...fadeUp(0)}>
+		<div class="modes-heading" use:reveal>
 			<span class="eyebrow muted">Two ways to run</span>
-			<h2>Same interface, <span class="accent-serif">desktop</span> or browser</h2>
-			<p>
+			<h2 class="section-title" id="modes-heading">Same interface, <span class="accent-serif">desktop</span> or browser</h2>
+			<p class="section-intro">
 				MooshieUI ships as a native desktop app and a self-hostable web server. Pick whichever fits
 				your setup. The UI is identical.
 			</p>
-		</motion.div>
+		</div>
 		<div class="modes">
-			<motion.div class="mode desktop liquid-glass" {...fadeUp(0.1)}>
+			<div class="mode desktop" use:reveal>
 				<span class="tag">Desktop app</span>
 				<h3>Install &amp; launch</h3>
 				<p>
@@ -64,8 +63,8 @@
 						{macUrl ? 'macOS (Apple Silicon)' : 'macOS · coming soon'}
 					</a>
 				</div>
-			</motion.div>
-			<motion.div class="mode browser liquid-glass" {...fadeUp(0.2)}>
+			</div>
+			<div class="mode browser" use:reveal>
 				<span class="tag">Browser &amp; server</span>
 				<h3>Self-host &amp; share</h3>
 				<p>
@@ -82,110 +81,26 @@
 						<Icon name="server" size={14} />Docker guide
 					</a>
 				</div>
-			</motion.div>
+			</div>
 		</div>
 	</div>
 </section>
 
 <style>
-	.block {
-		padding: 86px 0;
-	}
-	.modes {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 16px;
-	}
-	@media (max-width: 800px) {
-		.modes {
-			grid-template-columns: 1fr;
-		}
-	}
-	:global(.mode) {
-		border-radius: 24px;
-		padding: 30px;
-		display: flex;
-		flex-direction: column;
-	}
-	:global(.mode .tag) {
-		font-size: var(--text-10);
-		font-weight: var(--weight-semibold);
-		letter-spacing: var(--tracking-wide);
-		text-transform: uppercase;
-	}
-	:global(.mode.desktop .tag) {
-		color: var(--accent-400);
-	}
-	:global(.mode.browser .tag) {
-		color: var(--success-text);
-	}
-	:global(.mode h3) {
-		margin: 12px 0 0;
-		font-size: var(--text-2xl);
-		font-weight: var(--weight-bold);
-		letter-spacing: -0.02em;
-		color: var(--text-strong);
-	}
-	:global(.mode p) {
-		margin: 12px 0 0;
-		font-size: var(--text-sm);
-		color: var(--text-muted);
-		line-height: var(--leading-normal);
-	}
-	:global(.mode ul) {
-		margin: 20px 0 0;
-		padding: 0;
-		list-style: none;
-		display: flex;
-		flex-direction: column;
-		gap: 11px;
-	}
-	:global(.mode li) {
-		display: flex;
-		align-items: flex-start;
-		gap: 10px;
-		font-size: var(--text-sm);
-		color: var(--text);
-	}
-	:global(.mode li svg) {
-		flex-shrink: 0;
-		margin-top: 1px;
-	}
-	:global(.mode.desktop li svg) {
-		color: var(--accent-500);
-	}
-	:global(.mode.browser li svg) {
-		color: var(--success);
-	}
-	.mode-downloads {
-		margin-top: 16px;
-		display: flex;
-		gap: 8px;
-		flex-wrap: wrap;
-	}
-	.dl-btn {
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-		height: 34px;
-		padding: 0 14px;
-		border-radius: var(--radius-md);
-		font-size: var(--text-xs);
-		font-weight: var(--weight-semibold);
-		text-decoration: none;
-		border: 1px solid transparent;
-		transition: background var(--dur-fast), border-color var(--dur-fast), color var(--dur-fast);
-	}
-	.dl-btn :global(svg) { flex-shrink: 0; }
-	.dl-primary {
-		background: var(--accent-500);
-		color: var(--accent-foreground);
-	}
-	.dl-primary:hover { background: var(--accent-400); }
-	.dl-ghost {
-		background: var(--surface-800);
-		color: var(--text-muted);
-		border-color: var(--border-700);
-	}
-	.dl-ghost:hover { color: var(--text); background: var(--neutral-700); }
+ .modes-section { border-block: 1px solid var(--border-700); }
+ .modes-heading { max-width: 780px; margin-bottom: 32px; }
+ .modes-heading .section-intro { margin-top: 20px; }
+ .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+ .mode { min-width: 0; display: flex; flex-direction: column; background: var(--surface-900); border: 1px solid var(--border-700); border-radius: var(--app-shell-radius); padding: 28px; }
+ .tag { font-size: .875rem; font-weight: 600; color: var(--accent-500); padding-bottom: 16px; border-bottom: 1px solid var(--border-700); }
+ h3 { margin: 20px 0 16px; font-size: 1.75rem; font-weight: 650; letter-spacing: -.02em; line-height: 1.2; }
+ .mode p { font-size: 1rem; color: var(--text-muted); line-height: 1.65; margin: 0; }
+ ul { list-style: none; padding: 0; margin: 24px 0; display: grid; gap: 12px; }
+ li { display: flex; align-items: flex-start; gap: 10px; font-size: 1rem; line-height: 1.5; }
+ li :global(svg) { flex-shrink: 0; color: var(--accent-500); margin-top: 4px; }
+ .mode-downloads { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-700); display: flex; flex-wrap: wrap; gap: 8px; }
+ .dl-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 14px; background: var(--surface-800); border: 1px solid var(--border-700); border-radius: var(--radius-md); color: var(--text); font-size: .875rem; font-weight: 500; }
+ .dl-btn:hover { color: var(--accent-500); background: var(--neutral-800); border-color: var(--neutral-700); }
+ .dl-ghost { color: var(--text-muted); }
+ @media(max-width: 800px) { .modes { grid-template-columns: 1fr; } .mode { padding: 24px; } }
 </style>

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Icon from '$lib/icons/Icon.svelte';
-	import { motion } from '@humanspeak/svelte-motion';
-	import { fadeUp } from '$lib/motion.js';
+	import { reveal } from '$lib/actions/reveal';
 	import { base } from '$app/paths';
 	import type { Release } from '$lib/types';
 	import { FALLBACK_TAG } from '$lib/release.js';
@@ -16,18 +15,18 @@
 	const macUrl = $derived(release?.macUrl ?? null);
 </script>
 
-<section class="block download" id="download">
+<section class="section download" id="download" aria-labelledby="download-heading">
 	<div class="wrap">
-		<motion.div class="sec-head" {...fadeUp(0)}>
-			<span class="eyebrow">Get MooshieUI</span>
-			<h2>Get started in <span class="accent-serif">minutes</span></h2>
+		<div class="section-heading" use:reveal>
+			<div><span class="eyebrow">Get MooshieUI</span>
+			<h2 id="download-heading">Get started in <span class="accent-serif">minutes</span></h2></div>
 			<p>
 				Free and open source. Download the installer and run it. The setup wizard installs ComfyUI,
 				Python, and PyTorch automatically on first launch.
 			</p>
-		</motion.div>
+		</div>
 		<div class="dl-grid">
-			<motion.div class="dl-card liquid-glass" {...fadeUp(0)}>
+			<div class="dl-card" use:reveal>
 				<div class="dl-os">
 					<span class="osicon">
 						<!-- Windows logo -->
@@ -48,9 +47,9 @@
 					<Icon name="download" />
 					Download .exe
 				</a>
-			</motion.div>
+			</div>
 
-			<motion.div class="dl-card liquid-glass" {...fadeUp(0.1)}>
+			<div class="dl-card" use:reveal>
 				<div class="dl-os">
 					<span class="osicon">
 						<!-- Tux (Linux) -->
@@ -76,9 +75,9 @@
 						.deb
 					</a>
 				</div>
-			</motion.div>
+			</div>
 
-			<motion.div class="dl-card liquid-glass" id="download-macos" {...fadeUp(0.2)}>
+			<div class="dl-card" id="download-macos" use:reveal>
 				<div class="dl-os">
 					<span class="osicon"><Icon name="browser" size={22} /></span>
 					<div>
@@ -119,7 +118,7 @@
 						MooshieUI server in their browser.
 					</p>
 				</details>
-			</motion.div>
+			</div>
 		</div>
 		<p class="other-options">
 			Running your own server? <a href="{base}/docker">Use the Docker guide</a>.
@@ -129,99 +128,24 @@
 </section>
 
 <style>
-	.block {
-		padding: 86px 0;
-	}
-	.download {
-		background: var(--surface-950);
-		border-top: 1px solid var(--border-700);
-		border-bottom: 1px solid var(--border-700);
-	}
-	.dl-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 16px;
-	}
-	@media (max-width: 760px) {
-		.dl-grid {
-			grid-template-columns: 1fr;
-		}
-	}
-	:global(.dl-card) {
-		border-radius: 24px;
-		padding: 24px;
-		display: flex;
-		flex-direction: column;
-		gap: 14px;
-		transition: transform var(--dur-base);
-	}
-	:global(.dl-card:hover) {
-		transform: translateY(-2px);
-	}
-	.dl-os {
-		display: flex;
-		align-items: center;
-		gap: 12px;
-	}
-	.dl-os .osicon {
-		width: 38px;
-		height: 38px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-shrink: 0;
-		color: var(--text-muted);
-	}
-	.dl-os h3 {
-		margin: 0;
-		font-size: var(--text-base);
-		font-weight: var(--weight-semibold);
-		color: var(--text-strong);
-	}
-	.dl-os .meta {
-		margin: 2px 0 0;
-		font-size: var(--text-xs);
-		color: var(--text-subtle);
-	}
-	.dl-note {
-		font-size: var(--text-xs);
-		color: var(--text-muted);
-		line-height: var(--leading-snug);
-		flex: 1;
-		margin: 0;
-	}
-	:global(#download-macos) {
-		scroll-margin-top: 96px;
-	}
-	.mac-help,
-	.other-options {
-		font-size: var(--text-xs);
-		color: var(--text-muted);
-		line-height: var(--leading-normal);
-	}
-	.mac-help summary {
-		cursor: pointer;
-		color: var(--text);
-	}
-	.mac-help p {
-		margin: 10px 0 0;
-	}
-	.mac-help a,
-	.other-options a {
-		color: var(--accent-300);
-	}
-	.other-options {
-		margin: 24px 0 0;
-		text-align: center;
-	}
-	:global(.dl-card .btn) {
-		width: 100%;
-	}
-	.btn-row {
-		display: flex;
-		gap: 8px;
-	}
-	.btn-row .btn {
-		flex: 1;
-	}
+ .download { border-block: 1px solid var(--border-700); }
+ .dl-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+ .dl-card { display: flex; flex-direction: column; gap: 20px; border: 1px solid var(--border-700); border-radius: var(--app-shell-radius); background: var(--surface-900); padding: 24px; min-width: 0; }
+ .dl-os { display: flex; align-items: center; gap: 12px; padding-bottom: 18px; border-bottom: 1px solid var(--border-700); }
+ .osicon { display: flex; align-items: center; justify-content: center; width: 32px; color: var(--accent-400); flex-shrink: 0; }
+ h3 { font-size: 1.25rem; font-weight: 600; margin: 0; letter-spacing: -.01em; }
+ .meta { font-size: .8125rem; color: var(--text-muted); margin: 5px 0 0; line-height: 1.5; }
+ .dl-note { font-size: 1rem; line-height: 1.65; color: var(--text-muted); margin: 0; min-height: 8.5em; }
+ .dl-card > .btn, .btn-row { margin-top: 0; }
+ .dl-card > .btn { width: 100%; }
+ .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+ .btn-row .btn { flex: 1; padding-inline: 16px; }
+ .mac-help { border-top: 1px solid var(--border-700); padding-top: 16px; font-size: .875rem; line-height: 1.65; color: var(--text-muted); }
+ .mac-help summary { color: var(--text); cursor: pointer; }
+ .mac-help p { margin: 14px 0 0; }
+ .mac-help a, .other-options a { color: var(--accent-400); text-decoration: underline; text-underline-offset: 4px; }
+ .other-options { margin: 28px 0 0; font-size: .875rem; line-height: 1.9; color: var(--text-muted); border-top: 1px solid var(--border-700); padding-top: 24px; }
+ @supports (grid-template-rows: subgrid) { .dl-card { display: grid; grid-template-rows: subgrid; grid-row: span 4; align-items: start; } .dl-note { min-height: 0; } }
+ @media(max-width: 1000px) { .dl-grid { gap: 24px; } }
+ @media(max-width: 800px) { .dl-grid { grid-template-columns: 1fr; gap: 40px; } .dl-note { min-height: 0; } .dl-card { gap: 20px; } }
 </style>
