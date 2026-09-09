@@ -34,7 +34,7 @@
 		</div>
 		<div class="modes">
 			<div class="mode desktop">
-				<div class="mode-heading"><span class="tag">Desktop app</span><Icon name="browser" size={25} /></div>
+				<span class="tag">Desktop app</span>
 				<h3>Install &amp; launch</h3>
 				<p>
 					A native app built with Tauri and a Rust core. Fast to start, light on memory, no Electron
@@ -64,7 +64,7 @@
 				</div>
 			</div>
 			<div class="mode browser">
-				<div class="mode-heading"><span class="tag">Browser &amp; server</span><Icon name="server" size={25} /></div>
+				<span class="tag">Browser &amp; server</span>
 				<h3>Self-host &amp; share</h3>
 				<p>
 					Run the built-in web server and reach MooshieUI from any device on your LAN. Docker-friendly
@@ -87,58 +87,21 @@
 
 <style>
   .block { padding: 92px 0; background: var(--surface-950); border-block: 1px solid var(--border-700); }
-  .modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-  .mode { position: relative; border-radius: 8px; border: 1px solid var(--border-700); padding: 36px; display: flex; flex-direction: column; background: var(--bg); }
-  .mode.desktop { border-top: 2px solid var(--accent-500); }
-  .mode.browser { border-top: 2px solid #a6b990; }
-  .mode-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    margin: -36px -36px 0;
-    padding: 19px 28px;
-    border-bottom: 1px solid var(--border-700);
-    border-radius: 6px 6px 0 0;
-    background: var(--surface-900);
-    color: var(--accent-500);
-  }
-  .mode-heading::before {
-    content: '';
-    position: absolute;
-    top: 27px;
-    left: -5px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 2px solid currentColor;
-    background: var(--surface-950);
-  }
-  .mode-heading::after {
-    content: '';
-    position: absolute;
-    top: 27px;
-    right: -5px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 2px solid currentColor;
-    background: var(--surface-950);
-  }
-  .browser .mode-heading { color: #b9c9a5; }
-  .tag { font-family: var(--font-mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; }
-  h3 { margin: 25px 0 0; font-size: 2rem; line-height: 1.2; font-weight: 500; letter-spacing: -.035em; color: var(--text-strong); }
+  .modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; }
+  .mode { display: flex; flex-direction: column; min-width: 0; }
+  .mode + .mode { padding-left: 64px; border-left: 1px solid var(--border-700); }
+  .tag { font-size: .875rem; color: var(--accent-500); }
+  h3 { margin: 14px 0 0; font-size: 2rem; line-height: 1.2; font-weight: 500; letter-spacing: -.035em; color: var(--text-strong); }
   .mode p { margin: 18px 0 0; font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
-  ul { margin: 28px 0 32px; padding: 24px 0 0; border-top: 1px solid var(--border-700); list-style: none; display: flex; flex-direction: column; gap: 13px; }
-  li { display: flex; align-items: flex-start; gap: 10px; font-size: .9375rem; }
-  li :global(svg) { flex-shrink: 0; margin-top: 5px; color: var(--accent-500); }
-  .browser li :global(svg) { color: #b9c9a5; }
-  .mode-downloads { margin-top: auto; display: flex; flex-wrap: wrap; gap: 10px; }
-  .dl-btn { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 10px 14px; border-radius: 5px; font-family: var(--font-mono); font-size: .875rem; font-weight: 500; border: 1px solid var(--border-700); transition: background .2s; }
+  ul { margin: 24px 0 28px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 13px; }
+  li { display: flex; align-items: flex-start; gap: 10px; font-size: 1rem; }
+  li :global(svg) { flex-shrink: 0; margin-top: 5px; color: var(--text-subtle); }
+  .mode-downloads { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  .dl-btn { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding-block: 8px; font-size: .875rem; font-weight: 500; text-underline-offset: 5px; }
   .dl-btn :global(svg) { flex-shrink: 0; }
-  .dl-primary { background: var(--surface-800); color: var(--text); }
-  .dl-primary:hover { background: var(--accent-500); color: var(--accent-foreground); }
+  .dl-primary { color: var(--accent-400); }
   .dl-ghost { color: var(--text-muted); }
-  .dl-ghost:hover { background: var(--surface-800); }
-  @media (max-width: 800px) { .block { padding: 64px 0; } .modes { grid-template-columns: 1fr; } .mode { padding: 28px; } .mode-heading { margin: -28px -28px 0; padding-inline: 24px; } }
+  .dl-btn:hover { text-decoration: underline; }
+  @media (max-width: 1000px) { .modes { gap: 36px; } .mode + .mode { padding-left: 36px; } }
+  @media (max-width: 800px) { .block { padding: 64px 0; } .modes { grid-template-columns: 1fr; gap: 36px; } .mode + .mode { padding: 36px 0 0; border-left: 0; border-top: 1px solid var(--border-700); } }
 </style>

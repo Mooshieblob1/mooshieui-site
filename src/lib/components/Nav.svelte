@@ -9,7 +9,7 @@
 		{ href: '#features', label: 'Features' },
 		{ href: '#modes', label: 'How it runs' },
 		{ href: '#look', label: 'A closer look' },
-		{ href: '#download', label: 'Get started' }
+		{ href: '#download', label: 'Download' }
 	];
 </script>
 
@@ -27,7 +27,7 @@
 			</nav>
 			<div class="nav-right">
 				<a class="github-link" href={repo} target="_blank" rel="noopener"><Icon name="github" size={19} /><span>GitHub</span></a>
-				<a class="btn btn-primary btn-sm" href="#download">Get started<Icon name="arrow-right" size={15} /></a>
+				<a class="btn btn-primary btn-sm" href="#download">Download<Icon name="arrow-right" size={15} /></a>
 				<button class="menu-toggle" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="mobile-navigation" onclick={() => menuOpen = !menuOpen}><Icon name={menuOpen ? 'close' : 'menu'} size={22} /></button>
 			</div>
 		{:else}
@@ -50,7 +50,7 @@
 	.brand { display: inline-flex; align-items: center; gap: 11px; flex-shrink: 0; font-weight: 600; font-size: 1.375rem; letter-spacing: -.045em; }
 	.brand img { width: 36px; height: 36px; }
 	.nav-links { display: flex; align-items: center; gap: 30px; margin-left: auto; }
-	.nav-links a { position: relative; padding: 12px 0; font-family: var(--font-mono); font-size: .875rem; letter-spacing: -.025em; color: var(--text-muted); }
+	.nav-links a { position: relative; padding: 12px 0; font-size: .875rem; color: var(--text-muted); }
 	.nav-links a:hover, .github-link:hover, .back:hover { color: var(--accent-500); }
   .nav-links a::after {
     content: '';

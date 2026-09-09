@@ -28,7 +28,7 @@
 					<a href="{base}/#features">Features</a>
 					<a href="{base}/#modes">How it runs</a>
 					<a href="{base}/#look">A closer look</a>
-					<a href="{base}/#download">Get started</a>
+					<a href="{base}/#download">Download</a>
 				</div>
 				<div class="foot-col">
 					<h2>Guides</h2>
@@ -70,7 +70,7 @@
   .foot-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-top: 24px; }
   .meta { font-size: .8125rem; color: var(--text-subtle); }
   .meta a { color: var(--text-muted); }
-  .status { padding: 3px 9px; border: 1px solid var(--border-700); border-radius: 5px; color: var(--text-muted); font: .75rem var(--font-mono); }
+  .status { padding-block: 3px; color: var(--text-muted); font: .75rem var(--font-mono); }
   @media (max-width: 1000px) { .foot-cols { gap: 32px; } }
   @media (max-width: 800px) { .foot-top { flex-direction: column; } .foot-cols { justify-content: space-between; gap: 24px; flex-wrap: wrap; } .foot-brand { max-width: 430px; } }
 </style>

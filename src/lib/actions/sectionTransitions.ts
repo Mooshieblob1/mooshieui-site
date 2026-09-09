@@ -11,7 +11,7 @@ export function sectionTransitions(node: HTMLElement) {
 	const targets = Array.from(node.querySelectorAll<HTMLElement>(
 		'#features .sec-head, #features .feature, ' +
 		'#modes .sec-head, #modes .mode, ' +
-		'#look .closer-media, #look .closer > div:last-child, ' +
+		'#look .sec-head, #look .closer-points li, ' +
 		'#download .sec-head, #download .dl-card, #download .other-options'
 	));
 	const animations = new Map<HTMLElement, Animation>();
@@ -32,8 +32,6 @@ export function sectionTransitions(node: HTMLElement) {
 			if (preference.matches || document.hidden || target.contains(document.activeElement)) continue;
 
 			const delay = Math.min(stagger++ * 55, 110);
-			target.style.setProperty('--section-enter-delay', `${delay}ms`);
-			target.setAttribute('data-section-entered', '');
 			const animation = target.animate([
 				{ opacity: 0.45, transform: 'translateY(12px)' },
 				{ opacity: 1, transform: 'translateY(0)' }
@@ -68,7 +66,6 @@ export function sectionTransitions(node: HTMLElement) {
 			observer.unobserve(target);
 			animations.get(target)?.cancel();
 			animations.delete(target);
-			target.removeAttribute('data-section-entered');
 		}
 	}
 
@@ -77,10 +74,6 @@ export function sectionTransitions(node: HTMLElement) {
 		observer.disconnect();
 		for (const animation of animations.values()) animation.cancel();
 		animations.clear();
-		for (const target of targets) {
-			target.removeAttribute('data-section-entered');
-			target.style.removeProperty('--section-enter-delay');
-		}
 	}
 
 	function onPreferenceChange() {
