@@ -45,7 +45,8 @@
 	<h1>Build the desktop app from source</h1>
 	<p class="lede">
 		MooshieUI builds with one toolchain on every platform. The same five steps work on Windows,
-		Linux, and macOS. There are no prebuilt binaries to chase.
+		Linux, and macOS. For ready-to-run installers and current platform availability,
+		<a href="{base}/#download">see the downloads</a>.
 	</p>
 	<div class="platforms">
 		<span class="pchip">Windows</span>
@@ -110,7 +111,7 @@
 				<p>
 					Launch the app with hot-reload. The first run opens the setup wizard, which installs
 					<span class="inline-code">uv</span>, Python 3.11, ComfyUI, and PyTorch, auto-detecting your
-					GPU (NVIDIA / AMD / Intel / CPU). No manual ComfyUI install needed.
+					GPU (NVIDIA / AMD / Intel Arc / Apple Metal / CPU). No manual ComfyUI install needed.
 				</p>
 				<CodeBlock lines={[{ text: 'npm run tauri dev' }]} />
 			</div>
