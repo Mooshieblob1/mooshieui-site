@@ -1,227 +1,54 @@
 <script>
 	import Icon from '$lib/icons/Icon.svelte';
-	import { motion } from '@humanspeak/svelte-motion';
-	import { fadeUp } from '$lib/motion.js';
 	import { base } from '$app/paths';
-
-	let showcase = $state(null);
-	let win = $state(null);
-
-	// Linear-style cursor-tracking 3D tilt + light sheen on the app window.
-	function tilt(node) {
-		const reduce =
-			typeof window !== 'undefined' &&
-			window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-		const maxRX = 5.5;
-		const maxRY = 7;
-
-		function onMove(e) {
-			if (reduce || e.pointerType === 'touch' || !win) return;
-			const r = node.getBoundingClientRect();
-			const px = (e.clientX - r.left) / r.width;
-			const py = (e.clientY - r.top) / r.height;
-			const ry = (px - 0.5) * 2 * maxRY;
-			const rx = -(py - 0.5) * 2 * maxRX;
-			node.classList.add('tilting');
-			win.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
-			win.style.setProperty('--mx', `${(px * 100).toFixed(1)}%`);
-			win.style.setProperty('--my', `${(py * 100).toFixed(1)}%`);
-		}
-		function onLeave() {
-			node.classList.remove('tilting');
-			if (win) win.style.transform = '';
-		}
-		node.addEventListener('pointermove', onMove);
-		node.addEventListener('pointerleave', onLeave);
-		return {
-			destroy() {
-				node.removeEventListener('pointermove', onMove);
-				node.removeEventListener('pointerleave', onLeave);
-			}
-		};
-	}
 </script>
 
-<section class="hero">
-	<div class="hero-glow"></div>
-	<motion.div class="wrap hero-inner" {...fadeUp(0)}>
-		<h1>All the power of ComfyUI.<br /><span class="hl">None of the node graph.</span></h1>
-		<p class="sub">
-			Make images. Not node graphs.
-		</p>
-		<div class="hero-cta">
-			<a class="btn btn-primary" href="#download">
-				<Icon name="download" />
-				Get started
-			</a>
-			<a class="btn btn-secondary" href="#modes">
-				<Icon name="browser" />
-				Try the browser build
-			</a>
-		</div>
-	</motion.div>
-
-	<motion.div {...fadeUp(0.2)}>
-		<div class="wrap showcase" bind:this={showcase} use:tilt>
-			<div class="window" bind:this={win}>
-			<div class="window-bar">
-				<div class="traffic"><i></i><i></i><i></i></div>
-				<span class="window-title">
-					<img src="{base}/assets/favicon.png" alt="" />MooshieUI: Generate
-				</span>
-				<span style="width:54px"></span>
+<section class="hero" aria-labelledby="hero-title">
+	<div class="wrap hero-layout">
+		<div class="hero-copy">
+			<span class="eyebrow">A friendly interface for ComfyUI</span>
+			<h1 id="hero-title">All the power of ComfyUI.<br /><span>None of the node graph.</span></h1>
+			<p class="sub">Make images. Not node graphs.</p>
+			<div class="hero-cta">
+				<a class="btn btn-primary" href="#download"><Icon name="download" />Get started</a>
+				<a class="browser-link" href="#modes">Try the browser build<Icon name="arrow-right" size={17} /></a>
 			</div>
-			<img
-				class="shot"
-				src="{base}/assets/app-screenshot.avif"
-				alt="The MooshieUI generation workspace: a left panel with dimensions and prompts, a centered image preview, and a right panel with model and sampler controls."
-			/>
-			<div class="window-sheen" aria-hidden="true"></div>
+			<p class="hero-note"><Icon name="code" size={16} />Free and open source<span aria-hidden="true">/</span>Desktop &amp; browser</p>
 		</div>
-		</div>
-	</motion.div>
+		<figure class="showcase">
+			<div class="window">
+				<div class="window-bar">
+					<span class="window-title"><img src="{base}/assets/favicon.png" alt="" width="18" height="18" />MooshieUI: Generate</span>
+					<Icon name="sliders-h" size={16} />
+				</div>
+				<img class="shot" src="{base}/assets/app-screenshot.avif" width="1874" height="1347" fetchpriority="high" alt="The MooshieUI generation workspace: a left panel with dimensions and prompts, a centered artwork preview, and a right panel with model and sampler controls." />
+			</div>
+			<figcaption><span>Text to image · Image to image</span><span>Inpainting</span></figcaption>
+		</figure>
+	</div>
 </section>
 
 <style>
-	.hero {
-		position: relative;
-		padding: 76px 0 40px;
-		overflow: hidden;
-	}
-	.hero-glow {
-		position: absolute;
-		top: -180px;
-		left: 50%;
-		transform: translateX(-50%);
-		width: 900px;
-		height: 520px;
-		pointer-events: none;
-		z-index: 0;
-	}
-	:global(.hero-inner) {
-		position: relative;
-		z-index: 1;
-		text-align: center;
-		max-width: 820px;
-		margin: 0 auto;
-	}
-	.hero h1 {
-		margin: 20px 0 0;
-		font-size: clamp(34px, 5.6vw, 60px);
-		line-height: 1.04;
-		font-weight: var(--weight-bold);
-		letter-spacing: -0.03em;
-		color: var(--text-strong);
-		text-wrap: balance;
-	}
-	.hero h1 :global(.hl) {
-		color: var(--accent-500);
-		font-family: var(--font-serif);
-		font-style: italic;
-	}
-	.hero .sub {
-		margin: 22px auto 0;
-		max-width: 600px;
-		font-size: var(--text-lg);
-		line-height: var(--leading-snug);
-		color: var(--text-muted);
-		text-wrap: pretty;
-	}
-	.hero-cta {
-		margin-top: 30px;
-		display: flex;
-		gap: 12px;
-		justify-content: center;
-		flex-wrap: wrap;
-	}
-
-	/* ---- App window frame ---- */
-	.showcase {
-		position: relative;
-		z-index: 1;
-		margin: 50px auto 0;
-		max-width: 1060px;
-		perspective: 1400px;
-	}
-	.window {
-		position: relative;
-		border: 1px solid var(--border-700);
-		border-radius: var(--radius-xl);
-		overflow: hidden;
-		background: var(--surface-900);
-		box-shadow:
-			0 24px 64px -18px rgba(0, 0, 0, 0.5),
-			0 0 0 1px color-mix(in srgb, var(--text) 6%, transparent);
-		transition:
-			transform 0.45s var(--ease-out),
-			box-shadow 0.45s var(--ease-out);
-		transform-style: preserve-3d;
-		will-change: transform;
-	}
-	.showcase.tilting .window {
-		transition: transform 0.08s linear;
-	}
-	.showcase:hover .window {
-		box-shadow:
-			0 36px 90px -22px rgba(0, 0, 0, 0.6),
-			0 0 0 1px color-mix(in srgb, var(--accent-500) 18%, transparent);
-	}
-	.window-bar {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		padding: 11px 14px;
-		border-bottom: 1px solid var(--border-700);
-		background: var(--surface-950);
-	}
-	.traffic {
-		display: flex;
-		gap: 7px;
-	}
-	.traffic i {
-		width: 11px;
-		height: 11px;
-		border-radius: 9999px;
-		display: block;
-		background: var(--neutral-600);
-	}
-	.window-title {
-		margin: 0 auto;
-		display: inline-flex;
-		align-items: center;
-		gap: 7px;
-		font-size: var(--text-xs);
-		color: var(--text-subtle);
-	}
-	.window-title img {
-		width: 14px;
-		height: 14px;
-	}
-	.window .shot {
-		display: block;
-		width: 100%;
-		height: auto;
-	}
-	.window-sheen {
-		position: absolute;
-		inset: 0;
-		z-index: 3;
-		pointer-events: none;
-		opacity: 0;
-		transition: opacity 0.45s var(--ease-out);
-		background: radial-gradient(
-			440px circle at var(--mx, 50%) var(--my, 0%),
-			color-mix(in srgb, var(--accent-300) 28%, transparent),
-			transparent 56%
-		);
-		mix-blend-mode: soft-light;
-	}
-	.showcase:hover .window-sheen {
-		opacity: 1;
-	}
-	@media (prefers-reduced-motion: reduce) {
-		.window {
-			transition: none;
-		}
-	}
+	.hero { padding: 88px 0 80px; border-bottom: 1px solid var(--border-700); }
+	.hero-layout { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; gap: 56px; }
+	.hero-copy { padding-bottom: 32px; animation: arrive .65s ease both; }
+	h1 { margin: 26px 0 0; max-width: 650px; font-size: clamp(3rem, 4.7vw, 4.7rem); line-height: 1.055; letter-spacing: -.055em; font-weight: 600; color: var(--text-strong); }
+	h1 span { color: var(--accent-500); }
+	.sub { margin: 26px 0 0; font-size: 1.1875rem; color: var(--text-muted); }
+	.hero-cta { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; margin-top: 34px; }
+	.browser-link { display: inline-flex; align-items: center; gap: 10px; padding: 12px 0; font-size: .875rem; font-weight: 500; }
+	.browser-link:hover { color: var(--accent-500); }
+	.hero-note { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; font-size: .8125rem; color: var(--text-subtle); }
+	.hero-note > span { color: var(--border-700); padding: 0 2px; }
+	.showcase { min-width: 0; margin: 0; position: relative; animation: arrive .8s ease both; }
+	.showcase::before { content: ''; position: absolute; inset: -13px 15px 53px -13px; border: 1px solid #f6cb4333; border-radius: 18px; z-index: -1; }
+	.window { border: 1px solid #414139; border-radius: 12px; overflow: hidden; background: #191919; box-shadow: 0 30px 70px -25px #000b; }
+	.window-bar { height: 43px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; background: #22221f; border-bottom: 1px solid #363630; color: #91918a; }
+	.window-title { display: flex; align-items: center; gap: 9px; font-size: .75rem; color: #b5b5ad; }
+	.shot { display: block; width: 100%; height: auto; }
+	figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 18px; font-family: var(--font-mono); font-size: .75rem; color: var(--text-subtle); }
+	@keyframes arrive { from { transform: translateY(14px); } to { transform: translateY(0); } }
+	@media (max-width: 1050px) { .hero-layout { gap: 32px; } h1 { font-size: clamp(2.8rem, 4.9vw, 4rem); } .hero-cta { gap: 12px; } }
+	@media (max-width: 800px) { .hero { padding: 56px 0; } .hero-layout { grid-template-columns: 1fr; gap: 36px; } .hero-copy { padding: 0; } h1 { font-size: clamp(3rem, 8vw, 4.8rem); max-width: 650px; } .showcase { margin-left: 10px; } }
+	@media (max-width: 420px) { h1 { font-size: 2.875rem; } .hero-note { font-size: .75rem; gap: 7px; } .hero-cta { gap: 18px; } }
 </style>

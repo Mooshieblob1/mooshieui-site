@@ -1,4 +1,5 @@
 <script>
+	import '$lib/styles/guides.css';
 	import Nav from '$lib/components/Nav.svelte';
 	import GuideFooter from '$lib/components/GuideFooter.svelte';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
@@ -37,6 +38,7 @@
 
 <Nav variant="guide" />
 
+<main class="guide-page" id="guide-content" tabindex="-1">
 <div class="wrap-narrow head">
 	<span class="eyebrow">
 		<Icon name="server" size={18} />
@@ -59,7 +61,7 @@
 		<div class="step">
 			<div class="num">1</div>
 			<div>
-				<h3>Install the prerequisites</h3>
+				<h2>Install the prerequisites</h2>
 				<p>
 					You'll need Docker and Compose. For GPU-accelerated generation on an NVIDIA card, add the
 					container toolkit. CPU-only works too, just slower.
@@ -67,7 +69,7 @@
 				<div class="prereq">
 					{#each prereqs as p}
 						<div class="pcard">
-							<h4>{p.name}</h4>
+							<h3>{p.name}</h3>
 							<p>
 								{p.body}
 								<a href={p.link} target="_blank" rel="noopener">{p.linkText}</a>
@@ -81,7 +83,7 @@
 		<div class="step">
 			<div class="num">2</div>
 			<div>
-				<h3>Clone the repository</h3>
+				<h2>Clone the repository</h2>
 				<p>The compose file lives in the repo. Grab the source and move into it.</p>
 				<CodeBlock
 					lines={[
@@ -95,7 +97,7 @@
 		<div class="step">
 			<div class="num">3</div>
 			<div>
-				<h3>Configure the compose file</h3>
+				<h2>Configure the compose file</h2>
 				<p>
 					A starter <span class="inline-code">docker-compose.yml</span> is included. Mount a host folder
 					for your models and outputs so they survive container rebuilds, and pick the port you want to
@@ -117,7 +119,7 @@
 		<div class="step">
 			<div class="num">4</div>
 			<div>
-				<h3>Bring the stack up</h3>
+				<h2>Bring the stack up</h2>
 				<p>
 					Build and start the server in the background. The first launch pulls the image and runs the
 					same setup wizard that installs ComfyUI and PyTorch into the mounted data volume.
@@ -137,7 +139,7 @@
 		<div class="step">
 			<div class="num">5</div>
 			<div>
-				<h3>Open it anywhere on your network</h3>
+				<h2>Open it anywhere on your network</h2>
 				<p>
 					Browse to the server from the host machine, then reach it from any other device on your LAN
 					using the host's IP address. The UI is responsive down to phone screens.
@@ -159,157 +161,6 @@
 	</div>
 </section>
 
+</main>
+
 <GuideFooter />
-
-<style>
-	.head {
-		padding: 64px 0 28px;
-	}
-	.head h1 {
-		margin: 16px 0 0;
-		font-size: clamp(30px, 4.4vw, 44px);
-		font-weight: var(--weight-bold);
-		letter-spacing: -0.03em;
-		color: var(--text-strong);
-		text-wrap: balance;
-	}
-	.head .lede {
-		margin: 16px 0 0;
-		max-width: 620px;
-		font-size: var(--text-lg);
-		line-height: var(--leading-snug);
-		color: var(--text-muted);
-		text-wrap: pretty;
-	}
-	.platforms {
-		margin-top: 22px;
-		display: flex;
-		gap: 8px;
-		flex-wrap: wrap;
-	}
-	.pchip {
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-		height: 28px;
-		padding: 0 11px;
-		border-radius: var(--radius-sm);
-		background: var(--surface-800);
-		border: 1px solid var(--border-700);
-		font-size: var(--text-xs);
-		color: var(--text-muted);
-	}
-
-	.callout {
-		margin: 8px 0 0;
-		display: flex;
-		gap: 11px;
-		align-items: flex-start;
-		padding: 14px 16px;
-		border-radius: var(--radius-lg);
-		background: color-mix(in srgb, var(--accent-500) 7%, var(--surface-900));
-		border: 1px solid color-mix(in srgb, var(--accent-500) 22%, transparent);
-		font-size: var(--text-sm);
-		color: var(--text-muted);
-		line-height: var(--leading-snug);
-	}
-	.callout :global(svg) {
-		flex-shrink: 0;
-		color: var(--accent-400);
-		margin-top: 1px;
-	}
-	.callout b {
-		color: var(--text);
-	}
-	.callout a {
-		color: var(--accent-400);
-		font-weight: var(--weight-semibold);
-	}
-	.callout a:hover {
-		text-decoration: underline;
-	}
-
-	.prereq {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 12px;
-		margin-top: 8px;
-	}
-	@media (max-width: 680px) {
-		.prereq {
-			grid-template-columns: 1fr;
-		}
-	}
-	.pcard {
-		background: var(--surface-900);
-		border: 1px solid var(--border-700);
-		border-radius: var(--radius-lg);
-		padding: 16px;
-	}
-	.pcard h4 {
-		margin: 0 0 5px;
-		font-size: var(--text-sm);
-		font-weight: var(--weight-semibold);
-		color: var(--text-strong);
-	}
-	.pcard p {
-		margin: 0;
-		font-size: var(--text-xs);
-		color: var(--text-muted);
-		line-height: var(--leading-snug);
-	}
-	.pcard a {
-		color: var(--accent-400);
-	}
-	.pcard a:hover {
-		text-decoration: underline;
-	}
-
-	.steps {
-		padding: 24px 0 40px;
-	}
-	.step {
-		display: grid;
-		grid-template-columns: 36px 1fr;
-		gap: 18px;
-		padding: 22px 0;
-		border-top: 1px solid var(--border-700);
-	}
-	.step:first-of-type {
-		border-top: none;
-	}
-	.num {
-		width: 30px;
-		height: 30px;
-		border-radius: var(--radius-md);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background: var(--accent-500);
-		color: var(--accent-foreground);
-		font-size: var(--text-sm);
-		font-weight: var(--weight-bold);
-	}
-	.step h3 {
-		margin: 3px 0 0;
-		font-size: var(--text-xl);
-		font-weight: var(--weight-semibold);
-		color: var(--text-strong);
-		letter-spacing: -0.01em;
-	}
-	.step p {
-		margin: 10px 0 0;
-		font-size: var(--text-sm);
-		color: var(--text-muted);
-		line-height: var(--leading-normal);
-	}
-	.inline-code {
-		font-family: var(--font-mono);
-		font-size: 0.92em;
-		background: var(--surface-800);
-		border: 1px solid var(--border-700);
-		border-radius: var(--radius-sm);
-		padding: 1px 6px;
-		color: var(--accent-300);
-	}
-</style>

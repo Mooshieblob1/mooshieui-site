@@ -5,7 +5,7 @@
 	 * GitHub mark is the one filled glyph.
 	 */
 	let { name, size = 18, stroke = 2, class: klass = '' } = $props();
-	const filled = name === 'github';
+	const filled = $derived(name === 'github');
 </script>
 
 <svg
@@ -81,6 +81,12 @@
 	{:else if name === 'arrow-left'}
 		<line x1="19" y1="12" x2="5" y2="12" />
 		<polyline points="12 19 5 12 12 5" />
+	{:else if name === 'arrow-right'}
+		<path d="M5 12h14m-6-6 6 6-6 6" />
+	{:else if name === 'menu'}
+		<path d="M4 6h16M4 12h16M4 18h16" />
+	{:else if name === 'close'}
+		<path d="m6 6 12 12M6 18 18 6" />
 	{:else if name === 'copy'}
 		<rect x="9" y="9" width="13" height="13" rx="2" />
 		<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />

@@ -63,9 +63,9 @@
 	<meta name="description" content="That page couldn't be found. Head back to MooshieUI." />
 </svelte:head>
 
-<Nav variant="landing" />
+<Nav variant="guide" />
 
-<main>
+<main id="guide-content" tabindex="-1">
 	<div class="grid-bg" aria-hidden="true"></div>
 	<div class="wrap">
 		<div class="stage">

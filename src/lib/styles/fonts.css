@@ -6,7 +6,7 @@
    in Settings → Appearance.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap');
+/* Web fonts are linked in app.html so the browser loads them before site CSS. */
 
 @font-face {
   font-family: 'OpenDyslexic';

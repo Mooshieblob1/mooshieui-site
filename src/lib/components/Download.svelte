@@ -1,7 +1,5 @@
 <script lang="ts">
 	import Icon from '$lib/icons/Icon.svelte';
-	import { motion } from '@humanspeak/svelte-motion';
-	import { fadeUp } from '$lib/motion.js';
 	import { base } from '$app/paths';
 	import type { Release } from '$lib/types';
 	import { FALLBACK_TAG } from '$lib/release.js';
@@ -18,16 +16,16 @@
 
 <section class="block download" id="download">
 	<div class="wrap">
-		<motion.div class="sec-head" {...fadeUp(0)}>
+		<div class="sec-head">
 			<span class="eyebrow">Get MooshieUI</span>
 			<h2>Get started in <span class="accent-serif">minutes</span></h2>
 			<p>
 				Free and open source. Download the installer and run it. The setup wizard installs ComfyUI,
 				Python, and PyTorch automatically on first launch.
 			</p>
-		</motion.div>
+		</div>
 		<div class="dl-grid">
-			<motion.div class="dl-card liquid-glass" {...fadeUp(0)}>
+			<div class="dl-card">
 				<div class="dl-os">
 					<span class="osicon">
 						<!-- Windows logo -->
@@ -48,9 +46,9 @@
 					<Icon name="download" />
 					Download .exe
 				</a>
-			</motion.div>
+			</div>
 
-			<motion.div class="dl-card liquid-glass" {...fadeUp(0.1)}>
+			<div class="dl-card">
 				<div class="dl-os">
 					<span class="osicon">
 						<!-- Tux (Linux) -->
@@ -76,9 +74,9 @@
 						.deb
 					</a>
 				</div>
-			</motion.div>
+			</div>
 
-			<motion.div class="dl-card liquid-glass" id="download-macos" {...fadeUp(0.2)}>
+			<div class="dl-card" id="download-macos">
 				<div class="dl-os">
 					<span class="osicon"><Icon name="browser" size={22} /></span>
 					<div>
@@ -119,7 +117,7 @@
 						MooshieUI server in their browser.
 					</p>
 				</details>
-			</motion.div>
+			</div>
 		</div>
 		<p class="other-options">
 			Running your own server? <a href="{base}/docker">Use the Docker guide</a>.
@@ -129,99 +127,31 @@
 </section>
 
 <style>
-	.block {
-		padding: 86px 0;
-	}
-	.download {
-		background: var(--surface-950);
-		border-top: 1px solid var(--border-700);
-		border-bottom: 1px solid var(--border-700);
-	}
-	.dl-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 16px;
-	}
-	@media (max-width: 760px) {
-		.dl-grid {
-			grid-template-columns: 1fr;
-		}
-	}
-	:global(.dl-card) {
-		border-radius: 24px;
-		padding: 24px;
-		display: flex;
-		flex-direction: column;
-		gap: 14px;
-		transition: transform var(--dur-base);
-	}
-	:global(.dl-card:hover) {
-		transform: translateY(-2px);
-	}
-	.dl-os {
-		display: flex;
-		align-items: center;
-		gap: 12px;
-	}
-	.dl-os .osicon {
-		width: 38px;
-		height: 38px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-shrink: 0;
-		color: var(--text-muted);
-	}
-	.dl-os h3 {
-		margin: 0;
-		font-size: var(--text-base);
-		font-weight: var(--weight-semibold);
-		color: var(--text-strong);
-	}
-	.dl-os .meta {
-		margin: 2px 0 0;
-		font-size: var(--text-xs);
-		color: var(--text-subtle);
-	}
-	.dl-note {
-		font-size: var(--text-xs);
-		color: var(--text-muted);
-		line-height: var(--leading-snug);
-		flex: 1;
-		margin: 0;
-	}
-	:global(#download-macos) {
-		scroll-margin-top: 96px;
-	}
-	.mac-help,
-	.other-options {
-		font-size: var(--text-xs);
-		color: var(--text-muted);
-		line-height: var(--leading-normal);
-	}
-	.mac-help summary {
-		cursor: pointer;
-		color: var(--text);
-	}
-	.mac-help p {
-		margin: 10px 0 0;
-	}
-	.mac-help a,
-	.other-options a {
-		color: var(--accent-300);
-	}
-	.other-options {
-		margin: 24px 0 0;
-		text-align: center;
-	}
-	:global(.dl-card .btn) {
-		width: 100%;
-	}
-	.btn-row {
-		display: flex;
-		gap: 8px;
-	}
-	.btn-row .btn {
-		flex: 1;
-	}
+  .download { padding: 84px 0; background: var(--accent-500); color: var(--accent-foreground); }
+  .sec-head { max-width: 780px; }
+  .sec-head .eyebrow, .sec-head h2, .sec-head p { color: var(--accent-foreground); }
+  .sec-head :global(.accent-serif) { color: inherit; }
+  .sec-head h2 { font-size: clamp(2.4rem, 4.5vw, 4rem); }
+  .sec-head p { max-width: 650px; color: #4c4325; }
+  .dl-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .dl-card { min-width: 0; border: 1px solid #363a2f; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 22px; background: var(--bg); color: var(--text); }
+  .dl-os { display: flex; align-items: center; gap: 14px; padding-bottom: 22px; border-bottom: 1px solid var(--border-700); }
+  .osicon { display: flex; align-items: center; justify-content: center; width: 42px; height: 44px; flex-shrink: 0; color: var(--text-strong); }
+  h3 { margin: 0; font-size: 1.25rem; font-weight: 500; letter-spacing: -.025em; color: var(--text-strong); }
+  .meta { margin: 4px 0 0; font-size: .8125rem; color: var(--text-subtle); overflow-wrap: anywhere; }
+  .dl-note { margin: 0; font-size: 1rem; line-height: 1.65; color: var(--text-muted); flex: 1; }
+  .dl-card .btn { width: 100%; }
+  .btn-row { display: flex; gap: 8px; }
+  .btn-row .btn { flex: 1; padding-inline: 12px; }
+  .mac-help { font-size: .875rem; color: var(--text-muted); line-height: 1.65; border-top: 1px solid var(--border-700); padding-top: 18px; }
+  .mac-help summary { cursor: pointer; padding-block: 4px; color: var(--text); }
+  .mac-help p { margin: 12px 0 0; }
+  .mac-help a { color: var(--accent-300); text-decoration: underline; text-underline-offset: 3px; }
+  .other-options { margin: 28px 0 0; font-size: .9375rem; line-height: 1.8; color: #4c4325; }
+  .other-options a { color: #202115; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+  .other-options a:hover { text-decoration-thickness: 2px; }
+  .other-options a:focus-visible { outline-color: var(--accent-foreground); }
+  @media (max-width: 1050px) { .dl-card { padding: 22px; } }
+  @media (max-width: 900px) { .dl-grid { grid-template-columns: 1fr; } .dl-card { padding: 28px; } }
+  @media (max-width: 800px) { .download { padding: 60px 0; } }
 </style>

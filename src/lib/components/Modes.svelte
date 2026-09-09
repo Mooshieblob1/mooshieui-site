@@ -1,7 +1,5 @@
 <script lang="ts">
 	import Icon from '$lib/icons/Icon.svelte';
-	import { motion } from '@humanspeak/svelte-motion';
-	import { fadeUp } from '$lib/motion.js';
 	import { base } from '$app/paths';
 	import type { Release } from '$lib/types';
 
@@ -24,19 +22,19 @@
 	];
 </script>
 
-<section class="block" id="modes" style="padding-top: 24px;">
+<section class="block" id="modes">
 	<div class="wrap">
-		<motion.div class="sec-head" {...fadeUp(0)}>
+		<div class="sec-head">
 			<span class="eyebrow muted">Two ways to run</span>
 			<h2>Same interface, <span class="accent-serif">desktop</span> or browser</h2>
 			<p>
 				MooshieUI ships as a native desktop app and a self-hostable web server. Pick whichever fits
 				your setup. The UI is identical.
 			</p>
-		</motion.div>
+		</div>
 		<div class="modes">
-			<motion.div class="mode desktop liquid-glass" {...fadeUp(0.1)}>
-				<span class="tag">Desktop app</span>
+			<div class="mode desktop">
+				<div class="mode-heading"><span class="tag">Desktop app</span><Icon name="browser" size={25} /></div>
 				<h3>Install &amp; launch</h3>
 				<p>
 					A native app built with Tauri and a Rust core. Fast to start, light on memory, no Electron
@@ -64,9 +62,9 @@
 						{macUrl ? 'macOS (Apple Silicon)' : 'macOS · coming soon'}
 					</a>
 				</div>
-			</motion.div>
-			<motion.div class="mode browser liquid-glass" {...fadeUp(0.2)}>
-				<span class="tag">Browser &amp; server</span>
+			</div>
+			<div class="mode browser">
+				<div class="mode-heading"><span class="tag">Browser &amp; server</span><Icon name="server" size={25} /></div>
 				<h3>Self-host &amp; share</h3>
 				<p>
 					Run the built-in web server and reach MooshieUI from any device on your LAN. Docker-friendly
@@ -82,110 +80,32 @@
 						<Icon name="server" size={14} />Docker guide
 					</a>
 				</div>
-			</motion.div>
+			</div>
 		</div>
 	</div>
 </section>
 
 <style>
-	.block {
-		padding: 86px 0;
-	}
-	.modes {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 16px;
-	}
-	@media (max-width: 800px) {
-		.modes {
-			grid-template-columns: 1fr;
-		}
-	}
-	:global(.mode) {
-		border-radius: 24px;
-		padding: 30px;
-		display: flex;
-		flex-direction: column;
-	}
-	:global(.mode .tag) {
-		font-size: var(--text-10);
-		font-weight: var(--weight-semibold);
-		letter-spacing: var(--tracking-wide);
-		text-transform: uppercase;
-	}
-	:global(.mode.desktop .tag) {
-		color: var(--accent-400);
-	}
-	:global(.mode.browser .tag) {
-		color: var(--success-text);
-	}
-	:global(.mode h3) {
-		margin: 12px 0 0;
-		font-size: var(--text-2xl);
-		font-weight: var(--weight-bold);
-		letter-spacing: -0.02em;
-		color: var(--text-strong);
-	}
-	:global(.mode p) {
-		margin: 12px 0 0;
-		font-size: var(--text-sm);
-		color: var(--text-muted);
-		line-height: var(--leading-normal);
-	}
-	:global(.mode ul) {
-		margin: 20px 0 0;
-		padding: 0;
-		list-style: none;
-		display: flex;
-		flex-direction: column;
-		gap: 11px;
-	}
-	:global(.mode li) {
-		display: flex;
-		align-items: flex-start;
-		gap: 10px;
-		font-size: var(--text-sm);
-		color: var(--text);
-	}
-	:global(.mode li svg) {
-		flex-shrink: 0;
-		margin-top: 1px;
-	}
-	:global(.mode.desktop li svg) {
-		color: var(--accent-500);
-	}
-	:global(.mode.browser li svg) {
-		color: var(--success);
-	}
-	.mode-downloads {
-		margin-top: 16px;
-		display: flex;
-		gap: 8px;
-		flex-wrap: wrap;
-	}
-	.dl-btn {
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-		height: 34px;
-		padding: 0 14px;
-		border-radius: var(--radius-md);
-		font-size: var(--text-xs);
-		font-weight: var(--weight-semibold);
-		text-decoration: none;
-		border: 1px solid transparent;
-		transition: background var(--dur-fast), border-color var(--dur-fast), color var(--dur-fast);
-	}
-	.dl-btn :global(svg) { flex-shrink: 0; }
-	.dl-primary {
-		background: var(--accent-500);
-		color: var(--accent-foreground);
-	}
-	.dl-primary:hover { background: var(--accent-400); }
-	.dl-ghost {
-		background: var(--surface-800);
-		color: var(--text-muted);
-		border-color: var(--border-700);
-	}
-	.dl-ghost:hover { color: var(--text); background: var(--neutral-700); }
+  .block { padding: 92px 0; background: var(--surface-950); border-block: 1px solid var(--border-700); }
+  .modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .mode { border-radius: 14px; border: 1px solid var(--border-700); padding: 36px; display: flex; flex-direction: column; background: var(--bg); }
+  .mode.desktop { border-top: 2px solid var(--accent-500); }
+  .mode.browser { border-top: 2px solid #a6b990; }
+  .mode-heading { display: flex; justify-content: space-between; align-items: center; color: var(--accent-500); }
+  .browser .mode-heading { color: #b9c9a5; }
+  .tag { font-family: var(--font-mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; }
+  h3 { margin: 25px 0 0; font-size: 2rem; line-height: 1.2; font-weight: 500; letter-spacing: -.035em; color: var(--text-strong); }
+  .mode p { margin: 18px 0 0; font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
+  ul { margin: 28px 0 32px; padding: 24px 0 0; border-top: 1px solid var(--border-700); list-style: none; display: flex; flex-direction: column; gap: 13px; }
+  li { display: flex; align-items: flex-start; gap: 10px; font-size: .9375rem; }
+  li :global(svg) { flex-shrink: 0; margin-top: 5px; color: var(--accent-500); }
+  .browser li :global(svg) { color: #b9c9a5; }
+  .mode-downloads { margin-top: auto; display: flex; flex-wrap: wrap; gap: 10px; }
+  .dl-btn { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 10px 14px; border-radius: 7px; font-size: .875rem; font-weight: 500; border: 1px solid var(--border-700); transition: background .2s; }
+  .dl-btn :global(svg) { flex-shrink: 0; }
+  .dl-primary { background: var(--surface-800); color: var(--text); }
+  .dl-primary:hover { background: var(--accent-500); color: var(--accent-foreground); }
+  .dl-ghost { color: var(--text-muted); }
+  .dl-ghost:hover { background: var(--surface-800); }
+  @media (max-width: 800px) { .block { padding: 64px 0; } .modes { grid-template-columns: 1fr; } .mode { padding: 28px; } }
 </style>

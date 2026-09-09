@@ -1,139 +1,63 @@
 <script>
 	import Icon from '$lib/icons/Icon.svelte';
 	import { base } from '$app/paths';
-	import { Button } from '$lib/components/ui/button';
 
 	let { variant = 'landing' } = $props();
-
-	let scrolled = $state(false);
-
-	function onScroll() {
-		scrolled = window.scrollY > 8;
-	}
-
-	$effect(() => {
-		onScroll();
-		window.addEventListener('scroll', onScroll, { passive: true });
-		return () => window.removeEventListener('scroll', onScroll);
-	});
-
+	let menuOpen = $state(false);
 	const repo = 'https://github.com/Mooshieblob1/MooshieUI';
+	const links = [
+		{ href: '#features', label: 'Features' },
+		{ href: '#modes', label: 'How it runs' },
+		{ href: '#look', label: 'A closer look' },
+		{ href: '#download', label: 'Get started' }
+	];
 </script>
 
-<header class="nav" class:scrolled class:guide={variant === 'guide'} class:liquid-glass={scrolled || variant === 'guide'}>
+<svelte:window onkeydown={(event) => { if (event.key === 'Escape') menuOpen = false; }} />
+<a class="skip-link" href={variant === 'landing' ? '#top' : '#guide-content'}>Skip to content</a>
+<header class="nav">
 	<div class="wrap nav-inner">
-		<a class="brand" href="{base}/">
-			<img src="{base}/assets/logo.png" alt="" />
+		<a class="brand" href="{base}/" aria-label="MooshieUI home">
+			<img src="{base}/assets/logo.png" alt="" width="36" height="36" />
 			<span class="word">Mooshie<b>UI</b></span>
 		</a>
-
 		{#if variant === 'landing'}
-			<nav class="nav-links">
-				<a href="#features">Features</a>
-				<a href="#modes">How it runs</a>
-				<a href="#look">A closer look</a>
-				<a href="#download">Get started</a>
+			<nav class="nav-links" aria-label="Main navigation">
+				{#each links.slice(0, 3) as link}<a href={link.href}>{link.label}</a>{/each}
 			</nav>
 			<div class="nav-right">
-				<Button variant="ghost" size="sm" href={repo} target="_blank" rel="noopener" class="liquid-glass">
-					<Icon name="github" size={15} />
-					GitHub
-				</Button>
-				<Button size="sm" href="#download" class="liquid-glass">Get started</Button>
+				<a class="github-link" href={repo} target="_blank" rel="noopener"><Icon name="github" size={19} /><span>GitHub</span></a>
+				<a class="btn btn-primary btn-sm" href="#download">Get started<Icon name="arrow-right" size={15} /></a>
+				<button class="menu-toggle" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="mobile-navigation" onclick={() => menuOpen = !menuOpen}><Icon name={menuOpen ? 'close' : 'menu'} size={22} /></button>
 			</div>
 		{:else}
 			<div class="nav-right">
-				<a class="back" href="{base}/">
-					<Icon name="arrow-left" size={16} />
-					Back to home
-				</a>
-				<a class="btn btn-secondary btn-sm" href={repo} target="_blank" rel="noopener">
-					<Icon name="github" size={16} />
-					Repo
-				</a>
+				<a class="back" href="{base}/"><Icon name="arrow-left" size={16} /><span>Back to home</span></a>
+				<a class="github-link" href={repo} target="_blank" rel="noopener"><Icon name="github" size={19} /><span>Repo</span></a>
 			</div>
 		{/if}
 	</div>
+	{#if variant === 'landing' && menuOpen}
+		<nav class="mobile-navigation" id="mobile-navigation" aria-label="Mobile navigation">
+			{#each links as link}<a href={link.href} onclick={() => menuOpen = false}>{link.label}<Icon name="arrow-right" size={16} /></a>{/each}
+		</nav>
+	{/if}
 </header>
 
 <style>
-	.nav {
-		position: sticky;
-		top: 0;
-		z-index: 50;
-		background: color-mix(in srgb, var(--bg) 72%, transparent);
-		backdrop-filter: blur(12px);
-		-webkit-backdrop-filter: blur(12px);
-		transition: background var(--dur-base);
-	}
-	.nav-inner {
-		display: flex;
-		align-items: center;
-		gap: 28px;
-		height: 64px;
-	}
-	.brand {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		font-weight: var(--weight-bold);
-		font-size: var(--text-lg);
-		letter-spacing: -0.02em;
-	}
-	.brand img {
-		width: 30px;
-		height: 30px;
-	}
-	.nav-links {
-		display: flex;
-		align-items: center;
-		gap: 4px;
-		margin-left: 8px;
-	}
-	.nav-links a {
-		padding: 8px 12px;
-		font-size: var(--text-sm);
-		color: var(--text-muted);
-		border-radius: var(--radius-md);
-		transition:
-			color var(--dur-fast),
-			background var(--dur-fast);
-	}
-	.nav-links a:hover {
-		color: var(--text);
-		background: var(--surface-800);
-	}
-	.nav-right {
-		margin-left: auto;
-		display: flex;
-		align-items: center;
-		gap: 10px;
-	}
-	.nav-right :global(.btn-primary) {
-		color: #fff;
-	}
-	.nav-right :global(.btn-primary:hover) {
-		color: var(--accent-foreground);
-	}
-	.back {
-		display: inline-flex;
-		align-items: center;
-		gap: 7px;
-		font-size: var(--text-sm);
-		color: var(--text-muted);
-		padding: 8px 12px;
-		border-radius: var(--radius-md);
-		transition:
-			color var(--dur-fast),
-			background var(--dur-fast);
-	}
-	.back:hover {
-		color: var(--text);
-		background: var(--surface-800);
-	}
-	@media (max-width: 820px) {
-		.nav-links {
-			display: none;
-		}
-	}
+	.nav { position: sticky; top: 0; z-index: 50; background: #131512ed; backdrop-filter: blur(18px); border-bottom: 1px solid var(--border-700); }
+	.nav-inner { display: flex; align-items: center; gap: 40px; min-height: 80px; }
+	.brand { display: inline-flex; align-items: center; gap: 11px; flex-shrink: 0; font-weight: 600; font-size: 1.375rem; letter-spacing: -.045em; }
+	.brand img { width: 36px; height: 36px; }
+	.nav-links { display: flex; align-items: center; gap: 30px; margin-left: auto; }
+	.nav-links a { padding: 12px 0; font-size: .875rem; color: var(--text-muted); }
+	.nav-links a:hover, .github-link:hover, .back:hover { color: var(--accent-500); }
+	.nav-right { margin-left: auto; display: flex; align-items: center; gap: 24px; }
+	.github-link, .back { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: .875rem; color: var(--text-muted); }
+	.menu-toggle { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: 1px solid var(--border-700); border-radius: 8px; color: var(--text); cursor: pointer; }
+	.mobile-navigation { padding: 8px 24px 18px; border-top: 1px solid var(--border-700); }
+	.mobile-navigation a { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; color: var(--text-muted); }
+	@media (min-width: 901px) { .mobile-navigation { display: none; } }
+	@media (max-width: 900px) { .nav-links { display: none; } .menu-toggle { display: inline-flex; } .nav-inner { gap: 16px; min-height: 72px; } .nav-right { gap: 16px; } }
+	@media (max-width: 540px) { .nav-inner { gap: 10px; } .nav-right { gap: 10px; } .nav-right > .github-link { display: none; } .brand { font-size: 1.125rem; gap: 8px; } .brand img { width: 30px; height: 30px; } .nav-right > .btn { padding-inline: 12px; } }
 </style>

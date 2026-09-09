@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import { motion } from '@humanspeak/svelte-motion';
-	import { fadeUp } from '$lib/motion.js';
 	import type { Release } from '$lib/types';
 	import { FALLBACK_TAG } from '$lib/release.js';
 
@@ -14,7 +12,7 @@
 <footer class="site">
 	<div class="wrap">
 		<div class="foot-top">
-			<motion.div class="foot-brand" {...fadeUp(0)}>
+			<div class="foot-brand">
 				<a class="brand" href="{base}/">
 					<img src="{base}/assets/logo.png" alt="" />
 					<span class="word">Mooshie<b>UI</b></span>
@@ -23,30 +21,30 @@
 					A beginner-friendly interface for ComfyUI. Generate without hand-editing graphs, on your
 					desktop or in any browser.
 				</p>
-			</motion.div>
-			<motion.div class="foot-cols" {...fadeUp(0.1)}>
+			</div>
+			<div class="foot-cols">
 				<div class="foot-col">
-					<h5>Product</h5>
+					<h2>Product</h2>
 					<a href="{base}/#features">Features</a>
 					<a href="{base}/#modes">How it runs</a>
 					<a href="{base}/#look">A closer look</a>
 					<a href="{base}/#download">Get started</a>
 				</div>
 				<div class="foot-col">
-					<h5>Guides</h5>
+					<h2>Guides</h2>
 					<a href="{base}/build">Build from source</a>
 					<a href="{base}/docker">Docker guide</a>
 					<a href={repo + '#readme'} target="_blank" rel="noopener">Documentation</a>
 				</div>
 				<div class="foot-col">
-					<h5>Resources</h5>
+					<h2>Resources</h2>
 					<a href={repo} target="_blank" rel="noopener">GitHub repo</a>
 					<a href={repo + '/releases'} target="_blank" rel="noopener">Releases</a>
 					<a href="https://github.com/comfyanonymous/ComfyUI" target="_blank" rel="noopener"
 						>ComfyUI</a
 					>
 				</div>
-			</motion.div>
+			</div>
 		</div>
 		<div class="foot-bottom">
 			<span class="meta">
@@ -59,85 +57,20 @@
 </footer>
 
 <style>
-	.site {
-		padding: 56px 0 40px;
-	}
-	.foot-top {
-		display: flex;
-		justify-content: space-between;
-		gap: 40px;
-		flex-wrap: wrap;
-		padding-bottom: 32px;
-		border-bottom: 1px solid var(--border-700);
-	}
-	:global(.foot-brand) {
-		max-width: 300px;
-	}
-	:global(.foot-brand .brand) {
-		margin-bottom: 12px;
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		font-weight: var(--weight-bold);
-		font-size: var(--text-lg);
-		letter-spacing: -0.02em;
-	}
-	:global(.foot-brand .brand img) {
-		width: 30px;
-		height: 30px;
-	}
-	:global(.foot-brand p) {
-		margin: 0;
-		font-size: var(--text-sm);
-		color: var(--text-muted);
-		line-height: var(--leading-snug);
-	}
-	:global(.foot-cols) {
-		display: flex;
-		gap: 56px;
-		flex-wrap: wrap;
-	}
-	.foot-col h5 {
-		margin: 0 0 14px;
-		font-size: var(--text-10);
-		font-weight: var(--weight-semibold);
-		letter-spacing: var(--tracking-wide);
-		text-transform: uppercase;
-		color: var(--text-subtle);
-	}
-	.foot-col a {
-		display: block;
-		padding: 5px 0;
-		font-size: var(--text-sm);
-		color: var(--text-muted);
-		transition: color var(--dur-fast);
-	}
-	.foot-col a:hover {
-		color: var(--accent-400);
-	}
-	.foot-bottom {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: 16px;
-		flex-wrap: wrap;
-		padding-top: 24px;
-	}
-	.foot-bottom .meta {
-		font-size: var(--text-xs);
-		color: var(--text-subtle);
-	}
-	.foot-bottom .meta a {
-		color: var(--text-muted);
-		font-weight: var(--weight-semibold);
-		transition: color var(--dur-fast);
-	}
-	.foot-bottom .meta a:hover {
-		color: var(--accent-400);
-	}
-	.foot-bottom .status {
-		font-size: var(--text-xs);
-		color: var(--text-muted);
-		font-family: var(--font-mono);
-	}
+  .site { padding: 64px 0 28px; }
+  .foot-top { display: flex; justify-content: space-between; gap: 48px; padding-bottom: 52px; border-bottom: 1px solid var(--border-700); }
+  .foot-brand { max-width: 320px; }
+  .brand { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; letter-spacing: -.045em; font-weight: 600; }
+  .brand img { width: 40px; height: 40px; }
+  .foot-brand p { margin: 18px 0 0; font-size: 1rem; line-height: 1.65; color: var(--text-muted); }
+  .foot-cols { display: flex; gap: 64px; }
+  .foot-col h2 { margin: 0 0 18px; font-family: var(--font-mono); font-size: .75rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text-subtle); }
+  .foot-col a { display: block; padding: 6px 0; font-size: .875rem; color: var(--text-muted); }
+  .foot-col a:hover, .meta a:hover { color: var(--accent-500); }
+  .foot-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-top: 24px; }
+  .meta { font-size: .8125rem; color: var(--text-subtle); }
+  .meta a { color: var(--text-muted); }
+  .status { padding: 3px 9px; border: 1px solid var(--border-700); border-radius: 5px; color: var(--text-muted); font: .75rem var(--font-mono); }
+  @media (max-width: 1000px) { .foot-cols { gap: 32px; } }
+  @media (max-width: 800px) { .foot-top { flex-direction: column; } .foot-cols { justify-content: space-between; gap: 24px; flex-wrap: wrap; } .foot-brand { max-width: 430px; } }
 </style>

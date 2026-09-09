@@ -1,6 +1,4 @@
 <script>
-	import { motion } from '@humanspeak/svelte-motion';
-	import { fadeUp } from '$lib/motion.js';
 
 	const steps = [
 		{
@@ -20,9 +18,9 @@
 
 <section class="block" id="look">
 	<div class="wrap closer">
-		<!-- on-brand CSS mock of the generate panel -->
-		<motion.div class="closer-media liquid-glass" {...fadeUp(0)}>
-			<div class="mock">
+		<!-- Read-only illustration of the existing generation controls. -->
+		<div class="closer-media">
+			<div class="mock" role="img" aria-label="Example generation settings: Anima Base v1.0 checkpoint, 30 steps, CFG 4.0, and Generate.">
 				<div class="mock-row">
 					<span class="mock-label">Checkpoint</span>
 					<span class="mock-badge">anima</span>
@@ -36,14 +34,14 @@
 					<div class="mock-meta"><span>CFG</span><span class="strong">4.0</span></div>
 					<div class="mock-track"><div class="mock-fill" style="width:28%"></div></div>
 				</div>
-				<div class="mock-split">
+				<div class="mock-split" aria-hidden="true">
 					<span></span>
 					<span></span>
 				</div>
 				<div class="mock-generate">Generate</div>
 			</div>
-		</motion.div>
-		<motion.div {...fadeUp(0.15)}>
+		</div>
+		<div>
 			<span class="eyebrow">From prompt to polished</span>
 			<h2>Three steps to a <span class="accent-serif">finished</span> image</h2>
 			<ol class="closer-points">
@@ -51,156 +49,42 @@
 					<li>
 						<span class="num">{i + 1}</span>
 						<div>
-							<h4>{step.title}</h4>
+							<h3>{step.title}</h3>
 							<p>{step.body}</p>
 						</div>
 					</li>
 				{/each}
 			</ol>
-		</motion.div>
+		</div>
 	</div>
 </section>
 
 <style>
-	.block {
-		padding: 86px 0;
-	}
-	.closer {
-		display: grid;
-		grid-template-columns: 0.85fr 1.15fr;
-		gap: 40px;
-		align-items: center;
-	}
-	@media (max-width: 860px) {
-		.closer {
-			grid-template-columns: 1fr;
-			gap: 28px;
-		}
-	}
-	:global(.closer-media) {
-		border-radius: var(--radius-lg);
-		padding: 22px;
-	}
-	.mock {
-		display: flex;
-		flex-direction: column;
-		gap: 16px;
-	}
-	.mock-row {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	.mock-label {
-		font-size: var(--text-xs);
-		color: var(--text-muted);
-	}
-	.mock-badge {
-		font-size: var(--text-10);
-		font-weight: 600;
-		padding: 2px 7px;
-		border-radius: var(--radius-sm);
-		background: color-mix(in srgb, var(--success-strong) 20%, transparent);
-		color: var(--success-text);
-	}
-	.mock-field {
-		height: 34px;
-		border-radius: var(--radius-md);
-		background: var(--surface-800);
-		border: 1px solid var(--border-700);
-		display: flex;
-		align-items: center;
-		padding: 0 12px;
-		font-size: var(--text-sm);
-		color: var(--text);
-	}
-	.mock-meta {
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: 7px;
-		font-size: var(--text-xs);
-		color: var(--text-muted);
-	}
-	.mock-meta .strong {
-		color: var(--text-strong);
-	}
-	.mock-track {
-		height: 6px;
-		border-radius: 9999px;
-		background: var(--neutral-700);
-	}
-	.mock-fill {
-		height: 100%;
-		border-radius: 9999px;
-		background: var(--accent-500);
-	}
-	.mock-split {
-		display: flex;
-		gap: 8px;
-	}
-	.mock-split span {
-		flex: 1;
-		height: 30px;
-		border-radius: var(--radius-md);
-		background: var(--surface-800);
-		border: 1px solid var(--border-700);
-	}
-	.mock-generate {
-		height: 44px;
-		margin-top: 2px;
-		border-radius: var(--radius-lg);
-		background: var(--accent-500);
-		color: var(--accent-foreground);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-weight: 600;
-		font-size: var(--text-sm);
-		box-shadow: var(--shadow-accent);
-	}
-	.closer h2 {
-		margin: 14px 0 0;
-		font-size: clamp(24px, 3vw, 34px);
-		font-weight: var(--weight-bold);
-		letter-spacing: -0.025em;
-		color: var(--text-strong);
-		text-wrap: balance;
-	}
-	.closer-points {
-		margin: 26px 0 0;
-		padding: 0;
-		list-style: none;
-		display: flex;
-		flex-direction: column;
-		gap: 18px;
-	}
-	.closer-points li {
-		display: flex;
-		gap: 14px;
-	}
-	.closer-points .num {
-		flex-shrink: 0;
-		width: 28px;
-		height: 28px;
-		border-radius: var(--radius-md);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background: var(--accent-500);
-		color: var(--accent-foreground);
-		font-size: var(--text-xs);
-		font-weight: var(--weight-bold);
-	}
-	.closer-points h4 {
-		margin: 3px 0 4px;
-		font-size: var(--text-sm);
-		font-weight: var(--weight-semibold);
-		color: var(--text-strong);
-	}
-	.closer-points p {
-		margin: 0;
-		font-size: var(--text-sm);
-		color: var(--text-muted);
-		line-height: var(--leading-snug);
-	}
+  .block { padding: 110px 0; }
+  .closer { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 100px; align-items: center; }
+  .closer-media { background: var(--surface-900); border: 1px solid var(--border-700); border-radius: 20px; padding: 44px; }
+  .mock { padding: 28px; border: 1px solid #464a3b; border-radius: 12px; background: var(--surface-950); box-shadow: 0 20px 45px #0004; display: flex; flex-direction: column; gap: 22px; }
+  .mock-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .mock-label { font-size: .875rem; color: var(--text-muted); }
+  .mock-badge { font-size: .75rem; padding: 3px 9px; border: 1px solid #496047; border-radius: 5px; color: #bed8b4; background: #1e2d1d; }
+  .mock-field { min-height: 44px; padding: 12px 14px; border-radius: 6px; background: var(--surface-800); border: 1px solid var(--border-700); font-size: .875rem; }
+  .mock-meta { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: .875rem; color: var(--text-muted); }
+  .strong { color: var(--text-strong); font-family: var(--font-mono); }
+  .mock-track { height: 4px; border-radius: 4px; background: var(--neutral-700); }
+  .mock-fill { position: relative; height: 100%; border-radius: 4px; background: var(--accent-500); }
+  .mock-fill::after { content: ''; position: absolute; right: 0; top: 50%; transform: translate(50%, -50%); width: 12px; height: 12px; border: 3px solid #d8dbd0; border-radius: 50%; background: #6a7261; }
+  .mock-split { display: flex; gap: 10px; }
+  .mock-split span { flex: 1; height: 36px; background: var(--surface-800); border: 1px solid var(--border-700); border-radius: 6px; }
+  .mock-generate { min-height: 48px; padding: 12px; border-radius: 7px; background: var(--accent-500); color: var(--accent-foreground); display: flex; align-items: center; justify-content: center; font-size: .9375rem; font-weight: 600; }
+  h2 { margin: 20px 0 0; font-size: clamp(2rem, 3.4vw, 3rem); font-weight: 500; line-height: 1.12; letter-spacing: -.045em; color: var(--text-strong); text-wrap: balance; }
+  .closer-points { padding: 0; margin: 36px 0 0; list-style: none; }
+  .closer-points li { display: flex; gap: 20px; position: relative; padding-bottom: 28px; }
+  .closer-points li:last-child { padding-bottom: 0; }
+  .closer-points li:not(:last-child)::before { content: ''; position: absolute; left: 17px; top: 36px; bottom: 0; width: 1px; background: var(--border-700); }
+  .num { width: 36px; height: 36px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-700); border-radius: 50%; color: var(--accent-500); font: .8125rem var(--font-mono); }
+  h3 { margin: 3px 0 9px; font-size: 1.125rem; font-weight: 500; letter-spacing: -.02em; color: var(--text-strong); }
+  .closer-points p { margin: 0; font-size: 1rem; line-height: 1.65; color: var(--text-muted); }
+  @media (max-width: 1050px) { .closer { gap: 48px; } .closer-media { padding: 26px; } }
+  @media (max-width: 800px) { .block { padding: 64px 0; } .closer { grid-template-columns: 1fr; gap: 40px; } .closer-media { max-width: 540px; width: 100%; margin-inline: auto; order: 2; } }
+  @media (max-width: 420px) { .closer-media { padding: 20px; } .mock { padding: 20px; } }
 </style>
