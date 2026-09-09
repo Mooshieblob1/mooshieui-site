@@ -113,3 +113,22 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 800px) { .wrap, .wrap-narrow { padding-inline: 24px; } .sec-head { margin-bottom: 32px; } }
 @media (max-width: 380px) { .wrap, .wrap-narrow { padding-inline: 18px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* One-time connector entrances accompany the section reveals. Static pages and
+   reduced-motion users always see the complete lines without waiting. */
+#features .feature[data-section-entered]::after {
+  transform-origin: left center;
+  animation: connector-enter-x 560ms cubic-bezier(.22, 1, .36, 1) var(--section-enter-delay, 0ms) backwards;
+}
+#look [data-section-entered] .closer-points li:not(:last-child)::before {
+  transform-origin: center top;
+  animation: connector-enter-y 560ms cubic-bezier(.22, 1, .36, 1) var(--section-enter-delay, 0ms) backwards;
+}
+@keyframes connector-enter-x {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes connector-enter-y {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}

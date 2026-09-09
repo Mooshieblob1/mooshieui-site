@@ -1,6 +1,7 @@
 <script>
 	import { onMount, untrack } from 'svelte';
 	import { fetchLatestRelease } from '$lib/release.js';
+	import { sectionTransitions } from '$lib/actions/sectionTransitions';
 	import Nav from '$lib/components/Nav.svelte';
 	import Hero from '$lib/components/Hero.svelte';
 	import Features from '$lib/components/Features.svelte';
@@ -21,7 +22,7 @@
 </script>
 
 <Nav variant="landing" />
-<main id="top" tabindex="-1">
+<main id="top" tabindex="-1" use:sectionTransitions>
 	<Hero />
 	<Features />
 	<Modes {release} />
