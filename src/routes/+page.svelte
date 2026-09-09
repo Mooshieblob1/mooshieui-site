@@ -15,7 +15,7 @@
 	// so the version and download links stay current without a redeploy.
 	let release = $state(data.release);
 	onMount(async () => {
-		const latest = await fetchLatestRelease();
+		const latest = await fetchLatestRelease(fetch, release);
 		if (latest?.tag) release = latest;
 	});
 </script>

@@ -4,14 +4,16 @@
 	import { fadeUp } from '$lib/motion.js';
 	import { base } from '$app/paths';
 	import type { Release } from '$lib/types';
+	import { FALLBACK_TAG } from '$lib/release.js';
 
 	const repo = 'https://github.com/Mooshieblob1/MooshieUI';
 
 	let { release = null }: { release?: Release | null } = $props();
-	const tag = $derived(release?.tag ?? 'v1.4.19');
+	const tag = $derived(release?.tag ?? FALLBACK_TAG);
 	const winUrl = $derived(release?.winUrl ?? `${repo}/releases`);
 	const appimageUrl = $derived(release?.appimageUrl ?? `${repo}/releases`);
 	const debUrl = $derived(release?.debUrl ?? `${repo}/releases`);
+	const macUrl = $derived(release?.macUrl ?? null);
 </script>
 
 <section class="block download" id="download">
@@ -76,30 +78,53 @@
 				</div>
 			</motion.div>
 
-			<motion.div class="dl-card liquid-glass" {...fadeUp(0.2)}>
+			<motion.div class="dl-card liquid-glass" id="download-macos" {...fadeUp(0.2)}>
 				<div class="dl-os">
-					<span class="osicon"><Icon name="code" size={22} /></span>
+					<span class="osicon"><Icon name="browser" size={22} /></span>
 					<div>
-						<h3>macOS &amp; Docker</h3>
-						<p class="meta">Source build · self-hosted server</p>
+						<h3>macOS</h3>
+						<p class="meta">Apple Silicon · {macUrl ? tag : 'Planned for v2.3.1'}</p>
 					</div>
 				</div>
 				<p class="dl-note">
-					macOS builds from source in a few steps. For a self-hosted server on any OS, one
-					<code>docker compose up</code> is all it takes.
+					{#if macUrl}
+						Native ARM64 app for Apple Silicon Macs, with ComfyUI acceleration through Apple
+						Metal (MPS). Check the release notes for macOS requirements and tested models.
+					{:else}
+						A native Apple Silicon installer with Apple Metal (MPS) acceleration is planned for
+						v2.3.1, pending Mac validation. The download will appear here when it is released.
+					{/if}
 				</p>
-				<div class="btn-row">
-					<a class="btn btn-secondary" href="{base}/build">
+				{#if macUrl}
+					<a class="btn btn-primary" href={macUrl}>
+						<Icon name="download" />
+						Download .dmg
+					</a>
+				{:else}
+					<a class="btn btn-secondary" href="{repo}/releases">
 						<Icon name="github" size={15} />
-						Build guide
+						Follow releases
 					</a>
-					<a class="btn btn-secondary" href="{base}/docker">
-						<Icon name="server" size={15} />
-						Docker guide
-					</a>
-				</div>
+				{/if}
+				<details class="mac-help">
+					<summary>First launch on macOS</summary>
+					<p>
+						The Mac installer will not be notarized by Apple. Verify the download against the
+						release details, copy MooshieUI to Applications, and try opening it. If macOS blocks
+						it, go to System Settings → Privacy &amp; Security → Open Anyway.
+						<a href="https://support.apple.com/en-us/102445" target="_blank" rel="noopener">Apple's instructions</a>.
+					</p>
+					<p>
+						The native installer targets Apple Silicon. Intel Mac users can access a remote
+						MooshieUI server in their browser.
+					</p>
+				</details>
 			</motion.div>
 		</div>
+		<p class="other-options">
+			Running your own server? <a href="{base}/docker">Use the Docker guide</a>.
+			Want to compile the desktop app? <a href="{base}/build">Build from source</a>.
+		</p>
 	</div>
 </section>
 
@@ -165,14 +190,29 @@
 		flex: 1;
 		margin: 0;
 	}
-	.dl-note code {
-		font-family: var(--font-mono);
-		font-size: 0.92em;
-		background: var(--surface-800);
-		border: 1px solid var(--border-700);
-		border-radius: var(--radius-sm);
-		padding: 1px 5px;
+	:global(#download-macos) {
+		scroll-margin-top: 96px;
+	}
+	.mac-help,
+	.other-options {
+		font-size: var(--text-xs);
+		color: var(--text-muted);
+		line-height: var(--leading-normal);
+	}
+	.mac-help summary {
+		cursor: pointer;
+		color: var(--text);
+	}
+	.mac-help p {
+		margin: 10px 0 0;
+	}
+	.mac-help a,
+	.other-options a {
 		color: var(--accent-300);
+	}
+	.other-options {
+		margin: 24px 0 0;
+		text-align: center;
 	}
 	:global(.dl-card .btn) {
 		width: 100%;

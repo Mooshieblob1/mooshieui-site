@@ -3,11 +3,12 @@
 	import { motion } from '@humanspeak/svelte-motion';
 	import { fadeUp } from '$lib/motion.js';
 	import type { Release } from '$lib/types';
+	import { FALLBACK_TAG } from '$lib/release.js';
 
 	const repo = 'https://github.com/Mooshieblob1/MooshieUI';
 
 	let { release = null }: { release?: Release | null } = $props();
-	const version = $derived(release?.tag ?? 'v1.4.19');
+	const version = $derived(release?.tag ?? FALLBACK_TAG);
 </script>
 
 <footer class="site">

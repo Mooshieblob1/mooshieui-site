@@ -10,6 +10,7 @@
 	let { release = null }: { release?: Release | null } = $props();
 	const winUrl = $derived(release?.winUrl ?? `${repo}/releases`);
 	const linuxUrl = $derived(release?.appimageUrl ?? `${repo}/releases`);
+	const macUrl = $derived(release?.macUrl ?? null);
 
 	const desktopPoints = [
 		'Native window, system tray, and file dialogs',
@@ -39,7 +40,12 @@
 				<h3>Install &amp; launch</h3>
 				<p>
 					A native app built with Tauri and a Rust core. Fast to start, light on memory, no Electron
-					bloat. Windows and Linux ship as ready-to-run builds; macOS builds from source.
+					bloat. Windows and Linux ship as ready-to-run builds.
+					{#if macUrl}
+						macOS has a native Apple Silicon installer with Apple Metal (MPS) acceleration.
+					{:else}
+						A native Apple Silicon macOS installer is planned for v2.3.1, pending validation.
+					{/if}
 				</p>
 				<ul>
 					{#each desktopPoints as point}
@@ -53,8 +59,9 @@
 					<a class="dl-btn dl-primary" href={linuxUrl}>
 						<Icon name="download" size={14} />Linux
 					</a>
-					<a class="dl-btn dl-ghost" href={repo} target="_blank" rel="noopener">
-						<Icon name="github" size={14} />macOS (source)
+					<a class:dl-primary={!!macUrl} class:dl-ghost={!macUrl} class="dl-btn" href={macUrl ?? '#download-macos'}>
+						<Icon name={macUrl ? 'download' : 'info'} size={14} />
+						{macUrl ? 'macOS (Apple Silicon)' : 'macOS · coming soon'}
 					</a>
 				</div>
 			</motion.div>

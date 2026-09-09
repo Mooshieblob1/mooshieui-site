@@ -8,7 +8,7 @@
 	<title>MooshieUI · A friendly interface for ComfyUI</title>
 	<meta
 		name="description"
-		content="MooshieUI is a clean, guided interface for ComfyUI. Generate images with prompts, LoRAs, and one-click upscaling, on your desktop or in any browser. No Python, no pip, no manual configuration."
+		content="MooshieUI is a guided interface for ComfyUI. Explore Windows, Linux, and Apple Silicon macOS desktop options, or generate in your browser with prompts, LoRAs, and upscaling."
 	/>
 </svelte:head>
 
