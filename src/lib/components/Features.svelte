@@ -42,22 +42,22 @@
    <p>MooshieUI keeps ComfyUI's power and hides its complexity behind controls that make sense.</p>
   </div>
   <div class="features">
-   {#each features as feature, i}
+   {#each features as feature}
     <article class="feature" use:reveal>
-     <div class="feature-meta"><span>{String(i + 1).padStart(2, '0')}</span><Icon name={feature.icon} size={22} stroke={1.5} /></div>
-     <h3>{feature.title}</h3><p>{feature.body}</p>
+     <h3><Icon name={feature.icon} size={20} stroke={2} />{feature.title}</h3><p>{feature.body}</p>
     </article>
    {/each}
   </div>
  </div>
 </section>
 <style>
- .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 40px; }
- .feature { padding: 26px 0 30px; border-top: 1px solid var(--border-700); }
- .feature-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; color: var(--accent-400); }
- .feature-meta span { font-family: var(--font-mono); font-size: .8125rem; color: var(--text-muted); }
- h3 { font-size: 1.25rem; font-weight: 500; letter-spacing: -.025em; line-height: 1.4; margin: 0 0 12px; }
- p { font-size: 1rem; color: var(--text-muted); line-height: 1.7; margin: 0; }
- @media (max-width: 1000px) { .features { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 30px; } }
- @media (max-width: 560px) { .features { grid-template-columns: 1fr; } .feature { padding-block: 22px; } .feature-meta { margin-bottom: 16px; } }
+ .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--border-700); border-radius: var(--app-shell-radius); overflow: hidden; background: var(--surface-900); }
+ .feature { padding: 26px; border-right: 1px solid var(--border-700); border-bottom: 1px solid var(--border-700); }
+ .feature:nth-child(3n) { border-right: 0; }
+ .feature:nth-last-child(-n+3) { border-bottom: 0; }
+ h3 { display: flex; align-items: center; gap: 10px; font-size: 1.125rem; font-weight: 600; line-height: 1.4; margin: 0 0 14px; }
+ h3 :global(svg) { color: var(--accent-500); flex-shrink: 0; }
+ p { font-size: 1rem; color: var(--text-muted); line-height: 1.65; margin: 0; }
+ @media (max-width: 1000px) { .features { grid-template-columns: repeat(2, minmax(0, 1fr)); } .feature:nth-child(n) { border-right: 1px solid var(--border-700); border-bottom: 1px solid var(--border-700); } .feature:nth-child(2n) { border-right: 0; } .feature:nth-last-child(-n+2) { border-bottom: 0; } }
+ @media (max-width: 600px) { .features { grid-template-columns: 1fr; } .feature:nth-child(n) { padding: 22px; border-right: 0; border-bottom: 1px solid var(--border-700); } .feature:last-child { border-bottom: 0; } }
 </style>

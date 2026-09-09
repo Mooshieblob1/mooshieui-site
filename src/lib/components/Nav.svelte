@@ -15,7 +15,7 @@
  <div class="wrap nav-inner">
   <a class="brand" href="{base}/" aria-label="MooshieUI home"><img src="{base}/assets/logo.png" alt="" width="36" height="36" /><span class="word">Mooshie<b>UI</b></span></a>
   {#if variant === 'landing'}
-   <nav class="desktop-links" aria-label="Main navigation"><a href="#features">Features</a><a href="#modes">How it runs</a><a href="#look">A closer look</a></nav>
+   <nav class="desktop-links" aria-label="Main navigation"><a href="#features"><Icon name="sliders" size={16} />Features</a><a href="#modes"><Icon name="browser" size={16} />How it runs</a><a href="#look"><Icon name="image" size={16} />A closer look</a></nav>
    <div class="nav-right">
     <a class="github" href={repo} target="_blank" rel="noopener" aria-label="MooshieUI on GitHub"><Icon name="github" size={20} /><span>GitHub</span></a>
     <Button size="sm" href="#download">Download</Button>
@@ -32,21 +32,23 @@
  {/if}
 </header>
 <style>
- .nav { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(16px); border-bottom: 1px solid color-mix(in srgb, var(--border-700) 60%, transparent); }
- .nav-inner { display: flex; flex-wrap: wrap; padding-block: 14px; align-items: center; min-height: 88px; gap: 32px; }
- .brand { display: flex; align-items: center; gap: 11px; font-size: 1.25rem; font-weight: 600; letter-spacing: -.045em; }
- .brand img { flex-shrink: 0; }
- .desktop-links { display: flex; gap: 30px; margin-left: auto; }
- .desktop-links a, .github { font-size: .875rem; color: var(--text-muted); }
- .desktop-links a:hover, .github:hover { color: var(--text-strong); }
- .nav-right { display: flex; align-items: center; gap: 24px; margin-left: auto; }
- .github { display: inline-flex; align-items: center; gap: 8px; }
- .menu-toggle { display: none; color: var(--text); background: none; border: 1px solid var(--border-700); border-radius: 50%; width: 44px; height: 44px; align-items: center; justify-content: center; cursor: pointer; }
- .mobile-links { display: none; padding: 8px 24px 22px; border-top: 1px solid var(--border-700); }
- .mobile-links a { display: block; padding: 12px 0; font-size: 1rem; }
- @media (max-width: 1000px) { .desktop-links { gap: 20px; } .nav-inner { gap: 20px; } .github span { display: none; } }
- @media (max-width: 800px) { .nav-inner { min-height: 76px; } .desktop-links, .github { display: none; } .menu-toggle { display: flex; } .nav-right { gap: 10px; } .mobile-links.open { display: block; } .back { font-size: .875rem; } }
- @media (max-width: 430px) { .brand { font-size: 1.0625rem; gap: 7px; } .brand img { width: 29px; height: 29px; } .nav-inner { gap: 10px; } .nav-right :global(.btn-sm) { padding: 10px 13px; } .back { font-size: .8125rem; gap: 5px; } }
+ .nav { position: sticky; top: 0; z-index: 50; padding-block: 10px; background: var(--bg); }
+ .nav-inner { display: flex; flex-wrap: wrap; align-items: center; min-height: 64px; gap: 20px; }
+ .brand { display: flex; align-items: center; gap: 10px; font-size: 1.25rem; font-weight: 700; letter-spacing: -.025em; }
+ .brand img { flex-shrink: 0; border-radius: var(--radius-md); }
+ .desktop-links { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--border-700); background: var(--surface-900); border-radius: var(--app-panel-radius); margin-left: auto; }
+ .desktop-links a { display: inline-flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: var(--radius-md); font-size: .875rem; font-weight: 500; color: var(--text-muted); transition: color var(--dur-fast), background var(--dur-fast); }
+ .desktop-links a:hover, .desktop-links a:focus-visible { background: var(--surface-800); color: var(--accent-500); }
+ .nav-right { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+ .github { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: .875rem; padding: 10px; border-radius: var(--radius-md); }
+ .github:hover { color: var(--text); background: var(--surface-800); }
+ .menu-toggle { display: none; color: var(--text); background: var(--surface-800); border: 1px solid var(--border-700); border-radius: var(--radius-md); width: 44px; height: 44px; align-items: center; justify-content: center; cursor: pointer; }
+ .mobile-links { display: none; margin: 8px 20px 0; padding: 8px; border: 1px solid var(--border-700); background: var(--surface-900); border-radius: var(--app-panel-radius); }
+ .mobile-links a { display: block; padding: 12px; border-radius: var(--radius-md); font-size: 1rem; }
+ .mobile-links a:hover { color: var(--accent-500); background: var(--surface-800); }
+ @media (max-width: 1100px) { .github span { display: none; } .desktop-links a { gap: 6px; padding-inline: 10px; } }
+ @media (max-width: 900px) { .desktop-links, .github { display: none; } .menu-toggle { display: flex; } .nav-right { gap: 10px; } .mobile-links.open { display: block; } .back { font-size: .875rem; } }
+ @media (max-width: 430px) { .brand { font-size: 1.0625rem; gap: 7px; } .brand img { width: 30px; height: 30px; } .nav-inner { gap: 10px; } .nav-right :global(.btn-sm) { padding: 10px 13px; } .back { font-size: .8125rem; gap: 5px; } }
  @media (max-width: 560px) { .guide .brand .word { display: none; } }
  @media (max-width: 360px) { .brand .word { display: none; } }
 </style>

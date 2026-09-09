@@ -57,14 +57,14 @@
 </footer>
 
 <style>
- .site { padding: 64px 0 32px; }
- .foot-top { display: flex; justify-content: space-between; gap: 48px; padding-bottom: 56px; }
+ .site { padding: 48px 0 28px; }
+ .foot-top { display: flex; justify-content: space-between; gap: 48px; padding-bottom: 36px; }
  .foot-brand { max-width: 340px; }
- .brand { display: inline-flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 600; letter-spacing: -.045em; }
+ .brand { display: inline-flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 600; letter-spacing: -.025em; }
  .brand img { width: 40px; height: 40px; }
  .foot-brand p { font-size: 1rem; line-height: 1.7; color: var(--text-muted); margin-top: 20px; }
  .foot-cols { display: flex; gap: 56px; }
- h5 { font-size: .8125rem; font-family: var(--font-mono); font-weight: 400; color: var(--text-muted); text-transform: uppercase; letter-spacing: .07em; margin: 0 0 18px; }
+ h5 { font-size: .875rem; font-weight: 600; color: var(--text-muted); margin: 0 0 18px; }
  .foot-col a { display: block; color: var(--text); font-size: .875rem; padding-block: 6px; }
  a:hover { color: var(--accent-400); }
  .foot-bottom { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--border-700); color: var(--text-muted); font-size: .8125rem; line-height: 1.8; }

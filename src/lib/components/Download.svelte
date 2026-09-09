@@ -128,23 +128,23 @@
 </section>
 
 <style>
- .download { background: var(--surface-950); border-block: 1px solid var(--border-700); }
- .dl-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
- .dl-card { display: flex; flex-direction: column; gap: 22px; border-top: 1px solid var(--accent-500); padding-top: 28px; min-width: 0; }
- .dl-os { display: flex; align-items: center; gap: 14px; }
+ .download { border-block: 1px solid var(--border-700); }
+ .dl-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+ .dl-card { display: flex; flex-direction: column; gap: 20px; border: 1px solid var(--border-700); border-radius: var(--app-shell-radius); background: var(--surface-900); padding: 24px; min-width: 0; }
+ .dl-os { display: flex; align-items: center; gap: 12px; padding-bottom: 18px; border-bottom: 1px solid var(--border-700); }
  .osicon { display: flex; align-items: center; justify-content: center; width: 32px; color: var(--accent-400); flex-shrink: 0; }
- h3 { font-size: 1.25rem; font-weight: 500; margin: 0; letter-spacing: -.02em; }
+ h3 { font-size: 1.25rem; font-weight: 600; margin: 0; letter-spacing: -.01em; }
  .meta { font-size: .8125rem; color: var(--text-muted); margin: 5px 0 0; line-height: 1.5; }
- .dl-note { font-size: 1rem; line-height: 1.7; color: var(--text-muted); margin: 0; min-height: 8.5em; }
+ .dl-note { font-size: 1rem; line-height: 1.65; color: var(--text-muted); margin: 0; min-height: 8.5em; }
  .dl-card > .btn, .btn-row { margin-top: 0; }
  .dl-card > .btn { width: 100%; }
  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
  .btn-row .btn { flex: 1; padding-inline: 16px; }
- .mac-help { border-top: 1px solid var(--border-700); padding-top: 16px; font-size: .875rem; line-height: 1.7; color: var(--text-muted); }
+ .mac-help { border-top: 1px solid var(--border-700); padding-top: 16px; font-size: .875rem; line-height: 1.65; color: var(--text-muted); }
  .mac-help summary { color: var(--text); cursor: pointer; }
  .mac-help p { margin: 14px 0 0; }
  .mac-help a, .other-options a { color: var(--accent-400); text-decoration: underline; text-underline-offset: 4px; }
- .other-options { margin: 48px 0 0; font-size: .875rem; line-height: 1.9; color: var(--text-muted); border-top: 1px solid var(--border-700); padding-top: 24px; }
+ .other-options { margin: 28px 0 0; font-size: .875rem; line-height: 1.9; color: var(--text-muted); border-top: 1px solid var(--border-700); padding-top: 24px; }
  @supports (grid-template-rows: subgrid) { .dl-card { display: grid; grid-template-rows: subgrid; grid-row: span 4; align-items: start; } .dl-note { min-height: 0; } }
  @media(max-width: 1000px) { .dl-grid { gap: 24px; } }
  @media(max-width: 800px) { .dl-grid { grid-template-columns: 1fr; gap: 40px; } .dl-note { min-height: 0; } .dl-card { gap: 20px; } }

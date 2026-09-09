@@ -1,12 +1,25 @@
 # MooshieUI redesign assets
 
-The redesign starts from the original main-branch site and takes inspiration from [SentientX](https://www.sentientx.com/): large regular-weight typography, generous section spacing, and a strong central visual. MooshieUI retains its own charcoal and amber palette, original image assets, product copy, and download behavior.
+The current website follows the actual [MooshieUI Svelte app](https://github.com/Mooshieblob1/MooshieUI). The original product screenshot and logo, product copy, release logic, and guide content remain in place.
+
+## App theme references
+
+- `src/app.css`: Hanken Grotesk, default Mooshie yellow (#ffcc00), dark neutral ramps, mixed panel surfaces, 16px shell and 12px panel radii.
+- `src/lib/utils/theme.ts`: canonical Mooshie dark theme tones.
+- `src/App.svelte`: separate rounded navigation and content surfaces.
+- `src/lib/components/generation/GenerateButton.svelte`: 12px button corners, accent-600 resting fill, accent-500 hover.
+- `src/lib/components/generation/GenerationPage.svelte`: grouped settings and subtle panel borders.
+- `src/lib/components/generation/BottomPanel.svelte`: compact navigation and active-accent treatment.
+
+The two Hanken Grotesk font files in `static/fonts` are byte-identical to the app's self-hosted files. Their SIL Open Font License is included alongside them. Website body copy remains at least 16px and navigation targets remain suitable for touch.
+
+SentientX informed the earlier layout, but the app's own visual language now takes precedence.
 
 ## Amber sculpture
 
 - Site asset: `static/assets/mooshieui-amber-sculpture.webp`
 - Generated using the built-in imagegen tool, with `static/assets/logo.png` as the geometry reference.
-- The original logo is unchanged. This separate artwork is used only in the landing-page hero.
+- The original logo is unchanged. This earlier artwork is retained as an asset but is no longer displayed; the hero now features the actual app screenshot.
 - Source: 1254 × 1254 pixels, converted to WebP for web delivery.
 
 ### Generation prompt

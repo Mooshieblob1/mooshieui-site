@@ -148,7 +148,8 @@
 
 <style>
 	.head {
-		padding: 64px 0 28px;
+		padding-top: 48px;
+		padding-bottom: 28px;
 	}
 	.head h1 {
 		margin: 16px 0 0;

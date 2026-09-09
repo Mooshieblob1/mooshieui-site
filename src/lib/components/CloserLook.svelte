@@ -27,11 +27,12 @@
  </div>
 </section>
 <style>
- .look-heading { margin-bottom: 56px; }
- .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; list-style: none; padding: 0; margin: 0; }
- .steps li { border-top: 1px solid var(--border-700); padding-top: 24px; }
- .step-number { display: block; color: var(--accent-500); font-size: clamp(3rem, 5.5vw, 5rem); font-weight: 400; letter-spacing: -.06em; line-height: 1.2; margin-bottom: 24px; }
- h3 { font-size: 1.25rem; line-height: 1.4; font-weight: 500; letter-spacing: -.025em; margin: 0 0 12px; }
- p { font-size: 1rem; line-height: 1.7; color: var(--text-muted); margin: 0; }
- @media(max-width: 800px) { .steps { grid-template-columns: 1fr; gap: 30px; } .step-number { font-size: 3rem; margin-bottom: 16px; } }
+ .look-heading { margin-bottom: 32px; }
+ .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0; }
+ .steps li { border-top: 1px solid var(--border-700); padding: 24px 24px 0 0; }
+ .steps li + li { padding-left: 24px; }
+ .step-number { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: var(--radius-md); color: var(--accent-foreground); background: var(--accent-600); font-size: .875rem; font-weight: 600; line-height: 1; margin-bottom: 16px; }
+ h3 { font-size: 1.125rem; line-height: 1.4; font-weight: 600; margin: 0 0 12px; }
+ p { font-size: 1rem; line-height: 1.65; color: var(--text-muted); margin: 0; }
+ @media(max-width: 800px) { .steps { grid-template-columns: 1fr; gap: 24px; } .steps li:nth-child(n) { padding: 24px 0 0; } }
 </style>
