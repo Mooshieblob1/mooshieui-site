@@ -36,9 +36,10 @@
 </div>
 
 <style>
-	.code { min-width: 0; margin-top: 22px; border: 1px solid var(--border-700); border-radius: 10px; overflow: hidden; background: var(--surface-950); }
+	.code { min-width: 0; margin-top: 22px; border: 1px solid var(--border-700); border-radius: 6px; overflow: hidden; background: var(--surface-950); }
 	.code-bar { display: flex; align-items: center; gap: 10px; padding: 4px 12px 4px 18px; border-bottom: 1px solid var(--border-700); background: var(--surface-900); }
-	.label { font-family: var(--font-mono); font-size: .75rem; color: var(--text-subtle); }
+  .code-bar::before { content: ''; width: 7px; height: 7px; flex-shrink: 0; border: 1px solid var(--accent-500); border-radius: 50%; background: var(--surface-950); }
+  .label { font-family: var(--font-mono); font-size: .75rem; color: var(--text-subtle); }
 	.copy { margin-left: auto; min-height: 40px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 8px 10px; border: 0; border-radius: 5px; background: transparent; color: var(--text-muted); font-size: .875rem; cursor: pointer; }
 	.copy:hover { background: var(--surface-800); color: var(--text); }
 	.copy.done { color: var(--accent-500); }
