@@ -37,7 +37,7 @@
 
 <Nav variant="guide" />
 
-<div class="wrap-narrow head">
+<div class="wrap-narrow head" id="guide-content" tabindex="-1">
 	<span class="eyebrow">
 		<Icon name="server" size={18} />
 		Docker guide
@@ -196,7 +196,7 @@
 		border-radius: var(--radius-sm);
 		background: var(--surface-800);
 		border: 1px solid var(--border-700);
-		font-size: var(--text-xs);
+		font-size: var(--text-sm);
 		color: var(--text-muted);
 	}
 
@@ -209,7 +209,7 @@
 		border-radius: var(--radius-lg);
 		background: color-mix(in srgb, var(--accent-500) 7%, var(--surface-900));
 		border: 1px solid color-mix(in srgb, var(--accent-500) 22%, transparent);
-		font-size: var(--text-sm);
+		font-size: var(--text-base);
 		color: var(--text-muted);
 		line-height: var(--leading-snug);
 	}
@@ -248,13 +248,13 @@
 	}
 	.pcard h4 {
 		margin: 0 0 5px;
-		font-size: var(--text-sm);
+		font-size: var(--text-base);
 		font-weight: var(--weight-semibold);
 		color: var(--text-strong);
 	}
 	.pcard p {
 		margin: 0;
-		font-size: var(--text-xs);
+		font-size: var(--text-sm);
 		color: var(--text-muted);
 		line-height: var(--leading-snug);
 	}
@@ -287,7 +287,7 @@
 		justify-content: center;
 		background: var(--accent-500);
 		color: var(--accent-foreground);
-		font-size: var(--text-sm);
+		font-size: var(--text-base);
 		font-weight: var(--weight-bold);
 	}
 	.step h3 {
@@ -299,7 +299,7 @@
 	}
 	.step p {
 		margin: 10px 0 0;
-		font-size: var(--text-sm);
+		font-size: var(--text-base);
 		color: var(--text-muted);
 		line-height: var(--leading-normal);
 	}

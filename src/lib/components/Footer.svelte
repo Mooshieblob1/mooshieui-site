@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import { motion } from '@humanspeak/svelte-motion';
-	import { fadeUp } from '$lib/motion.js';
 	import type { Release } from '$lib/types';
 	import { FALLBACK_TAG } from '$lib/release.js';
 
@@ -14,7 +12,7 @@
 <footer class="site">
 	<div class="wrap">
 		<div class="foot-top">
-			<motion.div class="foot-brand" {...fadeUp(0)}>
+			<div class="foot-brand" >
 				<a class="brand" href="{base}/">
 					<img src="{base}/assets/logo.png" alt="" />
 					<span class="word">Mooshie<b>UI</b></span>
@@ -23,14 +21,14 @@
 					A beginner-friendly interface for ComfyUI. Generate without hand-editing graphs, on your
 					desktop or in any browser.
 				</p>
-			</motion.div>
-			<motion.div class="foot-cols" {...fadeUp(0.1)}>
+			</div>
+			<div class="foot-cols" >
 				<div class="foot-col">
 					<h5>Product</h5>
 					<a href="{base}/#features">Features</a>
 					<a href="{base}/#modes">How it runs</a>
 					<a href="{base}/#look">A closer look</a>
-					<a href="{base}/#download">Get started</a>
+					<a href="{base}/#download">Download</a>
 				</div>
 				<div class="foot-col">
 					<h5>Guides</h5>
@@ -46,7 +44,7 @@
 						>ComfyUI</a
 					>
 				</div>
-			</motion.div>
+			</div>
 		</div>
 		<div class="foot-bottom">
 			<span class="meta">
@@ -59,85 +57,19 @@
 </footer>
 
 <style>
-	.site {
-		padding: 56px 0 40px;
-	}
-	.foot-top {
-		display: flex;
-		justify-content: space-between;
-		gap: 40px;
-		flex-wrap: wrap;
-		padding-bottom: 32px;
-		border-bottom: 1px solid var(--border-700);
-	}
-	:global(.foot-brand) {
-		max-width: 300px;
-	}
-	:global(.foot-brand .brand) {
-		margin-bottom: 12px;
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		font-weight: var(--weight-bold);
-		font-size: var(--text-lg);
-		letter-spacing: -0.02em;
-	}
-	:global(.foot-brand .brand img) {
-		width: 30px;
-		height: 30px;
-	}
-	:global(.foot-brand p) {
-		margin: 0;
-		font-size: var(--text-sm);
-		color: var(--text-muted);
-		line-height: var(--leading-snug);
-	}
-	:global(.foot-cols) {
-		display: flex;
-		gap: 56px;
-		flex-wrap: wrap;
-	}
-	.foot-col h5 {
-		margin: 0 0 14px;
-		font-size: var(--text-10);
-		font-weight: var(--weight-semibold);
-		letter-spacing: var(--tracking-wide);
-		text-transform: uppercase;
-		color: var(--text-subtle);
-	}
-	.foot-col a {
-		display: block;
-		padding: 5px 0;
-		font-size: var(--text-sm);
-		color: var(--text-muted);
-		transition: color var(--dur-fast);
-	}
-	.foot-col a:hover {
-		color: var(--accent-400);
-	}
-	.foot-bottom {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: 16px;
-		flex-wrap: wrap;
-		padding-top: 24px;
-	}
-	.foot-bottom .meta {
-		font-size: var(--text-xs);
-		color: var(--text-subtle);
-	}
-	.foot-bottom .meta a {
-		color: var(--text-muted);
-		font-weight: var(--weight-semibold);
-		transition: color var(--dur-fast);
-	}
-	.foot-bottom .meta a:hover {
-		color: var(--accent-400);
-	}
-	.foot-bottom .status {
-		font-size: var(--text-xs);
-		color: var(--text-muted);
-		font-family: var(--font-mono);
-	}
+ .site { padding: 64px 0 32px; }
+ .foot-top { display: flex; justify-content: space-between; gap: 48px; padding-bottom: 56px; }
+ .foot-brand { max-width: 340px; }
+ .brand { display: inline-flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 600; letter-spacing: -.045em; }
+ .brand img { width: 40px; height: 40px; }
+ .foot-brand p { font-size: 1rem; line-height: 1.7; color: var(--text-muted); margin-top: 20px; }
+ .foot-cols { display: flex; gap: 56px; }
+ h5 { font-size: .8125rem; font-family: var(--font-mono); font-weight: 400; color: var(--text-muted); text-transform: uppercase; letter-spacing: .07em; margin: 0 0 18px; }
+ .foot-col a { display: block; color: var(--text); font-size: .875rem; padding-block: 6px; }
+ a:hover { color: var(--accent-400); }
+ .foot-bottom { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--border-700); color: var(--text-muted); font-size: .8125rem; line-height: 1.8; }
+ .status { font-family: var(--font-mono); }
+ @media(max-width: 1000px) { .foot-cols { gap: 30px; } }
+ @media(max-width: 800px) { .foot-top { flex-direction: column; } .foot-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+ @media(max-width: 420px) { .foot-cols { grid-template-columns: repeat(2, 1fr); row-gap: 32px; } }
 </style>

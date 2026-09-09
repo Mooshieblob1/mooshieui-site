@@ -1,7 +1,6 @@
 <script>
 	import Icon from '$lib/icons/Icon.svelte';
-	import { motion } from '@humanspeak/svelte-motion';
-	import { fadeUp } from '$lib/motion.js';
+	import { reveal } from '$lib/actions/reveal';
 
 	const features = [
 		{
@@ -36,75 +35,29 @@
 		}
 	];
 </script>
-
-<section class="block" id="features">
-	<div class="wrap">
-		<motion.div class="sec-head" {...fadeUp(0)}>
-			<span class="eyebrow muted">What's inside</span>
-			<h2>Everything you generate, none of the <span class="accent-serif">graph-wrangling</span></h2>
-			<p>MooshieUI keeps ComfyUI's power and hides its complexity behind controls that make sense.</p>
-		</motion.div>
-		<div class="features">
-			{#each features as f, i}
-				<motion.div class="feature liquid-glass" {...fadeUp(i * 0.1)}>
-					<div class="ficon"><Icon name={f.icon} /></div>
-					<h3>{f.title}</h3>
-					<p>{f.body}</p>
-				</motion.div>
-			{/each}
-		</div>
-	</div>
+<section class="section" id="features" aria-labelledby="features-heading">
+ <div class="wrap">
+  <div class="section-heading" use:reveal>
+   <div><span class="eyebrow">What's inside</span><h2 id="features-heading">Everything you generate,<br />none of the <span class="accent-serif">graph-wrangling</span></h2></div>
+   <p>MooshieUI keeps ComfyUI's power and hides its complexity behind controls that make sense.</p>
+  </div>
+  <div class="features">
+   {#each features as feature, i}
+    <article class="feature" use:reveal>
+     <div class="feature-meta"><span>{String(i + 1).padStart(2, '0')}</span><Icon name={feature.icon} size={22} stroke={1.5} /></div>
+     <h3>{feature.title}</h3><p>{feature.body}</p>
+    </article>
+   {/each}
+  </div>
+ </div>
 </section>
-
 <style>
-	.block {
-		padding: 86px 0;
-	}
-	.features {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 16px;
-	}
-	@media (max-width: 900px) {
-		.features {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-	@media (max-width: 560px) {
-		.features {
-			grid-template-columns: 1fr;
-		}
-	}
-	:global(.feature) {
-		border-radius: 24px;
-		padding: 22px;
-		transition: transform var(--dur-base);
-	}
-	:global(.feature:hover) {
-		transform: translateY(-2px);
-	}
-	.ficon {
-		width: 40px;
-		height: 40px;
-		border-radius: var(--radius-md);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin-bottom: 16px;
-		background: color-mix(in srgb, var(--accent-500) 12%, var(--surface-800));
-		color: var(--accent-400);
-		border: 1px solid color-mix(in srgb, var(--accent-500) 20%, var(--border-700));
-	}
-	:global(.feature h3) {
-		margin: 0 0 8px;
-		font-size: var(--text-base);
-		font-weight: var(--weight-semibold);
-		color: var(--text-strong);
-	}
-	:global(.feature p) {
-		margin: 0;
-		font-size: var(--text-sm);
-		color: var(--text-muted);
-		line-height: var(--leading-snug);
-	}
+ .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 40px; }
+ .feature { padding: 26px 0 30px; border-top: 1px solid var(--border-700); }
+ .feature-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; color: var(--accent-400); }
+ .feature-meta span { font-family: var(--font-mono); font-size: .8125rem; color: var(--text-muted); }
+ h3 { font-size: 1.25rem; font-weight: 500; letter-spacing: -.025em; line-height: 1.4; margin: 0 0 12px; }
+ p { font-size: 1rem; color: var(--text-muted); line-height: 1.7; margin: 0; }
+ @media (max-width: 1000px) { .features { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 30px; } }
+ @media (max-width: 560px) { .features { grid-template-columns: 1fr; } .feature { padding-block: 22px; } .feature-meta { margin-bottom: 16px; } }
 </style>
