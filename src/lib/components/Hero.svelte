@@ -1,227 +1,47 @@
 <script>
-	import Icon from '$lib/icons/Icon.svelte';
-	import { motion } from '@humanspeak/svelte-motion';
-	import { fadeUp } from '$lib/motion.js';
-	import { base } from '$app/paths';
-
-	let showcase = $state(null);
-	let win = $state(null);
-
-	// Linear-style cursor-tracking 3D tilt + light sheen on the app window.
-	function tilt(node) {
-		const reduce =
-			typeof window !== 'undefined' &&
-			window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-		const maxRX = 5.5;
-		const maxRY = 7;
-
-		function onMove(e) {
-			if (reduce || e.pointerType === 'touch' || !win) return;
-			const r = node.getBoundingClientRect();
-			const px = (e.clientX - r.left) / r.width;
-			const py = (e.clientY - r.top) / r.height;
-			const ry = (px - 0.5) * 2 * maxRY;
-			const rx = -(py - 0.5) * 2 * maxRX;
-			node.classList.add('tilting');
-			win.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
-			win.style.setProperty('--mx', `${(px * 100).toFixed(1)}%`);
-			win.style.setProperty('--my', `${(py * 100).toFixed(1)}%`);
-		}
-		function onLeave() {
-			node.classList.remove('tilting');
-			if (win) win.style.transform = '';
-		}
-		node.addEventListener('pointermove', onMove);
-		node.addEventListener('pointerleave', onLeave);
-		return {
-			destroy() {
-				node.removeEventListener('pointermove', onMove);
-				node.removeEventListener('pointerleave', onLeave);
-			}
-		};
-	}
+ import Icon from '$lib/icons/Icon.svelte';
+ import { Button } from '$lib/components/ui/button';
+ import { base } from '$app/paths';
+ import { reveal } from '$lib/actions/reveal';
 </script>
 
-<section class="hero">
-	<div class="hero-glow"></div>
-	<motion.div class="wrap hero-inner" {...fadeUp(0)}>
-		<h1>All the power of ComfyUI.<br /><span class="hl">None of the node graph.</span></h1>
-		<p class="sub">
-			Make images. Not node graphs.
-		</p>
-		<div class="hero-cta">
-			<a class="btn btn-primary" href="#download">
-				<Icon name="download" />
-				Get started
-			</a>
-			<a class="btn btn-secondary" href="#modes">
-				<Icon name="browser" />
-				Try the browser build
-			</a>
-		</div>
-	</motion.div>
-
-	<motion.div {...fadeUp(0.2)}>
-		<div class="wrap showcase" bind:this={showcase} use:tilt>
-			<div class="window" bind:this={win}>
-			<div class="window-bar">
-				<div class="traffic"><i></i><i></i><i></i></div>
-				<span class="window-title">
-					<img src="{base}/assets/favicon.png" alt="" />MooshieUI: Generate
-				</span>
-				<span style="width:54px"></span>
-			</div>
-			<img
-				class="shot"
-				src="{base}/assets/app-screenshot.avif"
-				alt="The MooshieUI generation workspace: a left panel with dimensions and prompts, a centered image preview, and a right panel with model and sampler controls."
-			/>
-			<div class="window-sheen" aria-hidden="true"></div>
-		</div>
-		</div>
-	</motion.div>
+<section class="hero" aria-labelledby="hero-heading">
+ <div class="wrap">
+  <div class="hero-shell">
+   <div class="hero-heading" use:reveal>
+    <h1 id="hero-heading">All the power of ComfyUI.<span>None of the node graph.</span></h1>
+    <div class="hero-intro">
+     <p>Make images. Not node graphs.</p>
+     <div class="hero-actions">
+      <Button href="#download"><Icon name="download" size={18} />Download</Button>
+      <Button variant="secondary" href="#modes"><Icon name="browser" size={18} />Two ways to run</Button>
+     </div>
+    </div>
+   </div>
+   <div class="screenshot" use:reveal>
+    <img src="{base}/assets/app-screenshot.avif" width="1874" height="1347" fetchpriority="high"
+     alt="MooshieUI generation workspace with prompt controls, a generated illustration, model settings, and artist styles." />
+   </div>
+  </div>
+ </div>
 </section>
 
 <style>
-	.hero {
-		position: relative;
-		padding: 76px 0 40px;
-		overflow: hidden;
-	}
-	.hero-glow {
-		position: absolute;
-		top: -180px;
-		left: 50%;
-		transform: translateX(-50%);
-		width: 900px;
-		height: 520px;
-		pointer-events: none;
-		z-index: 0;
-	}
-	:global(.hero-inner) {
-		position: relative;
-		z-index: 1;
-		text-align: center;
-		max-width: 820px;
-		margin: 0 auto;
-	}
-	.hero h1 {
-		margin: 20px 0 0;
-		font-size: clamp(34px, 5.6vw, 60px);
-		line-height: 1.04;
-		font-weight: var(--weight-bold);
-		letter-spacing: -0.03em;
-		color: var(--text-strong);
-		text-wrap: balance;
-	}
-	.hero h1 :global(.hl) {
-		color: var(--accent-500);
-		font-family: var(--font-serif);
-		font-style: italic;
-	}
-	.hero .sub {
-		margin: 22px auto 0;
-		max-width: 600px;
-		font-size: var(--text-lg);
-		line-height: var(--leading-snug);
-		color: var(--text-muted);
-		text-wrap: pretty;
-	}
-	.hero-cta {
-		margin-top: 30px;
-		display: flex;
-		gap: 12px;
-		justify-content: center;
-		flex-wrap: wrap;
-	}
-
-	/* ---- App window frame ---- */
-	.showcase {
-		position: relative;
-		z-index: 1;
-		margin: 50px auto 0;
-		max-width: 1060px;
-		perspective: 1400px;
-	}
-	.window {
-		position: relative;
-		border: 1px solid var(--border-700);
-		border-radius: var(--radius-xl);
-		overflow: hidden;
-		background: var(--surface-900);
-		box-shadow:
-			0 24px 64px -18px rgba(0, 0, 0, 0.5),
-			0 0 0 1px color-mix(in srgb, var(--text) 6%, transparent);
-		transition:
-			transform 0.45s var(--ease-out),
-			box-shadow 0.45s var(--ease-out);
-		transform-style: preserve-3d;
-		will-change: transform;
-	}
-	.showcase.tilting .window {
-		transition: transform 0.08s linear;
-	}
-	.showcase:hover .window {
-		box-shadow:
-			0 36px 90px -22px rgba(0, 0, 0, 0.6),
-			0 0 0 1px color-mix(in srgb, var(--accent-500) 18%, transparent);
-	}
-	.window-bar {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		padding: 11px 14px;
-		border-bottom: 1px solid var(--border-700);
-		background: var(--surface-950);
-	}
-	.traffic {
-		display: flex;
-		gap: 7px;
-	}
-	.traffic i {
-		width: 11px;
-		height: 11px;
-		border-radius: 9999px;
-		display: block;
-		background: var(--neutral-600);
-	}
-	.window-title {
-		margin: 0 auto;
-		display: inline-flex;
-		align-items: center;
-		gap: 7px;
-		font-size: var(--text-xs);
-		color: var(--text-subtle);
-	}
-	.window-title img {
-		width: 14px;
-		height: 14px;
-	}
-	.window .shot {
-		display: block;
-		width: 100%;
-		height: auto;
-	}
-	.window-sheen {
-		position: absolute;
-		inset: 0;
-		z-index: 3;
-		pointer-events: none;
-		opacity: 0;
-		transition: opacity 0.45s var(--ease-out);
-		background: radial-gradient(
-			440px circle at var(--mx, 50%) var(--my, 0%),
-			color-mix(in srgb, var(--accent-300) 28%, transparent),
-			transparent 56%
-		);
-		mix-blend-mode: soft-light;
-	}
-	.showcase:hover .window-sheen {
-		opacity: 1;
-	}
-	@media (prefers-reduced-motion: reduce) {
-		.window {
-			transition: none;
-		}
-	}
+ .hero { padding-top: 24px; }
+ .hero-shell {
+  padding: clamp(16px, 2.5vw, 32px);
+  border-radius: var(--app-shell-radius);
+  border: 1px solid var(--border-700);
+  background: var(--surface-900);
+  box-shadow: 0 24px 48px -24px #0008;
+ }
+ .hero-heading { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: 32px; padding: 12px 4px 32px; }
+ h1 { font-size: clamp(2.125rem, 3.7vw, 3.375rem); line-height: 1.12; font-weight: 700; letter-spacing: -.035em; margin: 0; color: var(--text-strong); text-wrap: balance; }
+ h1 span { display: block; font-size: .7em; color: var(--accent-500); letter-spacing: -.025em; line-height: 1.3; margin-top: 12px; }
+ .hero-intro p { color: var(--text-muted); font-size: 1.125rem; margin: 0 0 20px; line-height: 1.6; }
+ .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+ .screenshot { border-radius: var(--app-panel-radius); overflow: hidden; border: 1px solid var(--border-700); background: var(--surface-950); }
+ .screenshot img { display: block; width: 100%; height: auto; }
+ @media (max-width: 1000px) { .hero-heading { grid-template-columns: 1fr; gap: 24px; } .hero-intro { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; } .hero-intro p { margin: 0; } }
+ @media (max-width: 600px) { .hero { padding-top: 16px; } .hero-heading { padding: 6px 0 24px; } .hero-intro { display: block; } .hero-intro p { margin-bottom: 18px; } .hero-actions { gap: 10px; } .hero-actions :global(.btn) { padding-inline: 16px; } }
 </style>

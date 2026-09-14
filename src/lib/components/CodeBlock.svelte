@@ -46,10 +46,10 @@
 		background: var(--surface-900);
 	}
 	.label {
-		font-size: var(--text-10);
+		font-size: var(--text-sm);
 		letter-spacing: var(--tracking-wide);
 		text-transform: uppercase;
-		color: var(--text-subtle);
+		color: var(--text-muted);
 		font-weight: var(--weight-semibold);
 	}
 	.copy {
@@ -57,13 +57,13 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 6px;
-		font-size: var(--text-10);
+		font-size: var(--text-sm);
 		font-weight: var(--weight-semibold);
 		color: var(--text-muted);
 		background: none;
 		border: none;
 		cursor: pointer;
-		padding: 4px 6px;
+		padding: 8px 10px;
 		border-radius: var(--radius-sm);
 		transition:
 			color var(--dur-fast),

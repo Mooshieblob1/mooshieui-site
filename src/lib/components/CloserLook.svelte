@@ -1,6 +1,5 @@
 <script>
-	import { motion } from '@humanspeak/svelte-motion';
-	import { fadeUp } from '$lib/motion.js';
+	import { reveal } from '$lib/actions/reveal';
 
 	const steps = [
 		{
@@ -17,190 +16,23 @@
 		}
 	];
 </script>
-
-<section class="block" id="look">
-	<div class="wrap closer">
-		<!-- on-brand CSS mock of the generate panel -->
-		<motion.div class="closer-media liquid-glass" {...fadeUp(0)}>
-			<div class="mock">
-				<div class="mock-row">
-					<span class="mock-label">Checkpoint</span>
-					<span class="mock-badge">anima</span>
-				</div>
-				<div class="mock-field">Anima Base v1.0</div>
-				<div>
-					<div class="mock-meta"><span>Steps</span><span class="strong">30</span></div>
-					<div class="mock-track"><div class="mock-fill" style="width:62%"></div></div>
-				</div>
-				<div>
-					<div class="mock-meta"><span>CFG</span><span class="strong">4.0</span></div>
-					<div class="mock-track"><div class="mock-fill" style="width:28%"></div></div>
-				</div>
-				<div class="mock-split">
-					<span></span>
-					<span></span>
-				</div>
-				<div class="mock-generate">Generate</div>
-			</div>
-		</motion.div>
-		<motion.div {...fadeUp(0.15)}>
-			<span class="eyebrow">From prompt to polished</span>
-			<h2>Three steps to a <span class="accent-serif">finished</span> image</h2>
-			<ol class="closer-points">
-				{#each steps as step, i}
-					<li>
-						<span class="num">{i + 1}</span>
-						<div>
-							<h4>{step.title}</h4>
-							<p>{step.body}</p>
-						</div>
-					</li>
-				{/each}
-			</ol>
-		</motion.div>
-	</div>
+<section class="section" id="look" aria-labelledby="look-heading">
+ <div class="wrap">
+  <div class="look-heading" use:reveal><span class="eyebrow">From prompt to polished</span><h2 id="look-heading" class="section-title">Three steps to a<br /><span class="accent-serif">finished</span> image</h2></div>
+  <ol class="steps">
+   {#each steps as step, i}
+    <li use:reveal><span class="step-number" aria-hidden="true">0{i + 1}</span><h3>{step.title}</h3><p>{step.body}</p></li>
+   {/each}
+  </ol>
+ </div>
 </section>
-
 <style>
-	.block {
-		padding: 86px 0;
-	}
-	.closer {
-		display: grid;
-		grid-template-columns: 0.85fr 1.15fr;
-		gap: 40px;
-		align-items: center;
-	}
-	@media (max-width: 860px) {
-		.closer {
-			grid-template-columns: 1fr;
-			gap: 28px;
-		}
-	}
-	:global(.closer-media) {
-		border-radius: var(--radius-lg);
-		padding: 22px;
-	}
-	.mock {
-		display: flex;
-		flex-direction: column;
-		gap: 16px;
-	}
-	.mock-row {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	.mock-label {
-		font-size: var(--text-xs);
-		color: var(--text-muted);
-	}
-	.mock-badge {
-		font-size: var(--text-10);
-		font-weight: 600;
-		padding: 2px 7px;
-		border-radius: var(--radius-sm);
-		background: color-mix(in srgb, var(--success-strong) 20%, transparent);
-		color: var(--success-text);
-	}
-	.mock-field {
-		height: 34px;
-		border-radius: var(--radius-md);
-		background: var(--surface-800);
-		border: 1px solid var(--border-700);
-		display: flex;
-		align-items: center;
-		padding: 0 12px;
-		font-size: var(--text-sm);
-		color: var(--text);
-	}
-	.mock-meta {
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: 7px;
-		font-size: var(--text-xs);
-		color: var(--text-muted);
-	}
-	.mock-meta .strong {
-		color: var(--text-strong);
-	}
-	.mock-track {
-		height: 6px;
-		border-radius: 9999px;
-		background: var(--neutral-700);
-	}
-	.mock-fill {
-		height: 100%;
-		border-radius: 9999px;
-		background: var(--accent-500);
-	}
-	.mock-split {
-		display: flex;
-		gap: 8px;
-	}
-	.mock-split span {
-		flex: 1;
-		height: 30px;
-		border-radius: var(--radius-md);
-		background: var(--surface-800);
-		border: 1px solid var(--border-700);
-	}
-	.mock-generate {
-		height: 44px;
-		margin-top: 2px;
-		border-radius: var(--radius-lg);
-		background: var(--accent-500);
-		color: var(--accent-foreground);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-weight: 600;
-		font-size: var(--text-sm);
-		box-shadow: var(--shadow-accent);
-	}
-	.closer h2 {
-		margin: 14px 0 0;
-		font-size: clamp(24px, 3vw, 34px);
-		font-weight: var(--weight-bold);
-		letter-spacing: -0.025em;
-		color: var(--text-strong);
-		text-wrap: balance;
-	}
-	.closer-points {
-		margin: 26px 0 0;
-		padding: 0;
-		list-style: none;
-		display: flex;
-		flex-direction: column;
-		gap: 18px;
-	}
-	.closer-points li {
-		display: flex;
-		gap: 14px;
-	}
-	.closer-points .num {
-		flex-shrink: 0;
-		width: 28px;
-		height: 28px;
-		border-radius: var(--radius-md);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background: var(--accent-500);
-		color: var(--accent-foreground);
-		font-size: var(--text-xs);
-		font-weight: var(--weight-bold);
-	}
-	.closer-points h4 {
-		margin: 3px 0 4px;
-		font-size: var(--text-sm);
-		font-weight: var(--weight-semibold);
-		color: var(--text-strong);
-	}
-	.closer-points p {
-		margin: 0;
-		font-size: var(--text-sm);
-		color: var(--text-muted);
-		line-height: var(--leading-snug);
-	}
+ .look-heading { margin-bottom: 32px; }
+ .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0; }
+ .steps li { border-top: 1px solid var(--border-700); padding: 24px 24px 0 0; }
+ .steps li + li { padding-left: 24px; }
+ .step-number { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: var(--radius-md); color: var(--accent-foreground); background: var(--accent-600); font-size: .875rem; font-weight: 600; line-height: 1; margin-bottom: 16px; }
+ h3 { font-size: 1.125rem; line-height: 1.4; font-weight: 600; margin: 0 0 12px; }
+ p { font-size: 1rem; line-height: 1.65; color: var(--text-muted); margin: 0; }
+ @media(max-width: 800px) { .steps { grid-template-columns: 1fr; gap: 24px; } .steps li:nth-child(n) { padding: 24px 0 0; } }
 </style>
