@@ -83,7 +83,7 @@
 					<span class="osicon"><Icon name="browser" size={22} /></span>
 					<div>
 						<h3>macOS</h3>
-						<p class="meta">Apple Silicon · {macUrl ? tag : 'Planned for v2.3.1'}</p>
+						<p class="meta">Apple Silicon · {macUrl ? tag : 'Built · awaiting testing'}</p>
 					</div>
 				</div>
 				<p class="dl-note">
@@ -91,8 +91,9 @@
 						Native ARM64 app for Apple Silicon Macs, with ComfyUI acceleration through Apple
 						Metal (MPS). Check the release notes for macOS requirements and tested models.
 					{:else}
-						A native Apple Silicon installer with Apple Metal (MPS) acceleration is planned for
-						v2.3.1, pending Mac validation. The download will appear here when it is released.
+						A native Apple Silicon build with Apple Metal (MPS) acceleration is already complete,
+						but it still needs testing on real hardware. It will be released as soon as a Mac is
+						available to test it, and the download will appear here.
 					{/if}
 				</p>
 				{#if macUrl}

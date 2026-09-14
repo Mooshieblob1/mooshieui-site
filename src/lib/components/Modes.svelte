@@ -44,7 +44,7 @@
 					{#if macUrl}
 						macOS has a native Apple Silicon installer with Apple Metal (MPS) acceleration.
 					{:else}
-						A native Apple Silicon macOS installer is planned for v2.3.1, pending validation.
+						The native Apple Silicon macOS build is complete and will ship once it has been tested on a Mac.
 					{/if}
 				</p>
 				<ul>
@@ -61,7 +61,7 @@
 					</a>
 					<a class:dl-primary={!!macUrl} class:dl-ghost={!macUrl} class="dl-btn" href={macUrl ?? '#download-macos'}>
 						<Icon name={macUrl ? 'download' : 'info'} size={14} />
-						{macUrl ? 'macOS (Apple Silicon)' : 'macOS · coming soon'}
+						{macUrl ? 'macOS (Apple Silicon)' : 'macOS · awaiting testing'}
 					</a>
 				</div>
 			</motion.div>
