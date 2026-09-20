@@ -31,12 +31,27 @@ Brand assets (logo, favicon, app screenshot) are in `static/assets/`.
 ```bash
 npm install
 npm run dev      # local dev server
-npm run build    # static production build → ./build
+npm run build    # static production build → ./dist
 npm run preview  # preview the production build
 ```
 
 The site is fully prerendered (`adapter-static`), so it deploys to any static
 host.
+
+## Production domain and Cloudflare Pages
+
+The production address is **https://mooshieui.com**. The public origin and
+sitemap paths are maintained in `src/lib/site.js`. The layout uses that origin
+for page-specific canonical URLs and social images; `/robots.txt` and
+`/sitemap.xml` are generated as static files during the build.
+
+Cloudflare Pages uses `npm run build` with output directory `dist`, matching
+`svelte.config.js` and `wrangler.toml`. Custom domains and redirects are configured
+in Cloudflare's dashboard.
+
+See [the domain migration guide](docs/cloudflare-domain-migration.md) for the
+ordered setup, exact redirect values, and verification steps. Connect and verify
+the new domain before deploying the metadata change and enabling redirects.
 
 ## Source
 
