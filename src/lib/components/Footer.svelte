@@ -2,6 +2,8 @@
 	import { base } from '$app/paths';
 	import type { Release } from '$lib/types';
 	import { FALLBACK_TAG } from '$lib/release.js';
+	import { KOFI_URL } from '$lib/site.js';
+	import Icon from '$lib/icons/Icon.svelte';
 
 	const repo = 'https://github.com/Mooshieblob1/MooshieUI';
 
@@ -21,6 +23,13 @@
 					A beginner-friendly interface for ComfyUI. Generate without hand-editing graphs, on your
 					desktop or in any browser.
 				</p>
+				<div class="support">
+					<p>MooshieUI is free and always will be. If it saves you some time, a coffee keeps the queue running.</p>
+					<a class="btn btn-primary btn-sm" href={KOFI_URL} target="_blank" rel="noopener">
+						<Icon name="coffee" size={17} />
+						Support on Ko-fi
+					</a>
+				</div>
 			</div>
 			<div class="foot-cols" >
 				<div class="foot-col">
@@ -40,6 +49,7 @@
 					<h5>Resources</h5>
 					<a href={repo} target="_blank" rel="noopener">GitHub repo</a>
 					<a href={repo + '/releases'} target="_blank" rel="noopener">Releases</a>
+					<a href={KOFI_URL} target="_blank" rel="noopener">Ko-fi</a>
 					<a href="https://github.com/comfyanonymous/ComfyUI" target="_blank" rel="noopener"
 						>ComfyUI</a
 					>
@@ -63,6 +73,9 @@
  .brand { display: inline-flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 600; letter-spacing: -.025em; }
  .brand img { width: 40px; height: 40px; }
  .foot-brand p { font-size: 1rem; line-height: 1.7; color: var(--text-muted); margin-top: 20px; }
+ .support { margin-top: 24px; padding: 16px; border: 1px solid var(--border-700); border-radius: var(--app-panel-radius); background: var(--surface-900); }
+ .support p { font-size: .875rem; line-height: 1.6; color: var(--text-muted); margin: 0 0 14px; }
+ .support .btn:hover { color: var(--accent-foreground); }
  .foot-cols { display: flex; gap: 56px; }
  h5 { font-size: .875rem; font-weight: 600; color: var(--text-muted); margin: 0 0 18px; }
  .foot-col a { display: block; color: var(--text); font-size: .875rem; padding-block: 6px; }

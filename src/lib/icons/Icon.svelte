@@ -92,6 +92,11 @@
 		<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
 	{:else if name === 'sparkles'}
 		<path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z" />
+	{:else if name === 'coffee'}
+		<path d="M10 2v2" />
+		<path d="M14 2v2" />
+		<path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" />
+		<path d="M6 2v2" />
 	{:else if name === 'sliders-h'}
 		<line x1="4" y1="6" x2="20" y2="6" />
 		<line x1="4" y1="12" x2="20" y2="12" />
