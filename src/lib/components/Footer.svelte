@@ -2,7 +2,7 @@
 	import { base } from '$app/paths';
 	import type { Release } from '$lib/types';
 	import { FALLBACK_TAG } from '$lib/release.js';
-	import { KOFI_URL } from '$lib/site.js';
+	import { KOFI_URL, SPONSORS_URL } from '$lib/site.js';
 	import Icon from '$lib/icons/Icon.svelte';
 
 	const repo = 'https://github.com/Mooshieblob1/MooshieUI';
@@ -24,11 +24,17 @@
 					desktop or in any browser.
 				</p>
 				<div class="support">
-					<p>MooshieUI is free and always will be. If it saves you some time, a coffee keeps the queue running.</p>
-					<a class="btn btn-primary btn-sm" href={KOFI_URL} target="_blank" rel="noopener">
-						<Icon name="coffee" size={17} />
-						Support on Ko-fi
-					</a>
+					<p>MooshieUI is free and always will be. If it saves you some time, consider supporting its development.</p>
+					<div class="support-btns">
+						<a class="btn btn-primary btn-sm" href={SPONSORS_URL} target="_blank" rel="noopener">
+							<Icon name="heart" size={17} />
+							Sponsor
+						</a>
+						<a class="btn btn-secondary btn-sm" href={KOFI_URL} target="_blank" rel="noopener">
+							<Icon name="coffee" size={17} />
+							Ko-fi
+						</a>
+					</div>
 				</div>
 			</div>
 			<div class="foot-cols" >
@@ -49,6 +55,7 @@
 					<h5>Resources</h5>
 					<a href={repo} target="_blank" rel="noopener">GitHub repo</a>
 					<a href={repo + '/releases'} target="_blank" rel="noopener">Releases</a>
+					<a href={SPONSORS_URL} target="_blank" rel="noopener">GitHub Sponsors</a>
 					<a href={KOFI_URL} target="_blank" rel="noopener">Ko-fi</a>
 					<a href="https://github.com/comfyanonymous/ComfyUI" target="_blank" rel="noopener"
 						>ComfyUI</a
@@ -75,7 +82,10 @@
  .foot-brand p { font-size: 1rem; line-height: 1.7; color: var(--text-muted); margin-top: 20px; }
  .support { margin-top: 24px; padding: 16px; border: 1px solid var(--border-700); border-radius: var(--app-panel-radius); background: var(--surface-900); }
  .support p { font-size: .875rem; line-height: 1.6; color: var(--text-muted); margin: 0 0 14px; }
- .support .btn:hover { color: var(--accent-foreground); }
+ .support-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+ .support .btn-primary:hover { color: var(--accent-foreground); }
+ .support .btn-secondary:hover { color: var(--text); }
+ .support .btn-secondary :global(svg) { color: var(--accent-400); }
  .foot-cols { display: flex; gap: 56px; }
  h5 { font-size: .875rem; font-weight: 600; color: var(--text-muted); margin: 0 0 18px; }
  .foot-col a { display: block; color: var(--text); font-size: .875rem; padding-block: 6px; }

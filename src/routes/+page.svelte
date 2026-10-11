@@ -7,6 +7,7 @@
 	import Modes from '$lib/components/Modes.svelte';
 	import CloserLook from '$lib/components/CloserLook.svelte';
 	import Download from '$lib/components/Download.svelte';
+	import Support from '$lib/components/Support.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 
 	let { data } = $props();
@@ -27,5 +28,6 @@
 	<Modes {release} />
 	<CloserLook />
 	<Download {release} />
+	<Support />
 </main>
 <Footer {release} />

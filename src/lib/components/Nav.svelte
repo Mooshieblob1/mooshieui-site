@@ -2,7 +2,6 @@
  import Icon from '$lib/icons/Icon.svelte';
  import { Button } from '$lib/components/ui/button';
  import { base } from '$app/paths';
- import { KOFI_URL } from '$lib/site.js';
  let { variant = 'landing' } = $props();
  let open = $state(false);
  let toggle = $state();
@@ -18,7 +17,7 @@
   {#if variant === 'landing'}
    <nav class="desktop-links" aria-label="Main navigation"><a href="#features"><Icon name="sliders" size={16} />Features</a><a href="#modes"><Icon name="browser" size={16} />How it runs</a><a href="#look"><Icon name="image" size={16} />A closer look</a></nav>
    <div class="nav-right">
-    <a class="github kofi" href={KOFI_URL} target="_blank" rel="noopener" aria-label="Support MooshieUI on Ko-fi"><Icon name="coffee" size={20} /><span>Support</span></a>
+    <a class="github support" href="#support" aria-label="Support MooshieUI"><Icon name="heart" size={20} /><span>Support</span></a>
     <a class="github" href={repo} target="_blank" rel="noopener" aria-label="MooshieUI on GitHub"><Icon name="github" size={20} /><span>GitHub</span></a>
     <Button size="sm" href="#download">Download</Button>
     <button class="menu-toggle" bind:this={toggle} aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? 'Close navigation' : 'Open navigation'} onclick={() => open = !open}><Icon name={open ? 'close' : 'menu'} size={22} /></button>
@@ -29,7 +28,7 @@
  </div>
  {#if variant === 'landing'}
   <nav id="mobile-navigation" class="mobile-links" class:open aria-label="Mobile navigation" hidden={!open}>
-   <a href="#features" onclick={closeMenu}>Features</a><a href="#modes" onclick={closeMenu}>How it runs</a><a href="#look" onclick={closeMenu}>A closer look</a><a href="#download" onclick={closeMenu}>Download</a><a href={repo} target="_blank" rel="noopener" onclick={closeMenu}>GitHub</a><a href={KOFI_URL} target="_blank" rel="noopener" onclick={closeMenu}>Support on Ko-fi</a>
+   <a href="#features" onclick={closeMenu}>Features</a><a href="#modes" onclick={closeMenu}>How it runs</a><a href="#look" onclick={closeMenu}>A closer look</a><a href="#download" onclick={closeMenu}>Download</a><a href={repo} target="_blank" rel="noopener" onclick={closeMenu}>GitHub</a><a href="#support" onclick={closeMenu}>Support</a>
   </nav>
  {/if}
 </header>
@@ -44,7 +43,7 @@
  .nav-right { display: flex; align-items: center; gap: 12px; margin-left: auto; }
  .github { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: .875rem; padding: 10px; border-radius: var(--radius-md); }
  .github:hover { color: var(--text); background: var(--surface-800); }
- .kofi:hover :global(svg), .kofi:focus-visible :global(svg) { color: var(--accent-500); }
+ .support:hover :global(svg), .support:focus-visible :global(svg) { color: var(--accent-500); }
  .menu-toggle { display: none; color: var(--text); background: var(--surface-800); border: 1px solid var(--border-700); border-radius: var(--radius-md); width: 44px; height: 44px; align-items: center; justify-content: center; cursor: pointer; }
  .mobile-links { display: none; margin: 8px 20px 0; padding: 8px; border: 1px solid var(--border-700); background: var(--surface-900); border-radius: var(--app-panel-radius); }
  .mobile-links a { display: block; padding: 12px; border-radius: var(--radius-md); font-size: 1rem; }

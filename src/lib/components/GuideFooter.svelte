@@ -1,6 +1,6 @@
 <script>
 	import { base } from '$app/paths';
-	import { KOFI_URL } from '$lib/site.js';
+	import { KOFI_URL, SPONSORS_URL } from '$lib/site.js';
 </script>
 
 <footer class="site">
@@ -11,6 +11,7 @@
 			<a href="{base}/build">Build from source</a>
 			<a href="{base}/docker">Docker guide</a>
 			<a href="https://github.com/Mooshieblob1/MooshieUI" target="_blank" rel="noopener">GitHub</a>
+			<a href={SPONSORS_URL} target="_blank" rel="noopener">Sponsor</a>
 			<a href={KOFI_URL} target="_blank" rel="noopener">Ko-fi</a>
 		</div>
 	</div>
