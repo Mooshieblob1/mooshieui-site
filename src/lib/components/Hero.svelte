@@ -19,7 +19,7 @@
     </div>
    </div>
    <div class="screenshot" use:reveal>
-    <img src="{base}/assets/app-screenshot.avif" width="1874" height="1347" fetchpriority="high"
+    <img src="{base}/assets/app-screenshot.avif" width="1713" height="1352" fetchpriority="high"
      alt="MooshieUI generation workspace with prompt controls, a generated illustration, model settings, and artist styles." />
    </div>
   </div>
