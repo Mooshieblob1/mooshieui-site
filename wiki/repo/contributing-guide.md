@@ -1,0 +1,116 @@
+# Contributing to MooshieUI
+
+Thanks for contributing. This guide covers how to set up, the checks your PR
+must pass, and the three core guidelines every change follows: i18n, a11y, and
+staying in scope.
+
+## Setup
+
+Use Node.js 22.12+ or 24+, stable Rust, and the Tauri v2 prerequisites for your
+platform. The locked Svelte Vite plugin requires Node `^20.19 || ^22.12 || >=24`;
+Node 18 is not supported by the current frontend toolchain. Installation and
+Mac support are covered in the [wiki](https://github.com/Mooshieblob1/MooshieUI/wiki/Installation)
+and [Mac guide](../docs/MACOS.md).
+
+```bash
+npm install
+npm run tauri dev     # full desktop dev (Vite hot-reload)
+npm run dev           # frontend only
+```
+
+Rust has two build targets. If you touch `src-tauri/`, check both so a desktop-only
+Tauri reference does not break the headless server:
+
+```bash
+cargo check --manifest-path src-tauri/Cargo.toml
+cargo check --manifest-path src-tauri/Cargo.toml --no-default-features --features server
+cargo test --manifest-path src-tauri/Cargo.toml
+cargo fmt --manifest-path src-tauri/Cargo.toml --check
+cargo clippy --manifest-path src-tauri/Cargo.toml
+```
+
+There is no vitest/jest suite. A few pure-logic `node:test` files live in
+`scripts/tests/`; CI bundles them with esbuild and runs them in the Guardrails
+job. For documentation-only changes, review the
+documented behavior against the code and validate links; a native build is not
+needed unless executable code or build configuration also changes.
+
+## Before you open a PR
+
+Run the local pre-flight:
+
+```bash
+npm run check
+```
+
+This runs, in order:
+1. `npm run build` (must pass),
+2. `npm run check:i18n` (i18n parity, must pass),
+3. `npm run check:portals` (every `fixed inset-0` overlay uses `use:portal`, must pass),
+4. `npm run check:types` (svelte-check, must pass with no errors).
+
+Note on `check:types`: main has no svelte-check errors, so any error fails both
+`npm run check` and CI. Warnings (including a11y) are reported but don't fail;
+don't add new ones in the files you change.
+
+## The three core guidelines
+
+### i18n (blocking)
+
+All user-facing strings go through `locale.t('key')`. Never hardcode display
+text. When you add or change a string:
+- Add the key to `src/lib/locales/en.ts` (the source of truth).
+- Add the same key to every other locale file in `src/lib/locales/`. Missing
+  keys fall back to English silently, so the gate catches them for you.
+- Keep every `{placeholder}` identical across locales for a given key.
+
+`npm run check:i18n` (and CI) fails on any missing key, extra key, or placeholder
+mismatch, and tells you exactly which file and key.
+
+### a11y (advisory, becoming stricter)
+
+Interactive elements must be keyboard- and screen-reader-accessible:
+- Use real interactive elements (`<button>`, `<a>`) for click handlers, or add
+  keyboard handlers and appropriate roles.
+- Associate every `<label>` with a control.
+- Provide `alt` text for meaningful images.
+
+CI posts a11y warnings for the files you changed as a non-blocking job summary.
+Please fix what you can; these will become blocking once the codebase baseline is
+clean.
+
+### Scope (human-reviewed)
+
+Read [docs/SCOPE.md](../docs/SCOPE.md). Every PR states how it fits the charter, and every non-trivial
+feature should start as an issue so scope is agreed before you build. Out-of-scope
+changes are declined regardless of quality.
+
+## Other conventions
+
+- Backend calls go through `ipcInvoke()` / `ipcListen()` (`src/lib/utils/ipc.ts`),
+  never raw `invoke()` / `listen()` from `@tauri-apps/api`.
+- Styling is Tailwind only. No `<style>` blocks in `.svelte` files.
+- Use `onclick`, not the legacy `on:click`.
+- Rust `#[tauri::command]` functions return `Result<T, AppError>`.
+- Shared Rust modules must gate Tauri imports, parameters and call sites with
+  `#[cfg(feature = "desktop")]`.
+- Document user-facing changes in the [wiki](https://github.com/Mooshieblob1/MooshieUI/wiki)
+  and relevant repository guides. The wiki is a separate repository; see the
+  [documentation maintenance notes](../docs/README.md#keeping-documentation-current).
+
+## What CI checks and how to fix each
+
+| Check | Blocking? | What it means | How to fix |
+|---|---|---|---|
+| GlassWorm Infection Audit | Yes | Security/steganography scan | Remove flagged content; see the check log |
+| Guardrails: build | Yes | `npm run build` failed | Run `npm run build` locally and fix the error |
+| Guardrails: i18n | Yes | Missing key/placeholder in a locale | Run `npm run check:i18n`; add the key to all locales |
+| Guardrails: portals | Yes | A `fixed inset-0` overlay without `use:portal` | Run `npm run check:portals`; add `use:portal` to the overlay's outermost element |
+| Guardrails: types | Yes | Any svelte-check error, in any file | Run `npm run check:types`; fix the errors it lists |
+| Guardrails: script tests | Yes | A `scripts/tests/*.test.ts` file failed | Bundle the failing file with esbuild and run it with `node --test`, as the workflow does |
+| Rust checks | Yes | `cargo fmt`, `cargo test` or `cargo clippy` failed on Linux, or the server build broke | Run the commands from the check log locally (see CLAUDE.md, Build & Run) |
+| a11y advisory | No | a11y warnings in changed files | See the job summary; fix what you can |
+
+The types check covers every file, so an error in a file your PR didn't touch
+(for example a `.svelte` file broken by a type change in a `.ts` file) still
+fails it.

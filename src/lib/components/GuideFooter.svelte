@@ -10,6 +10,7 @@
 			<a href="{base}/">Home</a>
 			<a href="{base}/build">Build from source</a>
 			<a href="{base}/docker">Docker guide</a>
+			<a href="{base}/wiki">Wiki</a>
 			<a href="https://github.com/Mooshieblob1/MooshieUI" target="_blank" rel="noopener">GitHub</a>
 			<a href={SPONSORS_URL} target="_blank" rel="noopener">Sponsor</a>
 			<a href={KOFI_URL} target="_blank" rel="noopener">Ko-fi</a>
