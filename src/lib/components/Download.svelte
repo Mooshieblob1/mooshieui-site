@@ -12,6 +12,7 @@
 	const winUrl = $derived(release?.winUrl ?? `${repo}/releases`);
 	const appimageUrl = $derived(release?.appimageUrl ?? `${repo}/releases`);
 	const debUrl = $derived(release?.debUrl ?? `${repo}/releases`);
+	const rpmUrl = $derived(release?.rpmUrl ?? `${repo}/releases`);
 	const macUrl = $derived(release?.macUrl ?? null);
 </script>
 
@@ -59,12 +60,12 @@
 					</span>
 					<div>
 						<h3>Linux</h3>
-						<p class="meta">AppImage · .deb · {tag}</p>
+						<p class="meta">AppImage · .deb · .rpm · {tag}</p>
 					</div>
 				</div>
 				<p class="dl-note">
 					AppImage runs anywhere without installation. The .deb integrates with apt on
-					Ubuntu/Debian-based systems.
+					Ubuntu/Debian-based systems, and the .rpm suits Fedora and openSUSE.
 				</p>
 				<div class="btn-row">
 					<a class="btn btn-primary" href={appimageUrl}>
@@ -73,6 +74,9 @@
 					</a>
 					<a class="btn btn-secondary" href={debUrl}>
 						.deb
+					</a>
+					<a class="btn btn-secondary" href={rpmUrl}>
+						.rpm
 					</a>
 				</div>
 			</div>

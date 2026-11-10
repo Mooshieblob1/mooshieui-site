@@ -10,13 +10,13 @@
 		},
 		{
 			icon: 'image',
-			title: 'Three generation modes',
-			body: 'Text to image, image to image, and inpainting. Switchable with a single click, sharing the same prompt and model setup.'
+			title: 'Images, video, music and more',
+			body: 'Text to image, image to image, inpainting and instruction-based Image Edit, plus video, music and experimental image to 3D. NovelAI is an optional image backend with your own API key.'
 		},
 		{
 			icon: 'layers',
 			title: 'LoRAs & Artist Styles',
-			body: 'Stack LoRAs with independent model and CLIP strength, and apply bundled artist styles that inject tags without cluttering your prompt.'
+			body: 'Stack LoRAs with independent model and CLIP strength, and save your own Artist Styles that inject tags without cluttering your prompt.'
 		},
 		{
 			icon: 'wand',

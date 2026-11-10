@@ -12,9 +12,9 @@
 	const macUrl = $derived(release?.macUrl ?? null);
 
 	const desktopPoints = [
-		'Native window, system tray, and file dialogs',
+		'Native window, file dialogs, and automatic updates',
 		'Tiny footprint thanks to the Rust backend',
-		'Bundles ComfyUI with one-click setup'
+		'Installs ComfyUI for you with one-click setup'
 	];
 	const browserPoints = [
 		'One server, many devices over your network',

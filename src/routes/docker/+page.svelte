@@ -20,7 +20,7 @@
 		},
 		{
 			name: 'NVIDIA Container Toolkit',
-			body: 'Optional. Exposes your GPU to the container for fast generation.',
+			body: 'Exposes your NVIDIA GPU to the container. The supplied compose file reserves one.',
 			link: 'https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/',
 			linkText: 'toolkit setup'
 		}
@@ -45,7 +45,7 @@
 	<h1>Self-host MooshieUI with Docker</h1>
 	<p class="lede">
 		Run the built-in web server in a container and reach the same interface from any device on your
-		network: desktop, laptop, or phone. One file, one command.
+		network: desktop, laptop, or phone.
 	</p>
 	<div class="platforms">
 		<span class="pchip">Web server</span>
@@ -61,8 +61,8 @@
 			<div>
 				<h3>Install the prerequisites</h3>
 				<p>
-					You'll need Docker and Compose. For GPU-accelerated generation on an NVIDIA card, add the
-					container toolkit. CPU-only works too, just slower.
+					You'll need Docker, Compose, and an NVIDIA GPU with the container toolkit. The supplied image
+					targets NVIDIA CUDA, and the compose file reserves the GPU.
 				</p>
 				<div class="prereq">
 					{#each prereqs as p}
@@ -95,22 +95,30 @@
 		<div class="step">
 			<div class="num">3</div>
 			<div>
-				<h3>Configure the compose file</h3>
+				<h3>Set the admin account</h3>
 				<p>
-					A starter <span class="inline-code">docker-compose.yml</span> is included. Mount a host folder
-					for your models and outputs so they survive container rebuilds, and pick the port you want to
-					serve on.
+					The included <span class="inline-code">docker-compose.yml</span> reads its settings from a
+					<span class="inline-code">.env</span> file. Copy the example, then set the admin user and a
+					strong password. The container refuses to start while the password is empty or
+					<span class="inline-code">changeme</span>.
 				</p>
+				<CodeBlock lines={[{ text: 'cp .env.example .env' }]} />
 				<CodeBlock
-					label="docker-compose.yml"
+					label=".env"
+					prompt={false}
 					lines={[
-						{ text: 'services:' },
-						{ text: '  mooshieui:' },
-						{ text: '    image: ghcr.io/mooshieblob1/mooshieui:latest' },
-						{ text: '    ports: ["8188:8188"]' },
-						{ text: '    volumes: ["./data:/app/data"]' }
+						{ text: 'MOOSHIEUI_PORT=3200' },
+						{ text: 'MOOSHIEUI_ADMIN_USER=admin' },
+						{ text: 'MOOSHIEUI_ADMIN_PASS=<a strong password>' }
 					]}
 				/>
+				<p style="margin-top:14px">
+					<span class="inline-code">MOOSHIEUI_PORT</span> is the port the web UI is published on.
+					Models are read from <span class="inline-code">./models</span> on the host (change it with
+					<span class="inline-code">MODELS_PATH</span>). The container runs as user 10001, so that folder
+					must be writable by it.
+				</p>
+				<CodeBlock lines={[{ text: 'sudo chown -R 10001:10001 ./models' }]} />
 			</div>
 		</div>
 
@@ -119,16 +127,17 @@
 			<div>
 				<h3>Bring the stack up</h3>
 				<p>
-					Build and start the server in the background. The first launch pulls the image and runs the
-					same setup wizard that installs ComfyUI and PyTorch into the mounted data volume.
+					Build and start the server in the background. The image ships ComfyUI, PyTorch, and
+					MooshieUI's custom nodes pre-installed, so there is no setup wizard to run.
 				</p>
-				<CodeBlock lines={[{ text: 'docker compose up -d' }]} />
+				<CodeBlock lines={[{ text: 'docker compose up -d --build' }]} />
 				<div class="callout" style="margin-top:18px">
 					<Icon name="info" size={18} />
 					<span>
-						<b>Heads up:</b> first-time setup downloads ~5–10&nbsp;GB (Python + PyTorch + ComfyUI) into
-						the <span class="inline-code">./data</span> volume. Keep that folder around; subsequent starts
-						are near-instant.
+						<b>Heads up:</b> the first build downloads several GB (the CUDA base image, PyTorch, and
+						ComfyUI). Settings, accounts, and galleries live in the
+						<span class="inline-code">mooshie-data</span> volume and models in
+						<span class="inline-code">./models</span>, so both survive rebuilds.
 					</span>
 				</div>
 			</div>
@@ -140,11 +149,13 @@
 				<h3>Open it anywhere on your network</h3>
 				<p>
 					Browse to the server from the host machine, then reach it from any other device on your LAN
-					using the host's IP address. The UI is responsive down to phone screens.
+					using the host's IP address, and sign in with the admin account you set. The UI is responsive
+					down to phone screens.
 				</p>
 				<CodeBlock
 					label="Browser"
-					lines={[{ text: 'http://localhost:8188' }, { text: 'http://192.168.1.20:8188' }]}
+					prompt={false}
+					lines={[{ text: 'http://localhost:3200' }, { text: 'http://192.168.1.20:3200' }]}
 				/>
 			</div>
 		</div>

@@ -2,7 +2,7 @@ const REPO = 'https://github.com/Mooshieblob1/MooshieUI';
 const API = 'https://api.github.com/repos/Mooshieblob1/MooshieUI/releases/latest';
 
 // Latest known release, used when the GitHub API is unreachable or rate-limited.
-export const FALLBACK_TAG = 'v2.3.0';
+export const FALLBACK_TAG = 'v2.3.41';
 
 export function buildRelease(tag, assets = []) {
 	const vNum = tag.replace(/^v/, '');
@@ -18,6 +18,10 @@ export function buildRelease(tag, assets = []) {
 		winUrl: find('_x64-setup.exe'),
 		appimageUrl: find('_amd64.AppImage'),
 		debUrl: find('_amd64.deb'),
+		// The .rpm uses its own naming (MooshieUI-<version>-1.x86_64.rpm).
+		rpmUrl:
+			assets.find((a) => a.name.endsWith('.x86_64.rpm'))?.browser_download_url ??
+			`${REPO}/releases/download/${tag}/MooshieUI-${vNum}-1.x86_64.rpm`,
 		macUrl: macAsset?.browser_download_url ?? null
 	};
 }

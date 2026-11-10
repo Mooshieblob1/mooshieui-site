@@ -1,7 +1,8 @@
 <script>
 	import Icon from '$lib/icons/Icon.svelte';
 
-	let { label = 'Terminal', lines = [] } = $props();
+	// `prompt` shows the shell `$` before each line. Turn it off for file contents and URLs.
+	let { label = 'Terminal', lines = [], prompt = true } = $props();
 
 	let copied = $state(false);
 
@@ -25,7 +26,7 @@
 			{/if}
 		</button>
 	</div>
-	<pre><code>{#each lines as line, i}<span class="pr">$</span> {line.text}{#if i < lines.length - 1}{'\n'}{/if}{/each}</code></pre>
+	<pre><code>{#each lines as line, i}{#if prompt}<span class="pr">$</span> {/if}{line.text}{#if i < lines.length - 1}{'\n'}{/if}{/each}</code></pre>
 </div>
 
 <style>
