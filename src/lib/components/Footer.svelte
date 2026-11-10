@@ -47,9 +47,10 @@
 				</div>
 				<div class="foot-col">
 					<h5>Guides</h5>
+					<a href="{base}/wiki">Wiki</a>
 					<a href="{base}/build">Build from source</a>
 					<a href="{base}/docker">Docker guide</a>
-					<a href="{base}/wiki">Wiki</a>
+					<a href={repo + '#readme'} target="_blank" rel="noopener">GitHub</a>
 				</div>
 				<div class="foot-col">
 					<h5>Resources</h5>
