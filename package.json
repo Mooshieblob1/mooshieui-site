@@ -7,7 +7,8 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "wiki:sync": "node scripts/sync-wiki.mjs"
   },
   "devDependencies": {
     "@humanspeak/svelte-motion": "^0.7.12",
@@ -17,6 +18,8 @@
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
     "@tailwindcss/vite": "^4.3.2",
     "clsx": "^2.1.1",
+    "github-slugger": "^2.0.0",
+    "marked": "^15.0.12",
     "svelte": "^5.1.0",
     "svelte-check": "^4.7.1",
     "tailwind-merge": "^3.6.0",

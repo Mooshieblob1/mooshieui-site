@@ -2,6 +2,7 @@
 export const SITE_URL = 'https://mooshieui.com';
 
 // Add new public pages here so the prerendered sitemap stays current.
+// Wiki pages are added by the sitemap route itself.
 export const SITE_PATHS = ['/', '/build', '/docker'];
 
 // Ways to support development (the #support section, nav, and footers link here).

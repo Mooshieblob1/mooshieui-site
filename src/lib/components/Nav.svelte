@@ -15,7 +15,7 @@
  <div class="wrap nav-inner">
   <a class="brand" href="{base}/" aria-label="MooshieUI home"><img src="{base}/assets/logo.png" alt="" width="36" height="36" /><span class="word">Mooshie<b>UI</b></span></a>
   {#if variant === 'landing'}
-   <nav class="desktop-links" aria-label="Main navigation"><a href="#features"><Icon name="sliders" size={16} />Features</a><a href="#modes"><Icon name="browser" size={16} />How it runs</a><a href="#look"><Icon name="image" size={16} />A closer look</a></nav>
+   <nav class="desktop-links" aria-label="Main navigation"><a href="#features"><Icon name="sliders" size={16} />Features</a><a href="#modes"><Icon name="browser" size={16} />How it runs</a><a href="#look"><Icon name="image" size={16} />A closer look</a><a href="{base}/wiki"><Icon name="book" size={16} />Wiki</a></nav>
    <div class="nav-right">
     <a class="github support" href="#support" aria-label="Support MooshieUI"><Icon name="heart" size={20} /><span>Support</span></a>
     <a class="github" href={repo} target="_blank" rel="noopener" aria-label="MooshieUI on GitHub"><Icon name="github" size={20} /><span>GitHub</span></a>
@@ -23,12 +23,12 @@
     <button class="menu-toggle" bind:this={toggle} aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? 'Close navigation' : 'Open navigation'} onclick={() => open = !open}><Icon name={open ? 'close' : 'menu'} size={22} /></button>
    </div>
   {:else}
-   <div class="nav-right"><a class="back text-link" href="{base}/"><Icon name="arrow-left" size={17} />Back to home</a><Button variant="secondary" size="sm" href={repo} target="_blank" rel="noopener"><Icon name="github" size={17} />Repo</Button></div>
+   <div class="nav-right"><a class="back text-link" href="{base}/"><Icon name="arrow-left" size={17} />Back to home</a><a class="back text-link wiki-link" href="{base}/wiki"><Icon name="book" size={17} />Wiki</a><Button variant="secondary" size="sm" href={repo} target="_blank" rel="noopener"><Icon name="github" size={17} />Repo</Button></div>
   {/if}
  </div>
  {#if variant === 'landing'}
   <nav id="mobile-navigation" class="mobile-links" class:open aria-label="Mobile navigation" hidden={!open}>
-   <a href="#features" onclick={closeMenu}>Features</a><a href="#modes" onclick={closeMenu}>How it runs</a><a href="#look" onclick={closeMenu}>A closer look</a><a href="#download" onclick={closeMenu}>Download</a><a href={repo} target="_blank" rel="noopener" onclick={closeMenu}>GitHub</a><a href="#support" onclick={closeMenu}>Support</a>
+   <a href="#features" onclick={closeMenu}>Features</a><a href="#modes" onclick={closeMenu}>How it runs</a><a href="#look" onclick={closeMenu}>A closer look</a><a href="{base}/wiki" onclick={closeMenu}>Wiki</a><a href="#download" onclick={closeMenu}>Download</a><a href={repo} target="_blank" rel="noopener" onclick={closeMenu}>GitHub</a><a href="#support" onclick={closeMenu}>Support</a>
   </nav>
  {/if}
 </header>
@@ -52,5 +52,6 @@
  @media (max-width: 900px) { .desktop-links, .github { display: none; } .menu-toggle { display: flex; } .nav-right { gap: 10px; } .mobile-links.open { display: block; } .back { font-size: .875rem; } }
  @media (max-width: 430px) { .brand { font-size: 1.0625rem; gap: 7px; } .brand img { width: 30px; height: 30px; } .nav-inner { gap: 10px; } .nav-right :global(.btn-sm) { padding: 10px 13px; } .back { font-size: .8125rem; gap: 5px; } }
  @media (max-width: 560px) { .guide .brand .word { display: none; } }
+ @media (max-width: 480px) { .wiki-link { display: none; } }
  @media (max-width: 360px) { .brand .word { display: none; } }
 </style>

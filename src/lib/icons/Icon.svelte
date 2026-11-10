@@ -6,6 +6,8 @@
 	 */
 	let { name, size = 18, stroke = 2, class: klass = '' } = $props();
 	const filled = $derived(name === 'github');
+
+	import { ICON_PATHS as extra } from './paths.js';
 </script>
 
 <svg
@@ -106,5 +108,7 @@
 		<circle cx="9" cy="6" r="2" fill="currentColor" stroke="none" />
 		<circle cx="15" cy="12" r="2" fill="currentColor" stroke="none" />
 		<circle cx="8" cy="18" r="2" fill="currentColor" stroke="none" />
+	{:else if extra[name]}
+		{@html extra[name]}
 	{/if}
 </svg>

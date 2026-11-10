@@ -12,6 +12,24 @@ hairline borders, Hanken Grotesk type, Lucide-weight line icons, compact spacing
 - **`/build`** — build-the-desktop-app-from-source guide with copyable terminal
   steps.
 - **`/docker`** — self-host-with-Docker guide for the browser/server build.
+- **`/wiki`** — the MooshieUI wiki: sidebar, search (Ctrl/Cmd+K or `/`), on-this-page
+  contents, diagrams, and a Markdown view with Copy all on every page.
+- **LLM files** — `/wiki/<page>.md` (one page), `/llms.txt` (index) and
+  `/llms-full.txt` (the whole wiki in one file).
+
+## Wiki content
+
+The wiki text comes from the GitHub wiki (`Mooshieblob1/MooshieUI.wiki.git`) and
+is kept as a snapshot in `wiki/`, with the source commit in `wiki/source.json`.
+Don't edit those files here; edit the GitHub wiki.
+
+- `npm run wiki:sync` pulls the latest wiki into `wiki/`.
+- The **Sync wiki** workflow runs that every 6 hours (or on demand from the Actions
+  tab) and commits any change to `main`, which redeploys the site.
+- Rendering lives in `src/lib/server/wiki.js`. The wiki has no images, so diagrams and
+  screenshots are added site-side in `src/lib/server/figures.js`, placed by heading text.
+- Page and group icons are mapped in `src/lib/wiki/icons.js`; the sidebar order comes
+  from the wiki's `_Sidebar.md`.
 
 ## Design system
 
