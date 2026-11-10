@@ -12,9 +12,11 @@ The **Enhance** button above the prompt box opens the **Enhance prompt** window.
 
 **Copy existing prompt** pastes your current prompt into the box. For image models you also choose a **Length** (Short, Medium or Detailed) and whether to **Include artists**.
 
+**Use memory notes** (Enhance and Enhance for V5, shown when saved characters have memory) is ticked each time the window opens. Untick it when a composition keeps failing: that rewrite sends no memory notes and learns nothing, so it works from your text and the saved looks alone. Facts a rewrite learns are saved to memory only when you apply it.
+
 **Reference images** attaches up to four pictures to point at, for example "use the outfit from image 1". Add them with **Upload**, **Paste** or **Gallery**, with an optional **Label** each. They need a model that can see images: a vision-capable model on an external provider, or the local Qwen3-VL 4B Instruct model. Other local models cannot see them and write from your text alone.
 
-Nothing changes until you choose. **Review rewrite** shows your prompt and the proposed one side by side. **Replace** swaps it in, **Append** adds it after your prompt (not offered for H3), and **Undo** next to the button reverses it afterwards. **Cancel**, Escape or clicking outside the window while it is working stops the request (v2.3.36 and later), so the next Enhance starts right away.
+Nothing changes until you choose. **Review rewrite** shows your prompt and the proposed one side by side. **Replace** swaps it in, **Append** adds it after your prompt (not offered for H3), and **Undo** next to the button reverses it afterwards. **Cancel**, Escape or clicking outside the window while it is working stops the request (v2.3.36 and later), so the next Enhance starts right away. Once the rewrite is shown, clicking outside no longer closes it (v2.3.42); use **Cancel** or Escape.
 
 For models that accept natural-language prompts (Krea 2, Flux, Z-Image, Chroma, Qwen-Image, and similar), Enhance writes full sentences instead of danbooru-style tags. Names, counts and positional descriptions (left/right) are preserved in prose form. Tag upsamplers such as DanTagGen still write tags regardless of the loaded model.
 
@@ -24,11 +26,11 @@ The assistant remembers the conversation. **Enhance**, **Enhance for H3** and **
 
 Once a session has history, the window shows **Remembered exchanges** with a **New session** button to start over.
 
-When a session grows too long for the model, the oldest exchanges are left out of the request (the window says **older ones not sent**) but stay saved. An answer that failed its format check or was cancelled is not remembered. A tag-only local model such as DanTagGen never receives the session.
+When a session grows too long for the model, the oldest exchanges are left out of the request (the window says **older ones not sent**) but stay saved. Since v2.3.42 only a rewrite you apply joins the session: closing the review without applying leaves it out, and **Undo** takes it back out. An answer that failed its format check or was cancelled is not remembered. A tag-only local model such as DanTagGen never receives the session.
 
 ## Minors and explicit content
 
-Enhance, Remember, Update, Use and Write with AI refuse to send a request that pairs a clear minor (child, kid, schoolgirl, an age under 18, or a saved character marked as a minor) with explicit words in what you typed. Since v2.3.40 the check reads only your request, not saved memory notes, so a note mentioning a character's age cannot block an unrelated request. Suggestive words alone, ambiguous words, and phrases such as "minor changes" or "remove all sexual content" do not trip it. The refusal names the words that tripped it.
+Enhance, Remember, Update, Use and Write with AI refuse to send a request that pairs a clear minor (child, kid, schoolgirl, an age under 18, or a saved character marked as a minor) with explicit words in what you typed. In all three Enhance flows (since v2.3.42) the check also covers the prompt being edited and your earlier requests in the session, since those are sent too. Since v2.3.40 the check never reads saved memory notes, so a note mentioning a character's age cannot block an unrelated request. Suggestive words alone, ambiguous words, and phrases such as "minor changes" or "remove all sexual content" do not trip it. The refusal names the words that tripped it.
 
 Since v2.3.41, anything that writes memory notes (Remember, Write with AI, Update suggestions and the V5 memory field) states a character's age as what it is ("an adult", "24 years old"), never as what it is not, and rewrites an old line that does. Notes already worded like "not a child or a teenager" or "no longer a child" are read as negations and do not count as a minor.
 

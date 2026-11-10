@@ -217,6 +217,10 @@ The review flags leak risk before you generate:
 - **Isolate outfits** does the same cleanup with no LLM call: it takes restated outfit and hair tags out of the base tag line (prose is left alone), gives each box without placement words its side from the position grid when **Custom** positions are on, and adds the opposite-outfit undesired content. Garments two boxes share stay and keep their chip, since matching clothes can be intended. It is in the review toolbar, on the Enhance input stage and in the **Characters** panel header (V5 models with two or more filled boxes). From the input stage or the panel it opens the review on your current prompt, so nothing changes until you apply, and **Undo V5 rewrite** works as usual.
 - When two characters share a hair colour or two or more body tags but wear different clothes, a line reads **Similar bodies, different outfits: opposite-outfit UC recommended**, with an **Add** button (or **Added** once it is there).
 
+### Scene objects and layout
+
+Since v2.3.42, objects and where things sit relative to them (`table in foreground`, `behind table`, `sitting in chair`) go in the base prompt as short tags plus one short sentence. Character boxes keep pose and side of frame only, with no object words, and clothing the object hides is left out. The rewrite never adds tags such as `opaque` or `not on table`, never puts an object the scene contains in undesired content, and moves layout tags it finds in a box to the base tag line. If a layout keeps failing, untick **Use memory notes** (see [[Prompt Assistant]]) so earlier notes do not pull the old composition back in.
+
 ## Aspect ratios and resolution
 
 NovelAI mode accepts any aspect ratio: the same eight presets as a local model, plus anything you type. Width and height always land on multiples of 64, rounded down so the area never exceeds what the side length allows (2:3 at a 1024 side is 832x1216, 16:9 is 1344x768). Switching backends only snaps the current width and height to that grid; it never recalculates them from the ratio.
