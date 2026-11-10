@@ -7,7 +7,7 @@
 
 	const prereqs = [
 		{
-			name: 'Node.js 18+',
+			name: 'Node.js 22.12+ or 24+',
 			body: 'JavaScript runtime for the frontend build.',
 			link: 'https://nodejs.org/',
 			linkText: 'nodejs.org'

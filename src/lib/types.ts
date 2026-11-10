@@ -3,5 +3,6 @@ export type Release = {
 	winUrl: string;
 	appimageUrl: string;
 	debUrl: string;
+	rpmUrl: string;
 	macUrl: string | null;
 };
