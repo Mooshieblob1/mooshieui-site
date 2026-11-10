@@ -45,11 +45,12 @@
 		<p class="lede">Every feature, from first install to NovelAI, video, music, 3D and self-hosting.</p>
 		<button class="big-search" type="button" onclick={() => (wikiUi.searchOpen = true)}>
 			<Icon name="search" size={20} />
-			<span>Search {data.stats.pages} pages</span>
+			<span>Search {data.stats.pages + data.stats.docs} pages</span>
 			<kbd>/</kbd>
 		</button>
 		<div class="chips">
 			<span class="chip"><Icon name="file" size={14} />{data.stats.pages} pages</span>
+			{#if data.stats.docs}<span class="chip"><Icon name="file-code" size={14} />{data.stats.docs} repo docs</span>{/if}
 			<span class="chip"><Icon name="clock" size={14} />{data.stats.minutes} min of reading</span>
 			<a class="chip" href={data.source.url} target="_blank" rel="noopener"><Icon name="github" size={14} />Updated {updated}</a>
 		</div>
@@ -88,7 +89,7 @@
 				<a class="card" href={href(p.slug)}>
 					<span class="ci"><Icon name={p.icon} size={18} /></span>
 					<span class="ct">
-						<b>{p.title}</b>
+						<b>{p.title}{#if p.addedIn}<em class="since">{p.addedIn}</em>{/if}</b>
 						{#if p.blurb}<small>{p.blurb}</small>{/if}
 					</span>
 					<Icon name="chevron-right" size={16} class="chev" />
@@ -102,7 +103,7 @@
 	<div class="llm-head">
 		<div>
 			<h2 class="bh"><Icon name="bot" size={18} />For LLMs</h2>
-			<p>The whole wiki as one Markdown file. Paste it into any assistant.</p>
+			<p>The whole wiki and the repository docs as one Markdown file. Paste it into any assistant.</p>
 		</div>
 		<div class="llm-actions">
 			<button class="btn btn-primary btn-sm" type="button" onclick={copyWiki}>
@@ -374,6 +375,20 @@
 		font-size: 0.9375rem;
 		font-weight: 650;
 		color: var(--text-strong);
+	}
+	.since {
+		margin-left: 8px;
+		padding: 1px 6px;
+		border-radius: 999px;
+		border: 1px solid color-mix(in srgb, var(--accent-500) 35%, transparent);
+		background: color-mix(in srgb, var(--accent-500) 10%, transparent);
+		color: var(--accent-300);
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-style: normal;
+		font-weight: 600;
+		vertical-align: 0.12em;
+		white-space: nowrap;
 	}
 	.ct small {
 		font-size: var(--text-xs);

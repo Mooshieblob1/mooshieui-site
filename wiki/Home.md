@@ -10,6 +10,8 @@ MooshieUI is a beginner-friendly interface for image, video, music and 3D genera
 - [[Installation]] - one-click setup, Docker, remote ComfyUI, macOS
 - [[Generation Basics]] - image modes, pause/continue, queue, dimensions and sampling controls
 - [[Prompting Guide]] - Prompt Chunks, random syntax, Style Creator, Artist Styles, scheduling and autocomplete
+- [[Anima Prompting]] - tag order, quality and score tags, @artists and the Turbo, Aesthetic and Base versions, from the official model card
+- [[NovelAI Prompting]] - special tags, emphasis, multi-character and text prompts for V5 and V4.5, from NovelAI's official docs
 - [[Prompt Assistant]] - write, edit or polish prompts with a local or external LLM
 
 ## Features by area

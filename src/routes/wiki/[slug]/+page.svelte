@@ -4,6 +4,7 @@
 	import WikiToc from '$lib/components/wiki/WikiToc.svelte';
 	import RawMarkdown from '$lib/components/wiki/RawMarkdown.svelte';
 	import { copyText } from '$lib/wiki/clipboard.js';
+	import { releaseUrl } from '$lib/wiki/meta.js';
 
 	let { data } = $props();
 	const p = $derived(data.page);
@@ -60,6 +61,12 @@
 				<h1>{p.title}</h1>
 			</div>
 			<div class="meta">
+				{#if p.addedIn}
+					<a class="added" href={releaseUrl(p.addedIn)} target="_blank" rel="noopener" title="Release notes for {p.addedIn}">
+						<Icon name="tag" size={14} />Added in <b>{p.addedIn}</b>
+					</a>
+				{/if}
+				{#if p.repo}<span class="from"><Icon name="file-code" size={14} />{p.file}</span>{/if}
 				<span><Icon name="clock" size={14} />{p.minutes} min read</span>
 				{#if p.headings.length}<span><Icon name="list" size={14} />{p.headings.filter((h) => h.depth === 2).length} sections</span>{/if}
 			</div>
@@ -91,7 +98,7 @@
 
 		<div id="wiki-view">
 			{#if view === 'md'}
-				<RawMarkdown text={p.markdown} filename="{p.file}.md" href={data.rawHref} tall />
+				<RawMarkdown text={p.markdown} filename={p.repo ? p.file : `${p.file}.md`} href={data.rawHref} tall />
 			{:else}
 				<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 				<div class="wk-prose" onclick={onProseClick}>
@@ -194,10 +201,37 @@
 		font-size: var(--text-xs);
 		color: var(--text-subtle);
 	}
+	.meta {
+		align-items: center;
+	}
 	.meta span {
 		display: inline-flex;
 		align-items: center;
 		gap: 6px;
+	}
+	.added {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 4px 10px 4px 8px;
+		border-radius: 999px;
+		border: 1px solid color-mix(in srgb, var(--accent-500) 45%, transparent);
+		background: color-mix(in srgb, var(--accent-500) 14%, transparent);
+		color: var(--accent-300, var(--text));
+		font-weight: 600;
+		text-decoration: none;
+		transition: background var(--dur-fast);
+	}
+	.added b {
+		font-family: var(--font-mono);
+		font-weight: 700;
+		color: var(--text);
+	}
+	.added:hover {
+		background: color-mix(in srgb, var(--accent-500) 24%, transparent);
+	}
+	.meta .from {
+		font-family: var(--font-mono);
 	}
 	.actions {
 		display: flex;

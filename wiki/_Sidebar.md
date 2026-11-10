@@ -7,6 +7,8 @@
 **Prompting**
 
 - [[Prompting Guide]]
+- [[Anima Prompting]]
+- [[NovelAI Prompting]]
 - [[Prompt Assistant]]
 
 **Generation features**

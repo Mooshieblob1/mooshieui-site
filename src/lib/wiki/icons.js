@@ -4,6 +4,8 @@ export const PAGE_ICONS = {
 	installation: 'download',
 	'generation-basics': 'sliders',
 	'prompting-guide': 'pen',
+	'anima-prompting': 'feather',
+	'novelai-prompting': 'tag',
 	'prompt-assistant': 'sparkles',
 	'novelai-backend': 'key',
 	'video-generation': 'film',
@@ -33,5 +35,7 @@ export const GROUP_ICONS = {
 	'Models and output': 'box',
 	Deployment: 'server',
 	Help: 'help',
-	Contributing: 'git'
+	Contributing: 'git',
+	'Project docs': 'folder',
+	'Technical reference': 'code'
 };

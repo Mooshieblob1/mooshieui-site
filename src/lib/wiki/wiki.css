@@ -501,3 +501,57 @@ html:has(.wiki-shell) {
 .wk-choice:hover .wk-node-icon {
 	color: var(--accent-500);
 }
+
+/* Version chips: MooshieUI releases link to their notes, other versions are plain */
+.wk-prose .wk-ver {
+	display: inline-block;
+	padding: 0 7px;
+	margin: 0 1px;
+	border-radius: 999px;
+	border: 1px solid color-mix(in srgb, var(--accent-500) 45%, transparent);
+	background: color-mix(in srgb, var(--accent-500) 13%, transparent);
+	color: var(--accent-300);
+	font-family: var(--font-mono);
+	font-size: 0.82em;
+	font-weight: 600;
+	line-height: 1.6;
+	white-space: nowrap;
+	text-decoration: none;
+	vertical-align: 0.06em;
+}
+.wk-prose a.wk-ver:hover {
+	background: color-mix(in srgb, var(--accent-500) 24%, transparent);
+	color: var(--accent-200);
+}
+.wk-prose .wk-ver.is-other {
+	border-color: var(--border-700);
+	background: var(--surface-800);
+	color: var(--text-muted);
+}
+
+/* Images and raw HTML from repository docs (README logo, badges, screenshot) */
+.wk-prose img {
+	display: inline-block;
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+}
+.wk-prose p > img:only-child {
+	display: block;
+	border-radius: var(--radius-lg);
+	border: 1px solid var(--border-700);
+}
+.wk-prose a.wk-ext:has(> img)::after {
+	display: none;
+}
+.wk-prose p > a:has(> img) {
+	margin-right: 4px;
+}
+.wk-prose [align='center'] {
+	text-align: center;
+}
+.wk-prose p[align='center'] img,
+.wk-prose [align='center'] img {
+	display: inline-block;
+	border: 0;
+}

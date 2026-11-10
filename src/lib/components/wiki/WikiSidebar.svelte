@@ -21,7 +21,10 @@
 {/if}
 <aside id="wiki-sidebar" class="sb" class:open={wikiUi.menuOpen} aria-label="Wiki pages">
 	<nav>
-		{#each nav as group}
+		{#each nav as group, i}
+			{#if group.repo && !nav[i - 1]?.repo}
+				<div class="divider"><Icon name="github" size={13} />From the repository</div>
+			{/if}
 			<div class="group">
 				<h2><Icon name={group.icon} size={14} />{group.title}</h2>
 				<ul>
@@ -59,6 +62,16 @@
 	}
 	.group + .group {
 		margin-top: 22px;
+	}
+	.divider {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin: 28px 0 16px 10px;
+		padding-top: 18px;
+		border-top: 1px solid var(--border-700);
+		font-size: var(--text-xs);
+		color: var(--text-subtle);
 	}
 	h2 {
 		display: flex;
