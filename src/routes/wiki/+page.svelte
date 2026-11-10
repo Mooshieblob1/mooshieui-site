@@ -34,7 +34,6 @@
 		name="description"
 		content="The MooshieUI wiki: installation, generation, prompting, NovelAI, video, music, 3D, models, gallery, self-hosting and MCP, with every page also available as Markdown for LLMs."
 	/>
-	<meta property="og:title" content="MooshieUI Wiki" />
 	<link rel="alternate" type="text/plain" href="{base}/llms.txt" title="llms.txt" />
 </svelte:head>
 

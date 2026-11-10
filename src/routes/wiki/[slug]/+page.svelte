@@ -44,7 +44,6 @@
 <svelte:head>
 	<title>{p.title} · MooshieUI Wiki</title>
 	{#if p.description}<meta name="description" content={p.description} />{/if}
-	<meta property="og:title" content="{p.title} · MooshieUI Wiki" />
 	<link rel="alternate" type="text/markdown" href={data.rawHref} title="{p.title} (Markdown)" />
 </svelte:head>
 
