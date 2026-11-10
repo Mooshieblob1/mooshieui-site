@@ -59,10 +59,10 @@ The **Quality tags** option in the NovelAI options panel appends NovelAI's quali
 | Model | Standard | Light |
 |-------|----------|-------|
 | V5 Full, V5 Curated | `, very aesthetic, masterpiece, no text` | `, very aesthetic, amazing quality, no text` |
-| V4.5 Full | `, location, very aesthetic, masterpiece, no text` (NovelAI) | Not offered |
+| V4.5 Full | `, location, very aesthetic, masterpiece, no text` | Not offered |
 | V4 Full | `, no text, best quality, very aesthetic, absurdres` | Not offered |
 
-On V4.5 Full, MooshieUI currently sends the V5 Standard string, without NovelAI's leading `location`. Add `location` yourself if you want an exact match.
+These match NovelAI's own toggle for every model. Up to v2.3.41, MooshieUI left the leading `location` out on V4.5 Full; releases after v2.3.41 include it.
 
 The **Undesired content preset** (Heavy, Light, Human focus, Furry focus, or None) puts NovelAI's preset tags ahead of your own Undesired Content. The panel only lists what the selected model supports. On V5 Full with **Effort: Medium**, the preset is fixed to Heavy and your own Undesired Content is not sent, so use negative emphasis instead.
 
