@@ -5,17 +5,46 @@
 - **Persistent** - saved images and videos are discovered from the gallery directory; SQLite caches metadata. Saved items remain available across sessions, subject to retention settings. With **Manual save mode** enabled, finished results wait in the preview until you choose **Save to Gallery**; **Discard** drops an unsaved result.
 - **Thumbnail grid** - responsive, sortable by date.
 - **Lightbox** - click any image for full size: scroll-wheel zoom at the cursor, double-click to reset, Escape or click-outside to close. Deleting from the lightbox moves on to the next image (the previous one at the end of the list) instead of closing, so you can review and cull at full size. The metadata panel includes how long the image or video took to generate.
-- **Image management** - rename, delete, copy to clipboard, and upscale from the gallery. Deleting from a tile, a list row or a right-click menu asks **Delete this image?** first. The lightbox trash button and the bottom panel's selection bar delete in one click for quick culling. Deleted images and videos go to the OS Recycle Bin (Windows), Trash (macOS), or desktop trash (Linux) rather than being permanently removed. If no usable bin is available, the file is deleted for good.
+- **Image management** - rename, delete, copy to clipboard, and upscale from the gallery. Deleting from a tile, a Detailed View row or the selection bar removes the images at once and shows a **Deleted N** toast with **Undo** for 7 seconds. The files only go to the bin when the toast closes, and **Undo** brings them back with their board, favourite and rating. Originals in a linked folder, and deletes from a right-click menu, ask **Delete this image?** first. The lightbox trash button and the bottom panel's selection bar delete in one click for quick culling. Deleted images and videos go to the OS Recycle Bin (Windows), Trash (macOS), or desktop trash (Linux) rather than being permanently removed. If no usable bin is available, the file is deleted for good.
 - **Touch screens** - tapping a tile opens the preview. To reach a tile's buttons, tap the **⋯** (Actions) button in its bottom-right corner; tap it again to close the tray. Keyboard focus inside a tile also shows the tray.
 - **Video actions** - hover a still image for **Make video** (send it to a new video generation as the first frame) or **Add as video reference** (add it to the reference slots). See [[Video Generation]].
 - **3D** - on a still image, opens the 3D page with that image as the source. See [[Image to 3D]].
-- **Boards** - sort images into named boards. **Create Board** adds one, **Assign board** on an image moves it there, and the **Board Filter** shows one board, **All Boards** or **Unsorted**. The gallery can also be grouped by board. **Sort by Artist** assigns images to boards automatically from the artist tags in their prompts. Boards belong to your account and sync across devices.
+- **Boards** - sort images into named boards. **Create Board** adds one, **Assign board** on an image moves it there, and the **Board Filter** shows one board, **All Boards** or **Unsorted**, with each board's image count. With a board picked, **Rename board** and **Delete board** appear beside the filter. Renaming to an existing board's name merges the two, and deleting a board sends its images back to Unsorted. A row of board chips above the grid sets the filter in one click; drag a tile (or a selected tile, to move the whole selection) onto a chip to move it there. The gallery can also be grouped by board. **Sort by Artist** assigns images to boards automatically from the artist tags in their prompts. Boards belong to your account and sync across devices.
 - **Edit in Photopea** - the pencil button in the lightbox opens the image in the embedded [Photopea](https://www.photopea.com/) editor. **File > Save** (Ctrl+S) inside Photopea saves the result back to the gallery as a new image; the original is kept. Photopea loads from photopea.com, so it needs an internet connection.
 - **Compare** - hold any two images against each other in a slider, fade, difference or side-by-side view. See [[Image Comparison]].
 - **Mode labels** - output records its generation mode, including Image Edit and video.
 - **Show Generation Time** - a checkbox in the gallery toolbar that displays each item's generation time directly on the grid and details view, instead of only on hover.
 
+- **Large galleries** - only the rows near the screen are drawn, and thumbnails are cached on disk (up to 1 GiB), so galleries with thousands of images scroll and reopen quickly.
+
 In hosted/multi-user mode regular users and moderators have isolated galleries. Their saved images and videos expire after 7 days by default; an admin can disable this with **Never auto-delete gallery images** in Settings > Gallery. The shared root gallery used by desktop/localhost/admin accounts is not expired by this cleanup. Account storage quotas are separate from expiry.
+
+## Selecting and bulk actions
+
+Every tile and Detailed View row has a checkbox (shown on hover, always shown on touch screens or once anything is selected). A plain click still opens the image.
+
+- **Shift+click** selects a range, **Ctrl/Cmd+click** picks single images, **Ctrl/Cmd+A** selects everything the current filters show. **Escape** clears and **Delete** deletes. With **Group By** on, each group header has its own checkbox.
+- **Arrow keys** move a cursor through the grid. **Shift+arrow** extends the selection, **Space** selects, **Enter** opens the image.
+- The bar at the bottom moves the selection to a board, sets rating, favourite or NSFW, compares two images, or deletes.
+- **Export** (desktop) asks for a folder and writes a copy of every selected image there with its metadata embedded. Videos are copied as they are.
+
+Changing a filter drops selected images it hides, so a bulk action never touches an image you cannot see.
+
+## Finding repeats
+
+The **Repeats** filter shows only images generated more than once with the same prompt, negative, seed, model, sampler settings and size, grouped per set with the oldest first. **Select extras** selects every copy but the oldest, ready to delete. Images from one batch share a seed but are not counted as copies of each other. This compares saved settings, not pixels.
+
+## Characters in the gallery
+
+Once you have saved characters, the gallery matches them to images by the tags in each image's prompt, with no model run. A card tagged `1girl` only matches images with a girl; otherwise the character's name as a tag, or most of its identity tags (hair, eyes, ears and the like), make a match. NovelAI images are checked one character box at a time.
+
+- The **Character** filter shows each character with a count, and **Group By** can group by character. Detailed View lists the characters found under the file name.
+- **Sort by Character** moves Unsorted images with exactly one character into a board named after it.
+- **Scan for characters** runs the built-in tagger on images with no saved prompt (imports, stripped metadata), on the selection or on everything shown. Each image is tagged once and remembered. Over 100 images it asks first; while it runs the button shows **Stop scan (done/total)**. Linked folders and videos are not scanned.
+
+## Folding the filters
+
+The **Filters** button next to the search box folds the filter panel down to the search row. The choice is remembered, and a dot on the button shows when a folded filter is narrowing the gallery.
 
 ## Search, favourites and NSFW
 

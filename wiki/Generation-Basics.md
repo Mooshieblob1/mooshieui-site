@@ -88,7 +88,7 @@ Style transfer and Anima TeaCache are disabled for paused runs. Upscaling and fa
 - **Loaded images set the aspect ratio, not the pixel size** - browsing, dropping or pasting an image into img2img, and dropping an image for a metadata import, adopt the image's shape as the aspect ratio at your current side length, exactly as clicking that preset would. The ratio is reduced and snapped to the nearest preset within a small tolerance, so a 1216x832 image reads 3 : 2, and a 1024x1536 image at a 1024 side becomes 832x1216 rather than 1024x1536. The source is fitted to that size when you generate. Two exceptions: dropping an image directly onto the Dimensions section applies its size, and inpainting sizes the canvas to the image so the mask matches it. A locked resolution ignores the image entirely.
 - **Swap dimensions** - one-click width/height swap.
 - **Resolution slider** - 64px to 2048px, dimensions computed from your aspect ratio.
-- **Lock resolution** - toggle next to the resolution controls. Switching checkpoints normally resets width/height to that model's default resolution; enabling the lock keeps your current dimensions fixed through model swaps.
+- **Lock resolution** - toggle next to the resolution controls. Switching checkpoints normally resets width/height to that model's default resolution; enabling the lock keeps your current dimensions fixed through model swaps, the Anima minimum size at generate time, and image edit reference uploads.
 
 ## Smart model detection
 
