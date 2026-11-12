@@ -129,6 +129,10 @@ A persistent **download banner** shows active downloads (models, ControlNet, LLM
 
 The **Characters** tab in the bottom panel saves character descriptions for reuse across sessions.
 
+Every user starts with one sample character, Yue, saved for NovelAI and for each local tag model (Illustrious, SDXL, Pony, Anima, SD 1.5). Natural-language models such as Flux get no sample. Delete her like any card and she stays deleted, on every synced device.
+
+The **Card size** slider in the tab header scales each card's picture from 48 px (the default) to 192 px; bigger cards show more of the prompt. It is saved per device.
+
 **Extract from prompt** sends your positive and negative prompts, plus any NovelAI character boxes, to the prompt assistant. It returns each character's name, appearance and character tags, and the undesired content (UC) that applies to them. Characters are saved per model architecture; the tab only shows characters saved for the architecture of the model currently selected.
 
 Nothing is saved straight away. Extract opens **Name your characters**, where each new character has a **Character name** field filled with the prompt assistant's suggestion. Change any name you like, or untick one to leave it out.
