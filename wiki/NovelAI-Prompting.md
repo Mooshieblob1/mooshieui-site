@@ -50,7 +50,7 @@ A bare `::` also closes any open braces, so `{{{{{rain ::` needs no counting. In
 
 **Negative emphasis** is NovelAI's targeted alternative to Undesired Content. `-1::hat ::` (or `-3::hat ::` for a stubborn hat) takes off a character's usual hat; `-1::monochrome ::` brings colour back; `-2.5::flat color ::` adds detail; `-1::simple background ::, location` gets characters out of a white void. Use Undesired Content for long lists of things to avoid, and negative emphasis for one concept at a time.
 
-**What MooshieUI converts.** You can write ComfyUI-style weights on NovelAI too. When the prompt is sent, `(tag:1.2)` becomes `1.2::tag::`, and weights of exactly 1.05 and 0.95 become `{tag}` and `[tag]`. Your prompt box keeps what you typed. See [[Prompting Guide#weighting-and-emphasis|Weighting and emphasis]] for every accepted form.
+**What MooshieUI converts.** You can write ComfyUI-style weights on NovelAI too. When the prompt is sent, `(tag:1.2)` becomes `1.2::tag::`, and weights of exactly 1.05 and 0.95 become `{tag}` and `[tag]`. NovelAI syntax such as `1.2::rain, night::` or `-1::hat::` is sent exactly as written, and prompts imported from NovelAI images keep their NovelAI syntax. Your prompt box keeps what you typed. See [[Prompting Guide#weighting-and-emphasis|Weighting and emphasis]] for every accepted form.
 
 ## Quality tags and Undesired Content presets
 
