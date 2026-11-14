@@ -22,6 +22,7 @@
 - [[ControlNet and Style Transfer]]
 - [[Inpainting and the Canvas Editor]]
 - [[Image Edit Mode]]
+- [[Image Editor]]
 - [[Compare Grid]]
 - [[Image Comparison]]
 

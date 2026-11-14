@@ -239,7 +239,7 @@ Autocomplete is aware of scheduling brackets and will not trigger inside `<...>`
 
 **LoRA keywords first:** when a LoRA with trigger words is switched on, its matching keywords show at the top of the suggestions with a **LoRA** badge (hover to see which LoRA). They are the same words the LoRA gallery shows as chips. Picking one inserts it exactly as written, and in the main positive prompt it is removed again when you switch the LoRA off. Keywords are not offered in negative prompts. Turn this off in Settings > Autocomplete.
 
-**Tag spell check:** with this enabled in Settings, tags that aren't known Danbooru tags are underlined, and right-clicking one offers "did you mean" corrections from the Danbooru tag set. The browser's native spell check is disabled inside the prompt so it doesn't fight the tag checker.
+**Tag spell check:** with this enabled in Settings, tags that aren't known Danbooru tags are underlined, and right-clicking one offers "did you mean" corrections from the Danbooru tag set. The browser's native spell check is disabled inside the prompt so it doesn't fight the tag checker. Spell check only runs for tag-based models (SDXL, Illustrious, Pony, SD 1.5, Anima) and NovelAI; natural-language models such as Flux, Krea and Qwen are not checked. Inside a tag prompt, lines that read as sentences are skipped. Common quality, year and score tokens (`masterpiece`, `very aesthetic`, `year 2024`, `score_9_up`) count as known. In NovelAI mode the checker also knows V5 custom tags, quality toggle tokens, `artist:` tokens, `source#` / `target#` / `mutual#` prefixes and `-N::tag::` weights, and skips the `Text:` block.
 
 ## Prompt history
 
