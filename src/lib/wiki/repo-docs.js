@@ -28,6 +28,7 @@ export const REPO_DOC_GROUPS = [
 			{ slug: 'music-studio', path: 'docs/MUSIC.md', title: 'Music Studio', icon: 'music' },
 			{ slug: 'image-to-3d-reference', path: 'docs/IMAGE_TO_3D.md', title: 'Image to 3D Reference', icon: 'cube' },
 			{ slug: 'macos', path: 'docs/MACOS.md', title: 'macOS (Apple Silicon)', icon: 'laptop' },
+			{ slug: 'linux', path: 'docs/LINUX.md', title: 'Linux (apt, dnf, AUR)', icon: 'download' },
 			{ slug: 'prompt-assistant-sign-in', path: 'docs/PROMPT-ASSISTANT-SIGN-IN.md', title: 'Prompt Assistant Sign-in', icon: 'key' },
 			{ slug: 'elevenlabs-prompting-rules', path: 'docs/ELEVENLABS_PROMPTING_AGENTS.md', title: 'ElevenLabs Prompting Rules', icon: 'mic' },
 			{ slug: 'seedance-prompting-rules', path: 'docs/SEEDANCE_PROMPTING_AGENTS.md', title: 'Seedance Prompting Rules', icon: 'clapper' }

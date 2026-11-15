@@ -1,0 +1,17 @@
+# MooshieUI apt and rpm package repository (MooshieUI packaging/linux/README.md).
+# Each release publishes signed repo metadata as apt-* / rpm-* release assets;
+# these send apt and dnf to the latest release's copy, and package downloads to
+# the release the metadata came from. Docs: MooshieUI docs/LINUX.md.
+
+/apt/dists/stable/InRelease                        https://github.com/Mooshieblob1/MooshieUI/releases/latest/download/apt-InRelease 302
+/apt/dists/stable/Release                          https://github.com/Mooshieblob1/MooshieUI/releases/latest/download/apt-Release 302
+/apt/dists/stable/Release.gpg                      https://github.com/Mooshieblob1/MooshieUI/releases/latest/download/apt-Release.gpg 302
+/apt/dists/stable/main/binary-amd64/Packages       https://github.com/Mooshieblob1/MooshieUI/releases/latest/download/apt-Packages 302
+/apt/dists/stable/main/binary-amd64/Packages.gz    https://github.com/Mooshieblob1/MooshieUI/releases/latest/download/apt-Packages.gz 302
+/apt/pool/:tag/:file                               https://github.com/Mooshieblob1/MooshieUI/releases/download/:tag/:file 302
+
+/rpm/repodata/repomd.xml                           https://github.com/Mooshieblob1/MooshieUI/releases/latest/download/rpm-repomd.xml 302
+/rpm/repodata/repomd.xml.asc                       https://github.com/Mooshieblob1/MooshieUI/releases/latest/download/rpm-repomd.xml.asc 302
+/rpm/repodata/primary.xml.gz                       https://github.com/Mooshieblob1/MooshieUI/releases/latest/download/rpm-primary.xml.gz 302
+/rpm/repodata/filelists.xml.gz                     https://github.com/Mooshieblob1/MooshieUI/releases/latest/download/rpm-filelists.xml.gz 302
+/rpm/repodata/other.xml.gz                         https://github.com/Mooshieblob1/MooshieUI/releases/latest/download/rpm-other.xml.gz 302
