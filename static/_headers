@@ -9,3 +9,9 @@
 /llms-full.txt
   Content-Type: text/plain; charset=utf-8
   Access-Control-Allow-Origin: *
+
+/rpm/mooshieui.repo
+  Content-Type: text/plain; charset=utf-8
+
+/mooshieui.asc
+  Content-Type: application/pgp-keys
