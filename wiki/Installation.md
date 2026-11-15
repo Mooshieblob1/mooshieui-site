@@ -4,7 +4,7 @@ MooshieUI can run as a desktop app, a self-hosted web server, or a thin client a
 
 ## One-click setup (Windows/Linux releases)
 
-1. Download a release from [Releases](https://github.com/Mooshieblob1/MooshieUI/releases): the `_x64-setup.exe` installer for Windows, or an `.AppImage`, `.deb` or `.rpm` for Linux. For Mac, see [macOS (Apple Silicon)](#macos-apple-silicon).
+1. Download a release from [Releases](https://github.com/Mooshieblob1/MooshieUI/releases): the `_x64-setup.exe` installer for Windows, or an `.AppImage`, `.deb` or `.rpm` for Linux. For Mac, see [macOS (Apple Silicon)](#macos-apple-silicon). On Debian, Ubuntu and Fedora you can instead install from MooshieUI's signed apt or dnf repo, so it updates with the rest of your system; see the [Linux install guide](https://github.com/Mooshieblob1/MooshieUI/blob/main/docs/LINUX.md).
 2. Run the app. The setup wizard will:
    - download [uv](https://github.com/astral-sh/uv) (fast Python package manager)
    - install an isolated Python runtime (normally 3.11; the AMD Windows preview uses 3.12)
@@ -20,6 +20,8 @@ The installer streams real-time output as a matrix-style backdrop with per-step 
 > Disk space: roughly 5 to 10 GB for Python, PyTorch and ComfyUI, plus model downloads. Install typically takes 5 to 15 minutes depending on your connection.
 
 On a slow connection the CUDA PyTorch download can take a long time. Since v2.3.41 setup waits for it instead of failing with "Failed to acquire lock on the client cache" after 5 minutes, and setup's downloads stop when you close MooshieUI, so a hidden leftover download cannot hold up the next attempt. If the setup log still reports a lock timeout, it explains what usually holds the lock and what to do.
+
+While PyTorch downloads, the status line shows how much has arrived and the speed, and the last few installer lines show under the progress bar. If no data arrives for 90 seconds, setup says so and the log lists the usual causes (slow link, VPN, proxy, firewall, antivirus). Setup gives uv a 120 second network timeout and 6 retries unless you set `UV_HTTP_TIMEOUT` or `UV_HTTP_RETRIES` yourself. Before a fresh PyTorch install it checks free space and stops with a clear message when the install drive or uv's cache drive (C: by default on Windows) has under 6 GB free (2 GB for CPU and Metal).
 
 **Update ComfyUI** targets the version pinned by the app. An interrupted update remains retryable. If ComfyUI crashes at startup because its environment needs repair, use the error dialog's **Repair and restart** action to reinstall the dependencies for the installed version.
 

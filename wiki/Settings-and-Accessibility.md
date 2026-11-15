@@ -84,7 +84,7 @@ The instance owner can keep API keys out of MooshieUI's config. Under each API k
 
 ### Help & Updates
 
-The update check retries a couple of times before giving up. If GitHub still cannot be reached, Help & Updates says so and offers **Open releases page** next to **Try again**, so you can download the latest version by hand.
+The update check retries a couple of times before giving up. If GitHub still cannot be reached, Help & Updates says so and offers **Open releases page** next to **Try again**, so you can download the latest version by hand. When MooshieUI on Linux was installed from the apt, dnf or zypper repo (or the AUR package), the update banner and Help & Updates show the package manager's update command instead of a download button.
 
 A small **Support MooshieUI** card at the bottom of Help & Updates links to **Support on Ko-fi** and **Sponsor on GitHub**. It follows the active theme, and **Hide MooshieUI branding** in Appearance hides it. The About dialog has the same two buttons.
 
