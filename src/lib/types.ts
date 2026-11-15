@@ -5,4 +5,5 @@ export type Release = {
 	debUrl: string;
 	rpmUrl: string;
 	macUrl: string | null;
+	linuxRepo: boolean;
 };

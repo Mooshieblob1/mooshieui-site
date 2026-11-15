@@ -22,7 +22,10 @@ export function buildRelease(tag, assets = []) {
 		rpmUrl:
 			assets.find((a) => a.name.endsWith('.x86_64.rpm'))?.browser_download_url ??
 			`${REPO}/releases/download/${tag}/MooshieUI-${vNum}-1.x86_64.rpm`,
-		macUrl: macAsset?.browser_download_url ?? null
+		macUrl: macAsset?.browser_download_url ?? null,
+		// The apt and dnf repos are served from these release assets (see
+		// static/_redirects), so the repo works once a release carries them.
+		linuxRepo: assets.some((a) => a.name === 'apt-InRelease')
 	};
 }
 

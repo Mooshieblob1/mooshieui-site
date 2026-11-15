@@ -4,6 +4,7 @@
 	import { base } from '$app/paths';
 	import type { Release } from '$lib/types';
 	import { FALLBACK_TAG } from '$lib/release.js';
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
 
 	const repo = 'https://github.com/Mooshieblob1/MooshieUI';
 
@@ -14,6 +15,27 @@
 	const debUrl = $derived(release?.debUrl ?? `${repo}/releases`);
 	const rpmUrl = $derived(release?.rpmUrl ?? `${repo}/releases`);
 	const macUrl = $derived(release?.macUrl ?? null);
+	const linuxRepo = $derived(release?.linuxRepo ?? false);
+
+	// Same commands as the Linux install guide (MooshieUI docs/LINUX.md).
+	const aptLines = [
+		'sudo install -d -m 0755 /etc/apt/keyrings',
+		'curl -fsSL https://mooshieui.com/mooshieui.asc | sudo tee /etc/apt/keyrings/mooshieui.asc > /dev/null',
+		"sudo tee /etc/apt/sources.list.d/mooshieui.sources > /dev/null <<'SOURCES'",
+		'Types: deb',
+		'URIs: https://mooshieui.com/apt',
+		'Suites: stable',
+		'Components: main',
+		'Architectures: amd64',
+		'Signed-By: /etc/apt/keyrings/mooshieui.asc',
+		'SOURCES',
+		'sudo apt update',
+		'sudo apt install mooshieui'
+	].map((text) => ({ text }));
+	const dnfLines = [
+		'sudo curl -fsSLo /etc/yum.repos.d/mooshieui.repo https://mooshieui.com/rpm/mooshieui.repo',
+		'sudo dnf install mooshieui'
+	].map((text) => ({ text }));
 </script>
 
 <section class="section download" id="download" aria-labelledby="download-heading">
@@ -127,6 +149,34 @@
 				</details>
 			</div>
 		</div>
+		<div class="linux-repo" id="download-linux-repo" use:reveal>
+			<div class="linux-repo-head">
+				<h3>Install on Linux with apt or dnf</h3>
+				<p>
+					Add the MooshieUI repo once, then the app updates with the rest of your system.
+					{#if !linuxRepo}
+						<strong>The repo goes live with the first release after v2.3.46.</strong>
+					{/if}
+					Arch users: the AUR package <code>mooshieui-bin</code> is coming soon; use the AppImage
+					until then. More in the <a href="{base}/wiki/linux">Linux install guide</a>.
+				</p>
+			</div>
+			<div class="linux-repo-grid">
+				<div>
+					<h4>Debian and Ubuntu</h4>
+					<p class="repo-meta">Ubuntu 22.04+ · Debian 12+</p>
+					<CodeBlock label="Terminal" lines={aptLines} prompt={false} />
+				</div>
+				<div>
+					<h4>Fedora</h4>
+					<p class="repo-meta">dnf asks you to accept the signing key once</p>
+					<CodeBlock label="Terminal" lines={dnfLines} prompt={false} />
+					<p class="repo-meta fingerprint">
+						Key fingerprint: <code>1F82 986C 6CC1 D890 5E48 FE0D FF29 34B6 0954 B5D7</code>
+					</p>
+				</div>
+			</div>
+		</div>
 		<p class="other-options">
 			Running your own server? <a href="{base}/docker">Use the Docker guide</a>.
 			Want to compile the desktop app? <a href="{base}/build">Build from source</a>.
@@ -151,8 +201,17 @@
  .mac-help summary { color: var(--text); cursor: pointer; }
  .mac-help p { margin: 14px 0 0; }
  .mac-help a, .other-options a { color: var(--accent-400); text-decoration: underline; text-underline-offset: 4px; }
+ .linux-repo { margin-top: 24px; border: 1px solid var(--border-700); border-radius: var(--app-shell-radius); background: var(--surface-900); padding: 24px; min-width: 0; }
+ .linux-repo-head p { margin: 8px 0 0; font-size: 1rem; line-height: 1.65; color: var(--text-muted); }
+ .linux-repo-head strong { color: var(--text); font-weight: 600; }
+ .linux-repo a { color: var(--accent-400); text-decoration: underline; text-underline-offset: 4px; }
+ .linux-repo-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 24px; margin-top: 20px; }
+ .linux-repo-grid > div { min-width: 0; }
+ h4 { font-size: 1rem; font-weight: 600; margin: 0; }
+ .repo-meta { font-size: .8125rem; color: var(--text-muted); margin: 4px 0 0; line-height: 1.5; }
+ .fingerprint { margin-top: 14px; overflow-wrap: anywhere; }
  .other-options { margin: 28px 0 0; font-size: .875rem; line-height: 1.9; color: var(--text-muted); border-top: 1px solid var(--border-700); padding-top: 24px; }
  @supports (grid-template-rows: subgrid) { .dl-card { display: grid; grid-template-rows: subgrid; grid-row: span 4; align-items: start; } .dl-note { min-height: 0; } }
  @media(max-width: 1000px) { .dl-grid { gap: 24px; } }
- @media(max-width: 800px) { .dl-grid { grid-template-columns: 1fr; gap: 40px; } .dl-note { min-height: 0; } .dl-card { gap: 20px; } }
+ @media(max-width: 800px) { .linux-repo-grid { grid-template-columns: 1fr; } .linux-repo { margin-top: 40px; padding: 20px; } .dl-grid { grid-template-columns: 1fr; gap: 40px; } .dl-note { min-height: 0; } .dl-card { gap: 20px; } }
 </style>
