@@ -65,7 +65,9 @@
 				</div>
 				<p class="dl-note">
 					AppImage runs anywhere without installation. The .deb integrates with apt on
-					Ubuntu/Debian-based systems, and the .rpm suits Fedora and openSUSE.
+					Ubuntu/Debian-based systems, and the .rpm suits Fedora and openSUSE. Or add the
+					MooshieUI repo and keep it updated with <code>apt</code> or <code>dnf</code>: see the
+					<a href="/wiki/linux">Linux install guide</a>.
 				</p>
 				<div class="btn-row">
 					<a class="btn btn-primary" href={appimageUrl}>
