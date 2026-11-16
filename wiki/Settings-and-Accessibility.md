@@ -51,6 +51,8 @@ Both settings persist and sync to the server.
 - Managed local ComfyUI prefers port 18288 for new installs, retains saved settings, and selects another free port when needed. Restart and shutdown target only MooshieUI-owned processes. Choose Remote to use another running ComfyUI installation.
 - **Free VRAM when idle** - off by default. When on, pick **Unload after** (5, 10, 15, 30 or 60 min). After that long with no generations, the managed ComfyUI unloads its models and gives back VRAM and RAM. ComfyUI keeps running, and the next generation reloads the model (a few seconds, longer for large models). A remote ComfyUI is never unloaded.
 
+- **Eagle export** - sends images to Eagle on this computer. See [[Gallery and Metadata#eagle-export]].
+
 While you are not using the app, it also rests on its own: after 2 minutes with no mouse or keyboard input, or while the window is hidden, UI animations pause until your next input. On Windows the WebView is also hidden while the window is minimised and set to use less memory while the app rests.
 
 ## Performance
@@ -116,6 +118,7 @@ Settings -> Notifications controls OS-level completion alerts.
 
 - **Desktop notifications** - when enabled, MooshieUI sends a system notification when an image batch finishes, a video finishes, or a generation error occurs. On desktop (Tauri) the native OS notification API is used; in browser mode the Web Notifications API is used and the browser asks for permission the first time you enable this. If permission is denied, a message reads "Permission denied. Enable notifications for MooshieUI in your system settings."
 - **Only when window is unfocused** - when checked, notifications are suppressed while the app window is in the foreground and only fire when you have switched to another app.
+- **Play a sound when an image is ready** - plays a short chime when an image finishes. A batch rings once.
 
 ## Diagnostics
 

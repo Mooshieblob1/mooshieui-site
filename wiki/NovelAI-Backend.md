@@ -12,6 +12,10 @@ Generations run on NovelAI's servers and may spend Anlas depending on the reques
 
 The same section shows your **Anlas** balance, whether an **Opus subscription** is active, and your remaining **Opus Generation Allowance** with the daily refill rate. V5 is not covered by Opus unlimited: its free generations come out of that allowance, so once it is empty a V5 generation costs real Anlas until it refills, and the cost badges say so. V4.5 and V4 keep the unconditional Opus discount inside the 1MP, 28-step window. **Refresh** re-checks with NovelAI. Turn on **Show Anlas above the generate button** to pin a compact version of that readout to the generation page.
 
+**Saved keys:** under **Saved keys**, name a key and save it to keep several NovelAI accounts at hand. **Use** switches to a saved key and **x** forgets it; saving a key does not switch to it. With two or more saved, a small account picker appears on the Anlas line above Generate. Saved keys are kept in their own file, out of the app config, and the app only ever shows a name and the last four characters. Saved keys are for the owner; hosted accounts keep their single key.
+
+**Paid-through date:** the account panel shows "Paid through" with the date and days left, from NovelAI's subscription data. For a renewing plan that is the next renewal; for a cancelled one it is the end date. The Anlas line shows the days left too, in amber for the last three days.
+
 ## Hosted accounts
 
 On a shared server, regular users and moderators each add their own key in **Settings, NovelAI**. **Save** changes only that account's key, and **Clear** removes only that account's key. Without one, the NovelAI models are hidden and NovelAI requests fail without using the host's subscription.
@@ -84,6 +88,8 @@ A token counter sits under each prompt box, showing the estimate against NovelAI
 ## Cost
 
 The generate button shows an **estimated** Anlas cost before submission. Estimates are calculated by the app, not a billing quote from NovelAI. Check your refreshed balance/allowance for actual usage; face crops, vibe encoding and enhancement operations can add their own costs.
+
+**Repeat warning:** if a request is identical to the last one sent (fixed seed, same settings), the first Generate click shows a warning and a second click sends it, so a duplicate never spends Anlas by accident.
 
 ## Queueing
 
@@ -204,6 +210,8 @@ The rewrite follows NovelAI's V5 Full and V5 Curated prompting rules. The base p
 Nothing is applied until you choose. The review screen lists the base prompt, undesired content, and each character side by side as **Now** and **Proposed**, with a checkbox on each and a running token count against the budget. **Apply selected** takes only what you ticked, and **Undo V5 rewrite** reverses it afterwards.
 
 A rewrite that drops a character removes the box rather than leaving it behind. Asking for a one character scene with two boxes open used to rewrite the first and leave the second standing, so the extra character still went into the image. Each box the rewrite no longer wants now appears in the review as a ticked row reading `(empty)` under **Proposed** with a **removed** chip, and untick it if you would rather keep that box. A box the rewrite adds is marked **new** the same way.
+
+**Comic dialogue:** for comic pages and speech bubbles, the `Text:` block holds only the spoken words, one bubble per paragraph in reading order. Speaker names, page or panel headings and quote marks stay out of it, because NovelAI draws everything after `Text:` into the image. The speaker is named in the prose instead, with the line quoted in the sentence that describes that panel. See also [[Comic Pages]].
 
 ### Keeping outfits apart
 

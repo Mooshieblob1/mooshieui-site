@@ -77,6 +77,12 @@ The pause stays available after a completed continuation so you can try differen
 
 Style transfer and Anima TeaCache are disabled for paused runs. Upscaling and face/segment refinement wait until the continuation finishes. Pause and continue do not apply to NovelAI generations.
 
+## Continuous generation
+
+The repeat button next to the batch stepper opens **Continuous generation**. Set **Runs** (1 to 999) or pick **Until stopped**, an optional **Delay (s)** between runs, and **Stop on error**. One Generate click then runs the normal generation again and again. Each run waits for the previous image to finish, so nothing piles up in the queue, and each run builds fresh settings, so random seeds and `{a|b}` wildcards reroll.
+
+The Generate button shows the progress (for example "Generating 3/10"), and the stop button stays visible during the pause between runs. With **Stop on error** off, a failed image is skipped, but the run still stops after 3 failures in a row. Combined with an **In order** file wildcard, a set number of runs walks a list one line at a time. See [[Prompting Guide#file-wildcards]].
+
 ## DMD2 4-step preset (SDXL)
 
 **Use DMD2 (4 steps, CFG 1)** is a single toggle that downloads the DMD2 distillation LoRA and switches the sampler to 4 steps, CFG 1, LCM sampler, SGM uniform scheduler. Turning it back off removes the LoRA but leaves the sampler settings alone so you can restore your own. Because it runs at CFG 1, ordinary negative prompts stop applying; NAG is the guidance method that still works there, so pair the two if you need a negative.

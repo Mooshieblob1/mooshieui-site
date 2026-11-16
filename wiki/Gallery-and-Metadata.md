@@ -27,9 +27,20 @@ Every tile and Detailed View row has a checkbox (shown on hover, always shown on
 - **Shift+click** selects a range, **Ctrl/Cmd+click** picks single images, **Ctrl/Cmd+A** selects everything the current filters show. **Escape** clears and **Delete** deletes. With **Group By** on, each group header has its own checkbox.
 - **Arrow keys** move a cursor through the grid. **Shift+arrow** extends the selection, **Space** selects, **Enter** opens the image.
 - The bar at the bottom moves the selection to a board, sets rating, favourite or NSFW, compares two images, or deletes.
+- **Eagle** sends the selected images to Eagle when Eagle export is on. See [Eagle export](#eagle-export).
 - **Export** (desktop) asks for a folder and writes a copy of every selected image there with its metadata embedded. Videos are copied as they are.
 
 Changing a filter drops selected images it hides, so a bulk action never touches an image you cannot see.
+
+## Eagle export
+
+MooshieUI can send images to [Eagle](https://eagle.cool) through Eagle's local API. Turn it on in **Settings > Connection > Eagle export**; Eagle must be open on the same computer.
+
+- **Send every image as it is saved** (on by default) sends each new image in the background, so a closed Eagle never slows a save. Turn it off to send only with the **Eagle** button in the selection bar.
+- **Eagle folder ID (optional)** picks the Eagle folder; leave it empty to send to Eagle's inbox.
+- **Test** reports Eagle's version, or says Eagle isn't reachable.
+
+Eagle copies the original file, nothing is re-encoded. Tags come from the prompt with weights and emphasis removed, plus a `model:<name>` tag (up to 40 tags). The annotation holds the full prompt, negative and seed. Only the owner's own gallery is sent; on a shared server, other accounts' images never reach the owner's Eagle library.
 
 ## Finding repeats
 

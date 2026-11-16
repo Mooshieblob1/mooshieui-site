@@ -16,6 +16,7 @@
 - [[NovelAI Backend]]
 - [[Video Generation]]
 - [[Anime Scenes]]
+- [[Comic Pages]]
 - [[Music Generation]]
 - [[Image to 3D]]
 - [[Upscaling and Face Fix]]

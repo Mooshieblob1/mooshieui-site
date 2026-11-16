@@ -15,6 +15,8 @@ MooshieUI has a rich prompt system layered on top of the plain positive/negative
 | `{2$$a\|b\|c}` | Pick exactly 2 distinct options, joined with ", " |
 | `{1-3$$a\|b\|c}` | Pick a random count in a range |
 | `{3::a\|1::b}` | Weighted alternation: `a` is three times as likely as `b` |
+| `__name__` | Pick a line from a file in the wildcards folder (see [File wildcards](#file-wildcards)) |
+| `// note` | Comment out the rest of the line; never sent |
 | `@[Chunk Name]` / `@preset:<slug>` | Splice a saved Prompt Preset in at that exact spot (wildcards roll here) |
 | `@artist_name` | Insert an artist tag (normalized, parentheses escaped) |
 | `<fromto[N]:before\|\|after>` | Prompt scheduling: swap text at step/fraction N |
@@ -108,7 +110,7 @@ Each block has an optional name field and a **Save as preset** button that drops
 
 ## Prompt Chunks (presets) and wildcards
 
-Saved **Prompt Chunks** (also called Prompt Presets in older labels and metadata) provide reusable text and multi-line wildcard lists. They coexist with inline `{red|blue|green}` random syntax. Classic `__filename__` text-file wildcards are not the app's wildcard mechanism.
+Saved **Prompt Chunks** (also called Prompt Presets in older labels and metadata) provide reusable text and multi-line wildcard lists. They coexist with inline `{red|blue|green}` random syntax and with `__name__` [file wildcards](#file-wildcards).
 
 **Where:** use **Chunks** in the prompt toolbar, or the **Chunks** tab in the Styles manager. Create a chunk and give it a name.
 
@@ -133,6 +135,36 @@ green hair, twintails
 2. **Inline token** `@[Chunk Name]` or `@preset:<slug>` - drop it anywhere in your prompt to splice the preset in at that exact spot. The bracket form takes the preset name as written (`@[Cool hair colors]`); the slug form is the name lowercased with non-alphanumeric runs collapsed to `_` (`@preset:cool_hair_colors`). The editor shows the exact token to copy. A multi-line preset rolls one random line per occurrence, and each occurrence rolls independently, so `@preset:hair, @preset:hair` rolls twice. A single-line preset is inserted verbatim. Unknown slugs are left untouched so typos are visible.
 
 Presets can be imported/exported as `.txt` files and sync across browser sessions.
+
+## File wildcards
+
+`__name__` in any prompt box picks a line from a wildcard file in the `wildcards` folder inside the app data folder. The layout follows Dynamic Prompts, so existing community packs drop in unchanged.
+
+- `colors.txt` becomes `__colors__`: one option per line, and lines starting with `#` are comments.
+- Subfolders become part of the name: `hair/styles.txt` is `__hair/styles__`.
+- YAML and JSON files with nested keys work too: `__outfits/casual__`. A key on its own pools every option under it, and `*` matches across names (`__hair/*__`).
+- An option can hold `{a|b}` alternation, and alternation can hold a wildcard. Wildcards also work in NovelAI character prompts.
+- A fixed seed repeats its picks. Unknown names are left as written so typos are visible.
+- The gallery and metadata store the resolved prompt.
+
+**Wildcards tab:** the **Wildcards** tab in the bottom panel lists your files with search and has an editor (Ctrl+S saves), new file, delete, reload and open folder (desktop). For each name a file provides it shows a click-to-insert token and the option count.
+
+**In order:** turn on **In order** for a name and each sent request takes the next line instead of a random one, independent of the seed. The tab shows the next position, and **Restart** goes back to the first line. Pair it with [[Generation Basics#continuous-generation|continuous generation]] to walk a whole list.
+
+## Comments and find/replace
+
+- `//` starts a comment that runs to the end of the line. It only counts at the start of a line or after a space or comma, so URLs like `http://...` stay as they are. Comments stay in the box, greyed out, and are stripped before sending. Token counters ignore them, and prompt history keeps the raw text.
+- **Ctrl+/** comments out the selected lines, or uncomments them when they are all commented.
+- **Ctrl+F** opens a find bar above the focused prompt box and **Ctrl+H** adds a replace row. Matching is plain text, with **Match case**, a match counter, Enter / Shift+Enter for next and previous, and **Replace** / **Replace all**. Everything is undoable, and Esc closes the bar.
+
+## Related tags
+
+Select a tag in a prompt box (click it or highlight it) and press **Related** in the prompt toolbar. A panel lists tags that go with it:
+
+- **Danbooru:** tags that often appear with it, coloured by category like the autocomplete list. Only the tag itself is sent to Danbooru.
+- **Your gallery:** tags that appear with it in your own saved prompts, with how many images held it. This works offline.
+
+Click a chip to add it right after the selected tag (after its weight, so `(red hair:1.2)` stays intact). Tags already in the prompt are dimmed, and Ctrl+Z undoes an add. If Danbooru is unreachable the panel says so and still shows your gallery's tags.
 
 ## LoRA presets
 
