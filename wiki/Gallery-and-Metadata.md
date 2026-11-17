@@ -98,7 +98,7 @@ Generation parameters are embedded into your saved images so they can be read ba
 - **Stealth alpha** - parameters can also be hidden in the least-significant bits of the alpha channel, readable client-side without a server round-trip. It works with PNG and with lossless WebP.
 - **JPEG XL (JXL)** - metadata goes in a SwarmUI-compatible XMP box.
 - **WebP** - parameters are stored as an EXIF UserComment following the A1111 convention, so exiftool, CivitAI and the usual web UIs read them back.
-- **NovelAI PNGs** - original provider text chunks survive saving, clipboard copying and face-detail compositing. The import dialog understands their characters and NovelAI options. See [[NovelAI Backend]].
+- **NovelAI PNGs** - original provider text chunks and NovelAI's own stealth data survive saving, clipboard copying and face-detail compositing, so novelai.net still recognises the file. To show it was made with MooshieUI, the app adds one small `MooshieUI` text chunk at the end of the file (app version, NovelAI model, time and whether it came from the app or MCP, no prompt) and changes nothing else: no pixels, whatever the Metadata setting. Copying or exporting the same image again never adds a second one. The metadata panel shows **Source: MooshieUI (NovelAI)** for these and **NovelAI** for images straight from novelai.net, while the settings still come from NovelAI's own data. The import dialog understands their characters and NovelAI options. See [[NovelAI Backend]].
 
 ## Video metadata and export
 
