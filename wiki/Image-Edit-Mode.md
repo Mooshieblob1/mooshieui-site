@@ -6,16 +6,19 @@ This is different from [[Inpainting and the Canvas Editor]], where you paint a m
 
 ## Supported models
 
-Image Edit needs a model trained for instruction editing. Seven families are supported:
+Image Edit needs a model trained for instruction editing. These families are supported:
 
 | Family | Reference images | Notes |
 |--------|------------------|-------|
 | **Qwen Image Edit** | 1 | Stock ComfyUI nodes |
 | **Qwen Image Edit Plus** | up to 3 | Stock ComfyUI nodes |
 | **Qwen Image Edit 2.1** | up to 10 | Includes Qwen Image Edit 2.1 Turbo (8-step schedule) |
+| **Flux.2 Klein** | up to 10 | 4B and 9B, distilled and Base; 9B KV files use the KV cache |
 | **FLUX 3 Klein** | up to 10 | Stock ComfyUI nodes (ComfyUI v0.41.0 or newer) |
 | **Flux.1 Kontext** | 1 | Stock ComfyUI nodes |
 | **MiniMax-H3-Image** | up to 16 | Stock ComfyUI nodes (ComfyUI v0.45.0 or newer) |
+| **MOSS-Image** | 1 to 4 | Uses the MOSS-Image Edit LoRA, downloaded automatically |
+| **Ming-Image Design** | up to 8 | Stock ComfyUI nodes |
 | **Krea 2** | 1 or 2 | Needs an edit LoRA; pick the method under Edit LoRA |
 | **Anima ReStyler** | 1 | Needs the Anima Edit LoRA |
 

@@ -2,9 +2,9 @@
 
 ## Smart model detection and architecture presets
 
-MooshieUI recognizes a broad set of model architectures and auto-applies an optimal sampler, scheduler, steps, CFG, and resolution for each. Families include (among others): SD 1.5, SD 2.x, SDXL, Illustrious/NoobAI, Pony Diffusion, SD3/SD3.5, the Flux family (Flux.1 Dev/Schnell/Krea, Flux 2 Klein variants and FLUX 3 Image Klein), MOSS-Image, Chroma, Z-Image, Wan, Qwen, Krea 2, Ideogram 4 (Flux2 VAE path), AuraFlow, PixArt, HunyuanDiT, Stable Cascade, Kolors, Anima (COSMOS), Mugen (SDXL + Flux2 VAE), and Nanosaur (1.2B DiT).
+MooshieUI recognizes a broad set of model architectures and auto-applies an optimal sampler, scheduler, steps, CFG, and resolution for each. Families include (among others): SD 1.5, SD 2.x, SDXL, Illustrious/NoobAI, Pony Diffusion, SD3/SD3.5, the Flux family (Flux.1 Dev/Schnell/Krea, Flux 2 Klein variants and FLUX 3 Image Klein), MOSS-Image, Chroma, Z-Image, Wan, Qwen, Krea 2, Ideogram 4 (Flux2 VAE path), AuraFlow, PixArt, HunyuanDiT, Stable Cascade, Kolors, Ming-Image, Anima (COSMOS), Mugen (SDXL + Flux2 VAE), and Nanosaur (1.2B DiT).
 
-The instruction-editing families (Qwen Image Edit, Qwen Image Edit Plus, Flux.1 Kontext, and FLUX 3 Klein) are detected too, and unlock [[Image Edit Mode]] when loaded.
+The instruction-editing families (Qwen Image Edit, Qwen Image Edit Plus, Flux.1 Kontext, Flux.2 Klein, FLUX 3 Klein, MiniMax-H3-Image, MOSS-Image and Ming-Image Design) are detected too, and unlock [[Image Edit Mode]] when loaded.
 
 Behavior worth knowing:
 
@@ -78,9 +78,42 @@ Qwen-Image 2.1 and Qwen-Image 2.1 Turbo are detected as a distinct architecture 
 - Both are available in [[Image Edit Mode]] with up to 10 references.
 - Downloads are available from the Model Hub quick links.
 
+## Architecture registry
+
+From v2.4.0, model families are declared once in a registry that sets detection, the text encoder and VAE, extra model files, supported modes, sampling defaults and Model Hub downloads. A family on the registry downloads its missing encoder and VAE on its own and refuses a mode it cannot run with a message, instead of producing a broken image. The families below moved onto it in v2.4.0.
+
+## Flux.2 Klein
+
+Flux.2 Klein 4B and 9B, distilled and Base, run txt2img and [[Image Edit Mode]] with up to 10 reference images. Defaults follow ComfyUI's bundled Klein templates: 4 steps at CFG 1 for distilled, 20 steps at CFG 5 for Base. A Klein 9B KV file (`klein`, `9b` and `kv` in the name) also gets the KV cache. Klein is told apart from Flux.1 by its tensors, so a renamed file is no longer read as Flux.1. The Model Hub links BFL's FP8 files; the 9B repos are gated and need a Hugging Face token.
+
+## Flux.1 and SD3 from split files
+
+Split Flux.1 files (dev, schnell, Krea, Kontext) load T5-XXL and CLIP-L together, as ComfyUI does. Earlier releases loaded T5 alone, which degraded every image without an error. CLIP-L and the Flux VAE download when missing.
+
+SD3 and SD3.5 split files load CLIP-L, CLIP-G and T5-XXL together, and Stability's own release files (`sd3_medium`, `sd3.5_large`, `sd3.5_medium`, `sd3.5_large_turbo`) work as they are. SD3.5 Large Turbo runs at 4 steps, CFG 1. The encoders download from Comfy-Org's ungated repo; the SD3 VAE is only in Stability's gated repos, so a GGUF model without one stops with a message pointing at its Model Hub entry.
+
+## Stable Cascade
+
+Stable Cascade generates with the official two-stage workflow: stage C at your settings, then stage B (10 steps, CFG 1.1) and stage A to decode. Txt2img, img2img, hires fix and face fix are supported. Stage B is the official all-in-one ComfyUI checkpoint, or a stage B UNet plus stage A; the model panel uses one you have or downloads the checkpoint (about 4.6 GB). ControlNet and pause/resume are not available for Cascade.
+
+## Wan as an image model
+
+Wan 2.1 (1.3B and 14B), Wan 2.2 A14B and Wan 2.2 TI2V 5B generate stills with the umT5 text encoder. Each gets its own VAE (TI2V 5B uses the 48-channel Wan 2.2 VAE), and Wan 2.2 A14B runs its high-noise and low-noise experts in turn.
+
+## Kolors
+
+Kolors runs through a loader node bundled with MooshieUI, so no third-party node pack is needed. It needs the Kolors UNet, the Kolors VAE and all shards of the ChatGLM3 text encoder; the Model Hub entry downloads the full set (about 17.8 GB). The tokenizer downloads once on first use. ControlNet is not available for Kolors.
+
+## Ming-Image 0.1
+
+inclusionAI's Ming-Image comes as two models:
+
+- **Ming-Image Design**: txt2img, img2img, inpainting and [[Image Edit Mode]] with up to 8 references. Defaults are 12 steps at CFG 1 and 2048x2048, so the negative prompt box is hidden. A **Transparent background** checkbox under Dimensions asks for a cut-out, and the PNG keeps its transparency. Upscaling, face fix and segment detail drop the alpha channel.
+- **Ming-Image Layer**: a separate checkpoint with its own text encoder.
+
 ## MOSS-Image
 
-OpenMOSS's MOSS-Image comes as MOSS-Image (SFT) and MOSS-Image Base, for txt2img and img2img. Both are detected from Comfy-Org and community file names, CivitAI base model names and the file's own tensors; only a `base` marker in the name selects Base, since both share the same tensors. The preset follows Comfy-Org's templates: 25 steps at CFG 2.5, er_sde on simple, 1024x1024, with the negative prompt kept on. MOSS-Image needs the Qwen3.5 9B text encoder and the Flux 2 VAE. If either is missing it downloads on its own, and generating with a different encoder or VAE stops with a message naming the right one. It needs ComfyUI v0.43.0 or newer, which the managed ComfyUI uses from v2.3.34.
+OpenMOSS's MOSS-Image comes as MOSS-Image (SFT) and MOSS-Image Base, for txt2img, img2img and [[Image Edit Mode]]. Both are detected from Comfy-Org and community file names, CivitAI base model names and the file's own tensors; only a `base` marker in the name selects Base, since both share the same tensors. The preset follows Comfy-Org's templates: 25 steps at CFG 2.5, er_sde on simple, 1024x1024, with the negative prompt kept on. MOSS-Image needs the Qwen3.5 9B text encoder and the Flux 2 VAE. If either is missing it downloads on its own, and generating with a different encoder or VAE stops with a message naming the right one. It needs ComfyUI v0.43.0 or newer, which the managed ComfyUI uses from v2.3.34.
 
 The Model Hub quick links include **MOSS-Image INT8**, **MOSS-Image Base INT8** and **Qwen3.5 9B W4A8 (MOSS-Image)**, from Comfy-Org's ungated repo. ComfyUI loads these INT8 files itself, so leave the INT8-Fast loader off for MOSS-Image.
 

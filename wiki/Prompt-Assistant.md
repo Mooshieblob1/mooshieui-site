@@ -4,7 +4,7 @@ MooshieUI's Prompt Assistant writes, edits and polishes prompts using a local ll
 
 ## What it does
 
-The **Enhance** button above the prompt box opens a chat panel docked on the right side of the screen. The prompt box and Generate button stay usable while the panel is open. With a NovelAI V5 model the button reads **Enhance for V5** (see [[NovelAI Backend]]), and in Video it reads **Enhance for H3** (see [[Video Generation]]). All three work the same way:
+The **Enhance** button above the prompt box opens a chat window. Applying an answer closes it, and pressing **Enhance** again reopens the same conversation. Long chats show the newest 12 exchanges, with **Show earlier messages** to load the rest. With a NovelAI V5 model the button reads **Enhance for V5** (see [[NovelAI Backend]]), and in Video it reads **Enhance for H3** (see [[Video Generation]]). All three work the same way:
 
 - **Edit current prompt** ticked, box empty: rewrites and improves your current prompt.
 - **Edit current prompt** ticked, with text: applies your text as a change, for example "make it a rainy night". Anything the change does not mention stays as it was, and a tag you ask to remove stays removed.
@@ -12,7 +12,7 @@ The **Enhance** button above the prompt box opens a chat panel docked on the rig
 
 **Copy existing prompt** pastes your current prompt into the box. For image models you also choose a **Length** (Short, Medium or Detailed) and whether to **Include artists**.
 
-**Use memory notes** (Enhance and Enhance for V5, shown when saved characters have memory) is ticked each time the panel opens. Untick it when a composition keeps failing: that rewrite sends no memory notes and learns nothing, so it works from your text and the saved looks alone. Facts a rewrite learns are saved to memory only when you apply it.
+**Use memory notes** (Enhance and Enhance for V5, shown when saved characters have memory) is ticked each time the chat opens. Untick it when a composition keeps failing: that rewrite sends no memory notes and learns nothing, so it works from your text and the saved looks alone. Facts a rewrite learns are saved to memory only when you apply it.
 
 **Reference images** attaches up to four pictures to point at, for example "use the outfit from image 1". Add them with **Upload**, **Paste** or **Gallery**, with an optional **Label** each. They need a model that can see images: a vision-capable model on an external provider, or the local Qwen3-VL 4B Instruct model. Other local models cannot see them and write from your text alone.
 

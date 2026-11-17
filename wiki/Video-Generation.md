@@ -24,6 +24,10 @@ Generating only needs four of the five files: the diffusion model for your activ
 
 The table lists diffusion weights only, not the full download or VRAM requirement. Preset stacks additionally share a roughly 15.7 GB text encoder, 5.2 GB video VAE and 0.6 GB audio VAE; downloading both diffusion variants increases disk use again. The app lists each file and what is already installed. Video runs through ComfyUI, not NovelAI.
 
+## LoRAs
+
+In v2.4.0 and later, the **LoRAs** list in Video mode takes your own MiniMax H3 LoRAs (style, character, camera motion and so on). Click **+ Add LoRA** and pick one; only H3 LoRAs are listed, and the Model Hub has them under the base model "MiniMax H3". They load before Turbo and stay on for retakes and 2x refinement. Acceleration adapters (Turbo, LightX2V, PDD) are skipped if added here, so they are never applied twice. The LoRAs are saved in the video's metadata and come back when you reuse its settings.
+
 ## Workflows
 
 The **Workflow** selector picks the graph the clip runs through. Each workflow needs its own H3 diffusion model file.
