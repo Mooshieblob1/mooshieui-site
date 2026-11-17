@@ -100,6 +100,14 @@ Generation parameters are embedded into your saved images so they can be read ba
 - **WebP** - parameters are stored as an EXIF UserComment following the A1111 convention, so exiftool, CivitAI and the usual web UIs read them back.
 - **NovelAI PNGs** - original provider text chunks and NovelAI's own stealth data survive saving, clipboard copying and face-detail compositing, so novelai.net still recognises the file. To show it was made with MooshieUI, the app adds one small `MooshieUI` text chunk at the end of the file (app version, NovelAI model, time and whether it came from the app or MCP, no prompt) and changes nothing else: no pixels, whatever the Metadata setting. Copying or exporting the same image again never adds a second one. The metadata panel shows **Source: MooshieUI (NovelAI)** for these and **NovelAI** for images straight from novelai.net, while the settings still come from NovelAI's own data. The import dialog understands their characters and NovelAI options. See [[NovelAI Backend]].
 
+## Image Info
+
+The **Image Info** panel shows the generation parameters for the selected image in the gallery lightbox or details view.
+
+- **Stable field order** - fields appear in the same order on every image, regardless of how they were saved.
+- **Choose fields** - the button in the Image Info header opens a **Fields** editor where you can hide individual fields and drag them to reorder them. The choice is remembered.
+- **LoRAs one per line** - each LoRA appears on its own line, with the weight shown in a small coloured pill.
+
 ## Video metadata and export
 
 Gallery videos retain generation parameters and timing. Export supports MP4, animated WebP, AVIF and GIF; MP4 keeps audio. Each has a metadata carrier, and MP4/AVIF also receive an XMP box. Sharing or re-encoding can remove metadata, so retain the original when you need to recover settings. See [[Video Generation]] and the [metadata-carrier reference](https://github.com/Mooshieblob1/MooshieUI/blob/main/docs/METADATA_CARRIERS.md).

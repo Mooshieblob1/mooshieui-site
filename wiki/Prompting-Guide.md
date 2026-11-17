@@ -168,7 +168,7 @@ Click a chip to add it right after the selected tag (after its weight, so `(red 
 
 ## LoRA presets
 
-Separate from prompt presets. A LoRA preset stores a named set of LoRAs, each with its own model/CLIP strength and enabled state. Apply in **replace** mode (swap the current LoRA set) or **merge** mode (add/update without removing what you already have). After applying, MooshieUI reports any LoRA filenames that were not found locally.
+Separate from prompt presets. The **LoRA Presets** section in the LoRA panel folds away and starts closed; click the section header to expand it. A LoRA preset stores a named set of LoRAs, each with its own model/CLIP strength and enabled state. Apply in **replace** mode (swap the current LoRA set) or **merge** mode (add/update without removing what you already have). After applying, MooshieUI reports any LoRA filenames that were not found locally.
 
 ## Prompt scheduling
 
@@ -258,6 +258,14 @@ The image stays in view beside the results (above them on narrow screens), uncro
 The WD v3 taggers have no artist category, so **Detect artists (Kaloscope 3.0)** in Settings > Interrogator (on by default) fills it in: each interrogation also runs the Kaloscope 3.0 artist classifier (about 44,000 Danbooru artists) and adds up to 3 artists scoring at or above the **Artist Threshold** (default 0.10). The model is about 169 MB and downloads the first time. Guesses can be wrong, so check them before using them. The Artists section always shows: when no artist reaches the threshold it lists Kaloscope's closest guesses unticked (click one to add it), and when detection is off it says so with a **Turn on** button.
 
 **Detect saved characters** in the same section (also on by default) asks the [[Prompt Assistant]] which of your saved characters for the current model are in the image (see [[Generation Basics#characters-tab|Characters tab]]). Matches show as chips above the tags. Picking one switches off the tags its saved prompt already covers, and applying to the prompt inserts the saved character, into a NovelAI character box when there is room. Nothing is added until you pick one. It needs the prompt assistant to be set up.
+
+## Prompt box editing
+
+The positive and negative prompt boxes support standard text editing plus a few extras:
+
+- **Right-click menu** - right-clicking anywhere in the box opens a context menu with Cut, Copy, Paste and Select all.
+- **Drag-select across tags** - you can drag-select across highlighted tags the same way you would select any text.
+- **Weights survive autocomplete and spell check** - accepting an autocomplete suggestion or a spell check fix no longer strips weight syntax around the tag. Forms like `-2::tag::`, `{tag}` and `(tag:1.2)` are preserved.
 
 ## Autocomplete
 

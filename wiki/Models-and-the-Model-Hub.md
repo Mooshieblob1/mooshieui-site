@@ -12,6 +12,7 @@ Behavior worth knowing:
 - **Rectified flow** models inject the correct ModelSampling node with architecture-specific shift values.
 - **FluxGuidance** is injected for Flux Dev; Flux Schnell is detected and skipped.
 - **Hash-based identification** - models are recognized by SHA256 hash (CivitAI AutoV2), so renamed files still resolve.
+- **Transparent backgrounds** - images with a real alpha channel (for example from NovelAI V5 Transparent BG) are saved with their transparency instead of being made opaque.
 - **Structural identification** - MooshieUI inspects the safetensors tensor keys and identifies the architecture from the weights themselves, and when those weights clearly disagree with the filename the weights win (so an SDXL model misnamed like a Flux one is still classified as SDXL). Anima (COSMOS), Cosmos Predict2, Wan 2.1, Flux, Qwen-Image, SD3, SDXL, and SD 1.5 are all recognized this way, whatever the file is named, so an Anima fine-tune renamed without an `anima`/`yume` token (for example PerfectDeliberate) or a quantized FP8 build is still classified as the Anima family. An Anima fine-tune that ships its own text encoder named after the model (for example `name_txt.safetensors` beside `name.safetensors`) gets that encoder picked automatically. This matters twice over: it selects the matching text encoder for split models, and it routes ControlNet through the Anima LLLite path where that is required. See [[ControlNet and Style Transfer]].
 
 ## Availability on the connected server
@@ -57,6 +58,15 @@ INT8 W8A8 and ConvRot builds (Flux 2, Flux 2 Klein, Z-Image, Chroma, Krea 2, Qwe
 FLUX 3 Image Klein comes as a distilled model and a Base model. Both are detected from BFL and community file names, CivitAI base model names and the file's own tensors, so a renamed file still gets the right preset: 16 steps at CFG 1 for distilled, 50 steps at CFG 3.5 for Base, Euler on simple. Klein needs the Qwen3-VL 4B text encoder (the same one Krea 2 uses) and the Flux 2 VAE. If either is missing it downloads on its own, and generating with a different encoder or VAE stops with a message naming the right one. Klein also works in [[Image Edit Mode]] with up to 10 references. It needs ComfyUI v0.41.0 or newer.
 
 The Model Hub quick links include **FLUX 3 Klein INT8 (HF access)** and **FLUX 3 Klein Base INT8 (HF access)**. These come from BFL's gated Hugging Face repo, so they need a Hugging Face token from an account that has accepted the FLUX license. ComfyUI loads these INT8 ConvRot files itself, so leave the INT8-Fast loader off for FLUX 3.
+
+## Qwen-Image 2.1 and Qwen-Image 2.1 Turbo
+
+Qwen-Image 2.1 and Qwen-Image 2.1 Turbo are detected as a distinct architecture from Qwen-Image 1 (earlier releases misidentified them and they could not generate). Both use the right encoder and VAE automatically.
+
+- **Qwen-Image 2.1** is detected from its tensor layout and the 2.1 marker in the filename.
+- **Qwen-Image 2.1 Turbo** runs on its own 8-step schedule, which the preset applies automatically when the Turbo variant is detected.
+- Both are available in [[Image Edit Mode]] with up to 10 references.
+- Downloads are available from the Model Hub quick links.
 
 ## MOSS-Image
 

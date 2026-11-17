@@ -40,7 +40,7 @@ The **Style Transfer** panel uses RFInversion through ComfyUi-Untwisting-RoPE an
 | Flux.1 dev / schnell / krea | Flux Redux | `flux1-redux-dev.safetensors` in `models/style_models/` + `sigclip_vision_patch14_384.safetensors` in `models/clip_vision/` |
 | SD1.5 | IP-Adapter Plus | `ip-adapter-plus_sd15.safetensors` in `models/ipadapter/` + `CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors` in `models/clip_vision/` |
 | SDXL / Illustrious / Pony | IP-Adapter Plus | `ip-adapter-plus_sdxl_vit-h.safetensors` in `models/ipadapter/` + `CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors` |
-| Anima | Anima Reference Adapter v2 (character reference) | `anima_ref_adapter_v2_r64.safetensors` in `models/loras/` (downloaded from the panel or on the first run) |
+| Anima | Anima Reference Adapter v2 (character reference) or Art style (training-free, no download) | `anima_ref_adapter_v2_r64.safetensors` in `models/loras/` for character mode (downloaded from the panel or on the first run); Art style needs no extra file |
 | All other families | Not supported | -- |
 
 ### Using the panel
@@ -84,6 +84,19 @@ Anima TeaCache is switched off while the character reference is on, and it canno
 
 For manual setup, follow the [Style Reference model-file guide](https://github.com/Mooshieblob1/MooshieUI/blob/main/docs/STYLE_REFERENCE.md). The IP-Adapter image encoder is published as `models/image_encoder/model.safetensors` upstream; save it in `models/clip_vision/` with the expected `CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors` filename.
 
+### Anima Art Style mode
+
+Switch the Anima Style Reference mode from **Character** to **Art style** to take a picture's palette, shading and texture without its subject or characters. Describe the whole image in the prompt as normal; no character name or outfit tags from the reference are carried over. No additional downloads are needed.
+
+Controls:
+
+- **Style picture** - the reference image to draw the art style from.
+- **Style match** - how far the image moves towards the picture's colours and texture after each block. 0.6 is a good starting point; near 1 the image can break down.
+- **Keep my composition** - leaves the first quarter of the steps alone so the layout comes from your prompt. Turn it off for a stronger style change that may drift toward the reference's own layout.
+- **Picture size (megapixels)** - the reference is shrunk to this area before use, never enlarged. About the size of your output image works best (1 for 1024x1024).
+
+This method adds one model pass per step, so it is slower than the character reference. It has been tested mostly on Anima Turbo.
+
 ### Note on Anima ReStyler
 
-**Anima ReStyler** in [[Image Edit Mode]] uses the Anima Edit LoRA, with Reference strength and Drastic restyle controls. The older **Style Transfer** panel above uses RFInversion. **Style Reference** uses Flux Redux or IP-Adapter on its supported families, and the Anima Reference Adapter (a character reference) on Anima. These are distinct workflows with different model requirements; NovelAI Vibe Transfer and Precise Reference are documented in [[NovelAI Backend]].
+**Anima ReStyler** in [[Image Edit Mode]] uses the Anima Edit LoRA, with Reference strength and Drastic restyle controls. The older **Style Transfer** panel above uses RFInversion. **Style Reference** uses Flux Redux or IP-Adapter on its supported families, and the Anima Reference Adapter (a character reference or art-style reference) on Anima. These are distinct workflows with different model requirements; NovelAI Vibe Transfer and Precise Reference are documented in [[NovelAI Backend]].

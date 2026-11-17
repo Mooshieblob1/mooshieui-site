@@ -6,14 +6,16 @@ This is different from [[Inpainting and the Canvas Editor]], where you paint a m
 
 ## Supported models
 
-Image Edit needs a model trained for instruction editing. Five families are supported:
+Image Edit needs a model trained for instruction editing. Six families are supported:
 
 | Family | Reference images | Notes |
 |--------|------------------|-------|
 | **Qwen Image Edit** | 1 | Stock ComfyUI nodes |
 | **Qwen Image Edit Plus** | up to 3 | Stock ComfyUI nodes |
+| **Qwen Image Edit 2.1** | up to 10 | Includes Qwen Image Edit 2.1 Turbo (8-step schedule) |
 | **FLUX 3 Klein** | up to 10 | Stock ComfyUI nodes (ComfyUI v0.41.0 or newer) |
 | **Flux.1 Kontext** | 1 | Stock ComfyUI nodes |
+| **Krea 2** | 1 or 2 | Needs an edit LoRA; pick the method under Edit LoRA |
 | **Anima ReStyler** | 1 | Needs the Anima Edit LoRA |
 
 The family is detected from the loaded model, and the matching workflow is selected automatically. A badge in the Image Edit panel shows which one is active.
@@ -48,6 +50,20 @@ Anima ReStyler adds two of its own:
 
 - **Reference strength** - how closely the output follows the reference image. 1.0 keeps the composition and details intact; lower it (try 0.5 to 0.8) to let the prompt and style change the image more.
 - **Drastic restyle** - runs the original ReStyler split-screen recipe, generating the reference and a blank canvas side by side and cropping the new half as the output. Much stronger style changes, at roughly twice the generation time.
+
+## Krea 2 Image Edit
+
+With a Krea 2 model loaded, the **Edit LoRA** picker lets you choose one of three methods. Each method downloads its own LoRA the first time:
+
+| Method | What it does |
+|--------|--------------|
+| **General Edit** | Plain-language edits: remove, recolor, relight, swap the background, add objects, rewrite text, restyle. Use Turbo at 8 steps, CFG 1 for most edits; for removals try Raw at around 20 steps, CFG 3. |
+| **Identity Edit** | Takes the person from your reference and places them in a new scene, pose, outfit or lighting. Describe how much of them is visible and the new context. |
+| **Style Reference** | Generates a new picture from your prompt in the style of one or two reference images. |
+
+**General Edit** and **Identity Edit** accept up to 2 reference images. Image 1 is the picture to edit; add a person as Image 2 to place them into it. Keep the total under 2 MP for best results. **Style Reference** uses one or two style images and the prompt describes the new picture.
+
+**Reference fidelity** controls how closely the output holds to the reference (higher preserves more likeness; lower gives the edit instruction more room). **Restage freely** places the person next to the canvas rather than pinned to its layout, so pose and framing can change more.
 
 ## Camera Angle (Qwen Image Edit Plus)
 
