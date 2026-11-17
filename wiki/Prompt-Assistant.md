@@ -4,27 +4,34 @@ MooshieUI's Prompt Assistant writes, edits and polishes prompts using a local ll
 
 ## What it does
 
-The **Enhance** button above the prompt box opens the **Enhance prompt** window. With a NovelAI V5 model it reads **Enhance for V5** (see [[NovelAI Backend]]), and in Video it reads **Enhance for H3** (see [[Video Generation]]). All three work the same way:
+The **Enhance** button above the prompt box opens a chat panel docked on the right side of the screen. The prompt box and Generate button stay usable while the panel is open. With a NovelAI V5 model the button reads **Enhance for V5** (see [[NovelAI Backend]]), and in Video it reads **Enhance for H3** (see [[Video Generation]]). All three work the same way:
 
 - **Edit current prompt** ticked, box empty: rewrites and improves your current prompt.
 - **Edit current prompt** ticked, with text: applies your text as a change, for example "make it a rainy night". Anything the change does not mention stays as it was, and a tag you ask to remove stays removed.
-- **Edit current prompt** unticked: writes a new prompt from your description. This replaces the old **Compose** button.
+- **Edit current prompt** unticked: writes a new prompt from your description.
 
 **Copy existing prompt** pastes your current prompt into the box. For image models you also choose a **Length** (Short, Medium or Detailed) and whether to **Include artists**.
 
-**Use memory notes** (Enhance and Enhance for V5, shown when saved characters have memory) is ticked each time the window opens. Untick it when a composition keeps failing: that rewrite sends no memory notes and learns nothing, so it works from your text and the saved looks alone. Facts a rewrite learns are saved to memory only when you apply it.
+**Use memory notes** (Enhance and Enhance for V5, shown when saved characters have memory) is ticked each time the panel opens. Untick it when a composition keeps failing: that rewrite sends no memory notes and learns nothing, so it works from your text and the saved looks alone. Facts a rewrite learns are saved to memory only when you apply it.
 
 **Reference images** attaches up to four pictures to point at, for example "use the outfit from image 1". Add them with **Upload**, **Paste** or **Gallery**, with an optional **Label** each. They need a model that can see images: a vision-capable model on an external provider, or the local Qwen3-VL 4B Instruct model. Other local models cannot see them and write from your text alone.
 
-Nothing changes until you choose. **Review rewrite** shows your prompt and the proposed one side by side. **Replace** swaps it in, **Append** adds it after your prompt (not offered for H3), and **Undo** next to the button reverses it afterwards. **Cancel**, Escape or clicking outside the window while it is working stops the request (v2.3.36 and later), so the next Enhance starts right away. Once the rewrite is shown, clicking outside no longer closes it (v2.3.42); use **Cancel** or Escape.
+Nothing changes until you choose. Each answer arrives in the chat and you can ask follow-up questions or give feedback before applying it. When an answer is ready, the action buttons appear:
+
+- **Replace** swaps your prompt for the new one.
+- **Append** adds it after your current prompt (not offered for H3).
+- **Apply** applies the answer directly.
+- **Review** opens the side-by-side review for V5 rewrites, where you can pick individual fields before applying.
+
+**Undo** next to the Enhance button reverses the last apply. Pressing **Stop** while an answer is generating cancels it.
 
 For models that accept natural-language prompts (Krea 2, Flux, Z-Image, Chroma, Qwen-Image, and similar), Enhance writes full sentences instead of danbooru-style tags. Names, counts and positional descriptions (left/right) are preserved in prose form. Tag upsamplers such as DanTagGen still write tags regardless of the loaded model.
 
 ## Sessions
 
-The assistant remembers the conversation. **Enhance**, **Enhance for H3** and **Enhance for V5** each keep their own session, so a follow-up such as "make it night" builds on the previous answer instead of starting over. Sessions survive closing the window and restarting the app; in LAN mode each account has its own.
+The assistant remembers the conversation. **Enhance**, **Enhance for H3** and **Enhance for V5** each keep their own session, so a follow-up such as "make it night" builds on the previous answer instead of starting over. Sessions survive closing the panel and restarting the app; in LAN mode each account has its own.
 
-Once a session has history, the window shows **Remembered exchanges** with a **New session** button to start over.
+Once a session has history, the panel shows a **New chat** button to start over.
 
 When a session grows too long for the model, the oldest exchanges are left out of the request (the window says **older ones not sent**) but stay saved. Since v2.3.42 only a rewrite you apply joins the session: closing the review without applying leaves it out, and **Undo** takes it back out. An answer that failed its format check or was cancelled is not remembered. A tag-only local model such as DanTagGen never receives the session.
 

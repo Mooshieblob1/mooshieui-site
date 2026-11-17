@@ -6,7 +6,7 @@ This is different from [[Inpainting and the Canvas Editor]], where you paint a m
 
 ## Supported models
 
-Image Edit needs a model trained for instruction editing. Six families are supported:
+Image Edit needs a model trained for instruction editing. Seven families are supported:
 
 | Family | Reference images | Notes |
 |--------|------------------|-------|
@@ -15,6 +15,7 @@ Image Edit needs a model trained for instruction editing. Six families are suppo
 | **Qwen Image Edit 2.1** | up to 10 | Includes Qwen Image Edit 2.1 Turbo (8-step schedule) |
 | **FLUX 3 Klein** | up to 10 | Stock ComfyUI nodes (ComfyUI v0.41.0 or newer) |
 | **Flux.1 Kontext** | 1 | Stock ComfyUI nodes |
+| **MiniMax-H3-Image** | up to 16 | Stock ComfyUI nodes (ComfyUI v0.45.0 or newer) |
 | **Krea 2** | 1 or 2 | Needs an edit LoRA; pick the method under Edit LoRA |
 | **Anima ReStyler** | 1 | Needs the Anima Edit LoRA |
 

@@ -59,6 +59,16 @@ FLUX 3 Image Klein comes as a distilled model and a Base model. Both are detecte
 
 The Model Hub quick links include **FLUX 3 Klein INT8 (HF access)** and **FLUX 3 Klein Base INT8 (HF access)**. These come from BFL's gated Hugging Face repo, so they need a Hugging Face token from an account that has accepted the FLUX license. ComfyUI loads these INT8 ConvRot files itself, so leave the INT8-Fast loader off for FLUX 3.
 
+## MiniMax-H3-Image
+
+MiniMax-H3-Image is the 33B MiniMax H3 image model. Txt2img and Image Edit (up to 16 references) share one checkpoint. It uses the same Qwen3-VL-32B text encoder as the H3 video model, so a copy already downloaded for video is reused automatically.
+
+- **Default preset**: 6 steps at CFG 1, using the model's own sigma grid.
+- **pDMD 2-step mode**: a separate LoRA (`minimax_h3_pdmd_2nfe_comfyui.safetensors`) or a checkpoint with it merged in reduces generation to 2 steps. The model is detected as the pDMD family and the preset is applied automatically.
+- **Resolution**: works best from 4 to 20 MP (native around 16 MP, 4096x4096). Batch size is always 1 (the model's own limit); larger batches run as sequential samplers.
+- **Model Hub**: INT8 and W4A8 downloads are available.
+- **License**: the MiniMax-H3-Image Community License. Written permission from MiniMax is needed above US$1M annual revenue or to offer it as a hosted service. A notice appears under the model picker when this model is selected.
+
 ## Qwen-Image 2.1 and Qwen-Image 2.1 Turbo
 
 Qwen-Image 2.1 and Qwen-Image 2.1 Turbo are detected as a distinct architecture from Qwen-Image 1 (earlier releases misidentified them and they could not generate). Both use the right encoder and VAE automatically.
@@ -73,6 +83,16 @@ Qwen-Image 2.1 and Qwen-Image 2.1 Turbo are detected as a distinct architecture 
 OpenMOSS's MOSS-Image comes as MOSS-Image (SFT) and MOSS-Image Base, for txt2img and img2img. Both are detected from Comfy-Org and community file names, CivitAI base model names and the file's own tensors; only a `base` marker in the name selects Base, since both share the same tensors. The preset follows Comfy-Org's templates: 25 steps at CFG 2.5, er_sde on simple, 1024x1024, with the negative prompt kept on. MOSS-Image needs the Qwen3.5 9B text encoder and the Flux 2 VAE. If either is missing it downloads on its own, and generating with a different encoder or VAE stops with a message naming the right one. It needs ComfyUI v0.43.0 or newer, which the managed ComfyUI uses from v2.3.34.
 
 The Model Hub quick links include **MOSS-Image INT8**, **MOSS-Image Base INT8** and **Qwen3.5 9B W4A8 (MOSS-Image)**, from Comfy-Org's ungated repo. ComfyUI loads these INT8 files itself, so leave the INT8-Fast loader off for MOSS-Image.
+
+## PixArt Sigma and PixArt Alpha
+
+Both models now generate (earlier releases detected them but could not generate). They always load split: the DiT through the diffusion model loader and the T5-XXL text encoder through the text encoder picker. No custom nodes are needed; ComfyUI's core loaders handle both the original `.pth` keys and diffusers safetensors format.
+
+- **Text encoder**: T5 v1.1 XXL (`t5xxl_fp16` or `t5xxl_fp8_e4m3fn`). MooshieUI downloads the FP8 version automatically when it is missing.
+- **VAE**: PixArt Sigma uses the SDXL VAE (`sdxl_vae.safetensors`); PixArt Alpha uses the SD 1.5 VAE. Both download automatically when missing.
+- **Preset**: 20 steps, CFG 4.5, DPM++ 2M sampler, normal scheduler, 1024x1024.
+- **Detection**: Sigma and Alpha are told apart by their tensor structure (Sigma has no micro-conditioning weights; Alpha does), so renaming a file does not confuse them.
+- **Prompt style**: natural language (full sentences, not tags).
 
 ## Krea 2 uncensored mode
 

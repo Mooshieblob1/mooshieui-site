@@ -193,7 +193,7 @@ It uses the configured [[Prompt Assistant]] (local or external LLM). It spends n
 
 **Edit current prompt** sends your current prompt, undesired content and character boxes along with your instruction, so the rewrite edits what you already have instead of starting over.
 
-The rewrite also remembers the session: earlier instructions and answers go along with each new one, so "now make it night" applies to the last rewrite even without **Edit current prompt**. With it ticked, your current boxes win over the remembered answer. **New session** in the window starts over; see [[Prompt Assistant]].
+The rewrite also remembers the session: earlier instructions and answers go along with each new one, so "now make it night" applies to the last rewrite even without **Edit current prompt**. With it ticked, your current boxes win over the remembered answer. **New chat** in the panel starts over; see [[Prompt Assistant]].
 
 **Saved characters**: the rewrite knows the NovelAI characters saved in the [[Generation Basics#characters-tab|Characters tab]], and the window lists their names. A full name, a first name or surname alone, or a close approximation resolves to the saved character, who gets a character box from the saved appearance with their avoid list in UC. Text that plainly means someone else is left alone, and characters you do not mention are never added. A variant is picked when the text asks for what it describes. For a saved canon character (for example Brock from Pokemon), the rewrite uses the canon tags and look plus your saved details; where they disagree, the review lists the differences and asks **Keep saved details** (the default) or **Use canon**, which redoes the rewrite.
 
