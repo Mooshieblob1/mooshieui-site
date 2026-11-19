@@ -14,7 +14,7 @@ The **Enhance** button above the prompt box opens a chat window. Applying an ans
 
 **Use memory notes** (Enhance and Enhance for V5, shown when saved characters have memory) is ticked each time the chat opens. Untick it when a composition keeps failing: that rewrite sends no memory notes and learns nothing, so it works from your text and the saved looks alone. Facts a rewrite learns are saved to memory only when you apply it.
 
-**Reference images** attaches up to four pictures to point at, for example "use the outfit from image 1". Add them with **Upload**, **Paste** or **Gallery**, with an optional **Label** each. They need a model that can see images: a vision-capable model on an external provider, or the local Qwen3-VL 4B Instruct model. Other local models cannot see them and write from your text alone.
+**Reference images** attaches up to four pictures to point at, for example "use the outfit from image 1". Add them with **Upload**, **Paste** or **Gallery**, with an optional **Label** each. They need a model that can see images: a vision-capable model on an external provider, or a local Qwen3-VL model (4B or 8B Instruct), Qwen3.6 35B-A3B or Qwen3.8 27B. Other local models cannot see them and write from your text alone.
 
 Nothing changes until you choose. Each answer arrives in the chat and you can ask follow-up questions or give feedback before applying it. When an answer is ready, the action buttons appear:
 
@@ -52,6 +52,8 @@ In Music, **Enhance style** and **Generate lyrics** use the configured assistant
 - With a local model selected, the assistant starts a llama.cpp server on demand.
 - It is hardware-aware: it offloads layers to the GPU when there is room and falls back to CPU if ComfyUI is already using your VRAM.
 - The local server runs with a 16k context so sessions fit. That takes roughly 0.7 to 1.7 GB more VRAM than before, which the GPU check accounts for; on a 4 GB card the recommended model now runs on the CPU.
+- The bundled model list includes bigger opt-in models for cards that can run them: Qwen3-VL 8B Instruct (sees images), Qwen3 30B-A3B, Qwen3.6 35B-A3B and Qwen3.8 27B. They are never the automatic pick, and variants that won't fit are greyed out. Mixture-of-experts models (30B-A3B, 35B-A3B) too big for your GPU can run with their experts in system RAM, marked **experts in RAM**: slower than fully on the GPU, much faster than CPU only.
+- The bundled llama.cpp is b12500, which the newest Qwen models need. Thinking is turned off per request, so replies stay quick and in the format asked for.
 - An idle watchdog stops the server automatically when it has not been used for a while, freeing memory.
 
 ## External LLM endpoint
@@ -102,7 +104,7 @@ See the [account sign-in guide](https://github.com/Mooshieblob1/MooshieUI/blob/m
 
 Switching provider clears the stored key and resets the base URL and model to that provider's defaults, so keys never travel from one provider to another. Signing out clears the stored token along with it.
 
-Reference images in the Enhance window need a model that can see images: a vision-capable model on an external provider, or the local **Qwen3-VL 4B Instruct** model.
+Reference images in the Enhance window need a model that can see images: a vision-capable model on an external provider, or a local vision model such as **Qwen3-VL 4B Instruct**.
 
 ### Reasoning effort
 

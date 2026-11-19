@@ -139,11 +139,13 @@ Every user starts with one sample character, Yue, saved for NovelAI and for each
 
 The **Card size** slider in the tab header scales each card's picture from 48 px (the default) to 192 px; bigger cards show more of the prompt. It is saved per device.
 
-**Extract from prompt** sends your positive and negative prompts, plus any NovelAI character boxes, to the prompt assistant. It returns each character's name, appearance and character tags, and the undesired content (UC) that applies to them. Characters are saved per model architecture; the tab only shows characters saved for the architecture of the model currently selected.
+**Extract from prompt** sends your positive and negative prompts to the prompt assistant. It returns each character's name, appearance and character tags, and the undesired content (UC) that applies to them. What comes back is checked against your prompt: tags the prompt doesn't have are dropped, as are count, quality, rating and artist tags, so a small local model can't invent details. Characters are saved per model architecture; the tab only shows characters saved for the architecture of the model currently selected.
 
-Nothing is saved straight away. Extract opens **Name your characters**, where each new character has a **Character name** field filled with the prompt assistant's suggestion. Change any name you like, or untick one to leave it out.
+On NovelAI with character boxes in use, each box is taken as one character, exactly as written. The prompt assistant only names them, and without one they become Character 1, Character 2 and so on, to name before saving.
 
-Extract also checks what is already saved. A character that matches a saved card (same name, part of it, a nickname, or the same character by appearance) is not added twice. If it matches word for word it is skipped; if it differs, the same dialog lists it under **Already saved**, shows the saved card beside what was found and asks **Update saved**, **Save as variant** or **Disregard**.
+Nothing is saved straight away. Extract opens **Name your characters**, where each new character has a **Character name** field filled with the prompt assistant's suggestion, and what was found shows in text boxes you can fix before saving. Change any name you like, or untick one to leave it out. Clicking outside the dialog doesn't close it; use Cancel or the close button.
+
+Extract also checks what is already saved. A character that matches a saved card (same name, part of it, a nickname, or the same character by appearance) is not added twice. If it matches word for word it is skipped; if it differs, the same dialog lists it under **Already saved?**, shows the saved card beside what was found and asks **Update saved**, **Save as variant**, **Save as new** (for a wrong match) or **Disregard**.
 
 **Use** has the prompt assistant work the character into your current prompt: it takes over an unnamed character or joins the cast, updates count tags, and folds in the character's UC. With a NovelAI V4 or V5 model the character goes into a new character box. The result opens in a review showing **Now** and **After**, and nothing changes until **Apply**. **Insert as is** keeps the plain insert: the prompt text goes into the positive prompt (or an empty character box on NovelAI) and the UC into the negative prompt, without the prompt assistant.
 
