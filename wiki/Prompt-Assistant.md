@@ -10,9 +10,9 @@ The **Enhance** button above the prompt box opens a chat window. Applying an ans
 - **Edit current prompt** ticked, with text: applies your text as a change, for example "make it a rainy night". Anything the change does not mention stays as it was, and a tag you ask to remove stays removed.
 - **Edit current prompt** unticked: writes a new prompt from your description.
 
-**Copy existing prompt** pastes your current prompt into the box. For image models you also choose a **Length** (Short, Medium or Detailed) and whether to **Include artists**.
+**Options** under the message box holds **Copy existing prompt** (which pastes your current prompt into the box), and for image models a **Length** (Short, Medium or Detailed) and **Include artists**.
 
-**Use memory notes** (Enhance and Enhance for V5, shown when saved characters have memory) is ticked each time the chat opens. Untick it when a composition keeps failing: that rewrite sends no memory notes and learns nothing, so it works from your text and the saved looks alone. Facts a rewrite learns are saved to memory only when you apply it.
+**Use memory notes** (Enhance and Enhance for V5, under **Options** when saved characters have memory) is ticked each time the chat opens. Untick it when a composition keeps failing: that rewrite sends no memory notes and learns nothing, so it works from your text and the saved looks alone. Facts a rewrite learns are saved to memory only when you apply it.
 
 **Reference images** attaches up to four pictures to point at, for example "use the outfit from image 1". Add them with **Upload**, **Paste** or **Gallery**, with an optional **Label** each. They need a model that can see images: a vision-capable model on an external provider, or a local Qwen3-VL model (4B or 8B Instruct), Qwen3.6 35B-A3B or Qwen3.8 27B. Other local models cannot see them and write from your text alone.
 
@@ -29,11 +29,11 @@ For models that accept natural-language prompts (Krea 2, Flux, Z-Image, Chroma, 
 
 ## Sessions
 
-The assistant remembers the conversation. **Enhance**, **Enhance for H3** and **Enhance for V5** each keep their own session, so a follow-up such as "make it night" builds on the previous answer instead of starting over. Sessions survive closing the panel and restarting the app; in LAN mode each account has its own.
+The assistant remembers the conversation. **Enhance**, **Enhance for H3** and **Enhance for V5** each keep their own session, so a follow-up such as "make it night" builds on the previous answer instead of starting over. Sessions survive closing the chat window and restarting the app; in LAN mode each account has its own.
 
-Once a session has history, the panel shows a **New chat** button to start over.
+Once a session has history, the header shows a **New chat** button to start over.
 
-When a session grows too long for the model, the oldest exchanges are left out of the request (the window says **older ones not sent**) but stay saved. Since v2.3.42 only a rewrite you apply joins the session: closing the review without applying leaves it out, and **Undo** takes it back out. An answer that failed its format check or was cancelled is not remembered. A tag-only local model such as DanTagGen never receives the session.
+Every answer joins the conversation when it arrives, so feedback on an answer you have not applied revises that answer. When a session grows too long for the model, the oldest exchanges are left out of the request (the window says **older ones not sent**) but stay saved. A tag-only local model such as DanTagGen never receives the session and cannot chat: it only ever writes a prompt.
 
 ## Minors and explicit content
 
