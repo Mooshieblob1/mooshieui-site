@@ -86,7 +86,7 @@ V4 and later can render text; V5 handles English, Japanese and Chinese, V4.5 and
 
 **In MooshieUI** on V5, anything in quotes in the prompt is turned into a `Text:` block for you, and tags the app adds (style presets, Artist Styles, Prompt Chunks, Transparent BG) are placed ahead of it. Prompts sent to NovelAI keep their line breaks, so a hand-written `Text:` block arrives as typed. See [[NovelAI Backend#models|Models]].
 
-If short text does not appear, set Quality tags to None: the quality tags include `no text`. On V4, writing the text in capitals can help spelling.
+When a prompt carries a `Text:` block (or quoted text on V5), MooshieUI omits `no text` from the appended quality tags so it does not fight the lettering. On V4, writing the text in capitals can help spelling.
 
 ## Steps, guidance and samplers
 
