@@ -11,7 +11,7 @@
 		{
 			icon: 'image',
 			title: 'Images, video, music and more',
-			body: 'Text to image, image to image, inpainting and instruction-based Image Edit, plus video, music and experimental image to 3D. NovelAI is an optional image backend with your own API key.'
+			body: 'Text to image, image to image, inpainting, outpainting and instruction-based Image Edit, plus video, music and experimental image to 3D. NovelAI is an optional image backend with your own API key.'
 		},
 		{
 			icon: 'layers',
