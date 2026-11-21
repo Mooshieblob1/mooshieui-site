@@ -29,7 +29,7 @@ For models that accept natural-language prompts (Krea 2, Flux, Z-Image, Chroma, 
 
 ## Sessions
 
-The assistant remembers the conversation. **Enhance**, **Enhance for H3** and **Enhance for V5** each keep their own session, so a follow-up such as "make it night" builds on the previous answer instead of starting over. Sessions survive closing the chat window and restarting the app; in LAN mode each account has its own.
+The assistant remembers the conversation. **Enhance**, **Enhance for H3** and **Enhance for V5** each keep their own session per generation tab, so a follow-up such as "make it night" builds on the previous answer instead of starting over, and switching tabs restores each tab's chat, draft and pending replies. Opening a new tab starts a fresh chat. Sessions survive closing the chat window and restarting the app; in LAN mode each account has its own.
 
 Once a session has history, the header shows a **New chat** button to start over immediately.
 

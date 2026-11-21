@@ -97,11 +97,12 @@ WebP has no 16-bit mode, so choosing it locks **Bit Depth** to 8-bit and the 16-
 
 Generation parameters are embedded into your saved images so they can be read back later.
 
-- **PNG text chunks** - standard tEXt metadata, and UTF-8 iTXt when the prompt contains characters tEXt cannot hold (Japanese, Chinese, Korean, emoji). Reading also handles iTXt and compressed zTXt, so images written by other tools that use them are not treated as having no metadata.
-- **Stealth alpha** - parameters can also be hidden in the least-significant bits of the alpha channel, readable client-side without a server round-trip. It works with PNG and with lossless WebP.
-- **JPEG XL (JXL)** - metadata goes in a SwarmUI-compatible XMP box.
-- **WebP** - parameters are stored as an EXIF UserComment following the A1111 convention, so exiftool, CivitAI and the usual web UIs read them back.
-- **NovelAI PNGs** - original provider text chunks and NovelAI's own stealth data survive saving, clipboard copying and face-detail compositing, so novelai.net still recognises the file. To show it was made with MooshieUI, the app adds one small `MooshieUI` text chunk at the end of the file (app version, NovelAI model, time and whether it came from the app or MCP, no prompt) and changes nothing else: no pixels, whatever the Metadata setting. Copying or exporting the same image again never adds a second one. The metadata panel shows **Source: MooshieUI (NovelAI)** for these and **NovelAI** for images straight from novelai.net, while the settings still come from NovelAI's own data. The import dialog understands their characters and NovelAI options. See [[NovelAI Backend]].
+- **PNG text chunks** - standard tEXt metadata, and UTF-8 iTXt when the prompt contains characters tEXt cannot hold (Japanese, Chinese, Korean, emoji). Reading also handles iTXt and compressed zTXt, so images written by other tools that use them are not treated as having no metadata. Pre-existing non-`parameters` chunks (such as ComfyUI `prompt`/`workflow` or `Author`) are preserved.
+- **Stealth alpha** - parameters are always hidden in the least-significant bits of the alpha channel alongside container chunks on opaque PNG and lossless WebP saves, exports and clipboard copies (falling back to container chunks when an image has real transparency). It is readable client-side without a server round-trip.
+- **IPTC AI disclosure** - every saved or exported PNG, NovelAI PNG, WebP, JXL, MP4 and AVIF includes an IPTC `DigitalSourceType` declaration (`trainedAlgorithmicMedia`) in XMP so standard inspectors and platforms can identify AI-generated media. Any pre-existing XMP properties on the file are merged and kept intact.
+- **JPEG XL (JXL)** - SwarmUI-compatible JSON goes in an `xml ` box alongside the IPTC XMP box (preserving any pre-existing non-JSON XMP properties).
+- **WebP** - parameters are stored as an EXIF UserComment following the A1111 convention, alongside stealth alpha, preserved ICC profiles and the IPTC `XMP ` chunk, so exiftool, CivitAI and the usual web UIs read them back.
+- **NovelAI PNGs** - original provider text chunks and NovelAI's own stealth data survive saving, clipboard copying and face-detail compositing, so novelai.net still recognises the file. To show it was made with MooshieUI and mark AI provenance, the app splices a small `MooshieUI` text chunk and an `XML:com.adobe.xmp` `iTXt` chunk at the end of the file (without touching pixels, `IDAT`, NovelAI chunks or NovelAI stealth alpha). Copying or exporting the same image again never adds duplicates. The metadata panel shows **Source: MooshieUI (NovelAI)** for these and **NovelAI** for images straight from novelai.net, while the settings still come from NovelAI's own data. The import dialog understands their characters and NovelAI options. See [[NovelAI Backend]].
 
 ## Image Info
 
@@ -126,7 +127,7 @@ Only LoRAs present in the connected server's loaded model list are restored. Mis
 Text chunks and stealth alpha are lost when a site re-encodes an image, it is resized, or someone screenshots it. Two invisible layers let a stripped copy find its gallery record, which still holds every setting.
 
 - **Fingerprint** (always on, no setting): every gallery save stores a perceptual hash in the gallery index. Nothing in the image file changes.
-- **Watermark** (off by default): the **Watermark** Off/On chips under **Metadata** hide an invisible ID in the pixels of every saved image, with no visible change. The first use downloads about 65 MB. NovelAI PNGs, 16-bit images, videos, images under 256 px and JXL saves are not marked.
+- **Watermark** (off by default): the **Watermark** Off/On chips in the sampler settings hide an invisible ID in the pixels of every saved image, with no visible change. The first use downloads about 65 MB. NovelAI PNGs, 16-bit images, videos, images under 256 px and JXL saves are not marked.
 
 When you drop or open an image with no metadata of its own, MooshieUI reads the watermark, then looks for the closest fingerprint among the images in your own gallery folder, and restores that image's settings. The toast says **Restored ... from the watermark** or **Restored ... from a gallery match**. A MooshieUI watermark with no record in your gallery shows **Made with MooshieUI, but not in your gallery**.
 
