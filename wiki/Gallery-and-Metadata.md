@@ -132,7 +132,7 @@ When you drop or open an image with no metadata of its own, MooshieUI reads the 
 
 ## Drag-and-drop remix (metadata import)
 
-Drag or paste a previously generated image into MooshieUI to read its embedded settings. It understands SwarmUI JSON (`sui_image_params`), A1111-style text and NovelAI metadata; NovelAI imports offer a choice of fields to restore. PNG parsing can happen client-side; other formats are read by the app. An image without metadata can still be matched to your gallery (see Invisible watermark and fingerprint above). Missing metadata cannot restore an original img2img source or guarantee identical pixels.
+Drag or paste a previously generated image into MooshieUI to read its embedded settings. It understands SwarmUI JSON (`sui_image_params`, including `loras`, `loraweights`, and `loratencweights` arrays), A1111-style text and NovelAI metadata; NovelAI imports offer a choice of fields to restore. Imported checkpoint and LoRA names resolve against your installed files (matching relative paths or basenames without extensions), and quality-tag stripping only removes tags that **Auto-apply quality tags** would re-inject for the imported checkpoint's family. PNG parsing can happen client-side; other formats are read by the app. An image without metadata can still be matched to your gallery (see Invisible watermark and fingerprint above). Missing metadata cannot restore an original img2img source or guarantee identical pixels.
 
 Imports normally adopt the image's aspect ratio at your current resolution rather than replacing the pixel dimensions. Inpainting aligns the canvas to the image, a direct drop onto Dimensions explicitly requests its size, and resolution locking changes the import behavior. See [[Generation Basics]].
 

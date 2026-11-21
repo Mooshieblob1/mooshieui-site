@@ -101,7 +101,7 @@ Below the positive and the negative prompt box is an **Add Prompt Block** button
 
 This exists mainly for split-encoder models (Anima and other Qwen-based checkpoints) where the text encoder reads your formatting literally. To keep those prompts clean:
 
-- **CLIP models (`sd15`, `sdxl`, `illustrious`, `pony`, `mugen`)** keep `BREAK` boundaries and split positive and negative chunks into separate `CLIPTextEncode` nodes chained via ComfyUI's `ConditioningConcat`.
+- **CLIP models (`sd15`, `sdxl`, `illustrious`, `pony`, `mugen`)** keep `BREAK` boundaries, split positive and negative chunks into separate `CLIPTextEncode` nodes chained via ComfyUI's `ConditioningConcat`, and deduplicate auto quality tags across `BREAK` even without a comma after `BREAK`.
 - **Split-encoder ComfyUI prompts** (Anima, Flux, Qwen, and similar) remove `BREAK`/`<break>` markers and flatten line breaks when sent. Your box keeps its layout. (`BREAK` as a whole word is removed; `BREAKFAST` is left alone.) **NovelAI prompts retain line breaks**, including manual `Text:` lettering blocks; added style/chunk tags are placed ahead of that block.
 - Blank blocks contribute nothing, and duplicate commas from joining are collapsed automatically.
 
@@ -184,7 +184,7 @@ The builder auto-picks the least intrusive separator and shows the resulting tok
 
 ## Segment detailing
 
-Type `<segment:target>prompt</segment>` in the positive prompt to re-detail a matching region. MooshieUI auto-detects these tags and shows an editable panel listing each segment's target and local prompt. Built-in target suggestions include eyes, face, hair, hands, mouth, and background. The panel hides itself when no segments are present.
+Type `<segment:target>prompt</segment>` in the positive prompt to re-detail a matching region. MooshieUI auto-detects these tags (and strips SwarmUI `//cid=...` metadata suffixes when importing PNGs) and shows an editable panel listing each segment's target and local prompt. Built-in target suggestions include eyes, face, hair, hands, mouth, and background. The panel hides itself when no segments are present.
 
 ## Regional prompting
 

@@ -90,7 +90,7 @@ The Generate button shows the progress (for example "Generating 3/10"), and the 
 
 ## Dimension controls
 
-- **Aspect ratio presets** - 1:1, 4:3, 3:2, 16:9, 21:9, 3:4, 2:3, 9:16 on every backend. Any ratio can be typed; with a NovelAI model selected only the pixel grid differs (multiples of 64 instead of 8).
+- **Aspect ratio presets** - 1:1, 4:3, 3:2, 16:9, 21:9, 3:4, 2:3, 9:16 on every backend. Any ratio can be typed; NovelAI and SDXL-family models (`sdxl`, `illustrious`, `pony`, `mugen`) snap presets to standard 64 px training buckets (for example 1216x832 for 3:2 at 1024 px), while other models use an 8 px grid.
 - **Custom aspect ratio** - enter any width/height; the ratio is maintained when you adjust resolution.
 - **Loaded images set the aspect ratio, not the pixel size** - browsing, dropping or pasting an image into img2img, and dropping an image for a metadata import, adopt the image's shape as the aspect ratio at your current side length, exactly as clicking that preset would. The ratio is reduced and snapped to the nearest preset within a small tolerance, so a 1216x832 image reads 3 : 2, and a 1024x1536 image at a 1024 side becomes 832x1216 rather than 1024x1536. The source is fitted to that size when you generate. Two exceptions: dropping an image directly onto the Dimensions section applies its size, and inpainting sizes the canvas to the image so the mask matches it. A locked resolution ignores the image entirely.
 - **Swap dimensions** - one-click width/height swap.
@@ -136,7 +136,7 @@ A persistent **download banner** shows active downloads (models, ControlNet, LLM
 
 The **Characters** tab in the bottom panel saves character descriptions for reuse across sessions.
 
-Every user starts with one sample character, Yue, saved for NovelAI and for each local tag model (Illustrious, SDXL, Pony, Anima, SD 1.5). Natural-language models such as Flux get no sample. Delete her like any card and she stays deleted, on every synced device.
+Every user starts with one sample character, Yue, saved for NovelAI, each local tag model (Illustrious, SDXL, Pony, Anima, SD 1.5), and natural-language architectures (Flux, Krea 2, Qwen, MOSS, Ming, MiniMax H3, Z-Image, SD3, Kolors, PixArt, Cascade, Wan, and others, with a prose sample card). Delete her like any card and she stays deleted, on every synced device.
 
 The **Card size** slider in the tab header scales each card's picture from 48 px (the default) to 192 px; bigger cards show more of the prompt. It is saved per device.
 

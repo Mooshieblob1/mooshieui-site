@@ -25,7 +25,7 @@ Copy the **Connector URL** and, in Claude, paste it under **Settings > Connector
 
 Assistants never pick sampler, encoder or family settings on their own. Each time you run a plain txt2img generation with a model, MooshieUI saves those settings (without the prompt or input images) as that model's setup, and assistants start from it. The panel shows how many models are ready.
 
-A model becomes usable once you have generated one txt2img image with it. NovelAI, img2img, inpainting, Image Edit and video runs do not create setups. An assistant can change the prompt, negative prompt, model, size, steps, CFG, seed, batch size (1 to 8), sampler, scheduler and LoRAs. Images are saved to your gallery with normal metadata and show up in an open window right away.
+A model becomes usable once you have generated one txt2img image with it. NovelAI, img2img, outpainting, inpainting, Image Edit and video runs do not create setups. An assistant can change the prompt, negative prompt, model, size, steps, CFG, seed, batch size (1 to 8), sampler, scheduler and LoRAs (as well as outpaint padding with `source_image` on local models). Images are saved to your gallery with normal metadata and show up in an open window right away.
 
 **NovelAI over MCP** is available inside the Opus free window only (at most 1 MP, 28 steps, one image per request), so it never spends Anlas. NovelAI models appear in the model list when a key is saved.
 

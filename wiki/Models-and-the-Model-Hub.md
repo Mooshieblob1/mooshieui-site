@@ -39,7 +39,7 @@ Selecting a model shows what the file itself declares: the preview thumbnail sto
 
 - Turn on **Use Split Model Components**, then pick the `.gguf` file under **Diffusion Model**. Quantized encoders work the same way under **Text Encoder**, which lists files from both the `text_encoders/` and `clip/` folders.
 - Routing is automatic. ComfyUI's core loaders cannot read `.gguf`, so MooshieUI sends those files to the ComfyUI-GGUF loaders instead. There is nothing to configure.
-- The ComfyUI-GGUF nodes install during ComfyUI setup and are re-checked on every start. If the install fails, ComfyUI still starts normally and only GGUF models are unavailable until it succeeds.
+- The ComfyUI-GGUF nodes install during ComfyUI setup and are re-checked on every start, with a bundled compatibility patch for MiniMax H3 (video and image), newer 2026 architectures, and untagged native-keyed text-encoder GGUFs. If the install fails, ComfyUI still starts normally and only GGUF models are unavailable until it succeeds.
 - Detection works on GGUF files too. The family now resolves from the GGUF header itself (its architecture field and tensor names) as well as the filename, sidecar metadata, and hash, so a renamed GGUF still lands on the right family; the accelerated variant and recommended encoder round out the preset. A file like `Krea-2-Turbo-Q5_K_S.gguf` gets the correct settings instead of falling back to unknown. Wulver (a Krea 2 fine-tune whose filenames carry no Krea marker) is also detected: files without `non_turbo` in the name are classified as Krea 2 Turbo, and `non_turbo` files get the standard Krea 2 defaults.
 
 Put `.gguf` diffusion models in your diffusion models folder and quantized encoders in `text_encoders/`. The model manager (below) handles both categories.
@@ -64,7 +64,7 @@ The Model Hub quick links include **FLUX 3 Klein INT8 (HF access)** and **FLUX 3
 MiniMax-H3-Image is the 33B MiniMax H3 image model. Txt2img and Image Edit (up to 16 references) share one checkpoint. It uses the same Qwen3-VL-32B text encoder as the H3 video model, so a copy already downloaded for video is reused automatically.
 
 - **Default preset**: 6 steps at CFG 1, using the model's own sigma grid.
-- **pDMD 2-step mode**: a separate LoRA (`minimax_h3_pdmd_2nfe_comfyui.safetensors`) or a checkpoint with it merged in reduces generation to 2 steps. The model is detected as the pDMD family and the preset is applied automatically.
+- **pDMD 2-step mode**: a separate LoRA (`minimax_h3_pdmd_2nfe_comfyui.safetensors`, available via a Model Hub quick-install entry) or a checkpoint with it merged in reduces generation to 2 steps. The model is detected as the pDMD family and the preset is applied automatically.
 - **Resolution**: works best from 4 to 20 MP (native around 16 MP, 4096x4096). Batch size is always 1 (the model's own limit); larger batches run as sequential samplers.
 - **Model Hub**: INT8 and W4A8 downloads are available.
 - **License**: the MiniMax-H3-Image Community License. Written permission from MiniMax is needed above US$1M annual revenue or to offer it as a hosted service. A notice appears under the model picker when this model is selected.

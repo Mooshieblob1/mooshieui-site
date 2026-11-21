@@ -52,14 +52,14 @@ Hover any generated image and click **Upscale** to upscale the last output witho
 
 ## Face Fix (face detailer)
 
-Enable a post-generation pass that detects faces and re-denoises them at higher resolution, then composites them back with smooth cosine-falloff blending. No Impact Pack dependency; it is a self-contained node.
+Enable a post-generation pass that detects faces and re-denoises them at higher resolution, then composites them back with smooth cosine-falloff blending. No Impact Pack dependency; it is a self-contained node. Face, segment, and mask detailers preserve native crop resolution up to 1536 px instead of shrinking large close-up crops down to **Guide Size**, and use area downscaling with bicubic upscaling.
 
 This panel is for ComfyUI mode. In NovelAI mode it is hidden and **NovelAI Face Detailer** takes its place, with its own settings and a choice between repainting faces on NovelAI or on a local checkpoint. See [[NovelAI Backend]].
 
 Controls in Face Fix Settings:
 
-- **Detector model** - choose from recommended detectors (for example an Anzhc face segmentation model or `face_yolov8n`). Missing models are auto-downloaded with SHA256 verification, and the `ultralytics` Python package is installed automatically.
+- **Detector Model** - choose from recommended detectors (for example `YOLO11n Face Seg` or `YOLOv8n Face`). Missing models are auto-downloaded with SHA256 verification, and the `ultralytics` Python package is installed automatically.
 - **Denoise** - 0 to 1.
-- **Steps** - 1 to 50.
-- **Guide size** - 256 to 1024px.
+- **Steps** - 1 to 50 (defaults to 15-20 on 1024 px+ non-turbo models, and 4-5 on distilled/turbo models).
+- **Guide Size** - 256 to 1024 px (defaults to 1024 px on 1024 px+ models and 512 px on SD 1.5; crops larger than **Guide Size** keep their native size up to 1536 px).
 - **Auto-prompt** toggle.
