@@ -32,3 +32,12 @@ Each Generate re-rolls the masked region from the original base image, so you ca
 ## Correcting a paused generation
 
 For a paused ComfyUI Text to Image run, **Paint a correction** opens its preview here. Paint the correction, mask the area to replace and choose **Continue with edit from step …**. This blends the edit into the paused latent and runs the remaining sampling steps. See [[Generation Basics]] for continuation constraints and session lifetime.
+
+## Outpainting
+
+The **Outpaint** generation mode extends an image beyond its original borders without manually resizing or masking on the canvas:
+
+- Load a source image directly or click **Send to outpaint** from the gallery.
+- Set pixel padding on any combination of **Top**, **Bottom**, **Left**, and **Right**, or use the quick presets (**Sides**, **Top/Bot**, **All +256**, **Reset**).
+- Adjust **Feather width** to control how smoothly new pixels blend across the padded boundary, while watching the expanded frame in the live preview.
+- Works across ComfyUI image models (using `ImagePadForOutpaint` and appropriate inpaint/latent mask conditioning) and NovelAI models.

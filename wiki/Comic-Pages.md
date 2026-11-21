@@ -32,6 +32,7 @@ When a NovelAI V5 model is selected and a [[Prompt Assistant]] is configured, ea
 ## Continuity
 
 - **Cast:** describe each character once and pick them per panel. Their look is added to every panel they appear in.
+- **Use Panel 1 as character reference:** forwards Panel 1's generated image as a character reference into Panels 2-6 on models that support reference images (NovelAI Precise Reference, Flux/Klein/Qwen/MOSS Image Edit, and Anima Ref Adapter).
 - **Setting:** the page setting is added to every panel, and a panel can override it.
 - **Panel check:** after a panel finishes, the tagger compares it with the cast and setting and flags missing or changed hair, eyes or setting, with a redo button.
 - **Check story** has the [[Prompt Assistant]] read the panels in order and point out contradictions.

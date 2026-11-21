@@ -13,7 +13,8 @@
 - **Edit** - the Edit button on a gallery tile opens the built-in editor, which keeps the image's generation metadata on every save. See [[Image Editor]].
 - **Edit in Photopea** - the pencil button in the lightbox opens the image in the embedded [Photopea](https://www.photopea.com/) editor. **File > Save** (Ctrl+S) inside Photopea saves the result back to the gallery as a new image; the original is kept. Photopea loads from photopea.com, so it needs an internet connection.
 - **Compare** - hold any two images against each other in a slider, fade, difference or side-by-side view. See [[Image Comparison]].
-- **Mode labels** - output records its generation mode, including Image Edit and video.
+- **Mode labels** - output records its generation mode, including Outpaint, Image Edit and video.
+- **Transparent images and layer sets** - transparent RGBA results (such as Ming-Image Design or Layer runs) show a subtle checkerboard backdrop in the preview, gallery, and lightbox. **Group By > Layer sets** groups multi-layer Ming-Image Layer outputs together with `Layer N/total` badges.
 - **Show Generation Time** - a checkbox in the gallery toolbar that displays each item's generation time directly on the grid and details view, instead of only on hover.
 
 - **Large galleries** - only the rows near the screen are drawn, and thumbnails are cached on disk (up to 1 GiB), so galleries with thousands of images scroll and reopen quickly.
@@ -46,9 +47,11 @@ Eagle copies the original file, nothing is re-encoded. Tags come from the prompt
 
 The **Repeats** filter shows only images generated more than once with the same prompt, negative, seed, model, sampler settings and size, grouped per set with the oldest first. **Select extras** selects every copy but the oldest, ready to delete. Images from one batch share a seed but are not counted as copies of each other. This compares saved settings, not pixels.
 
+Next to Repeats, **Near duplicates** groups visually identical or near-identical images using the perceptual hash (`fingerprint`) stored in the gallery index. Adjust **Diff <= N** (0 for exact hash match, 10 default) to widen or tighten matching, and use **Select extras** to mark all but the oldest copy in each cluster.
+
 ## Characters in the gallery
 
-Once you have saved characters, the gallery matches them to images by the tags in each image's prompt, with no model run. A card tagged `1girl` only matches images with a girl; otherwise the character's name as a tag, or most of its identity tags (hair, eyes, ears and the like), make a match. NovelAI images are checked one character box at a time.
+Once you have saved characters, the gallery matches them to images by the tags in each image's prompt, with no model run. A card tagged `1girl` only matches images with a girl; otherwise the character's name as a tag, or most of its identity tags (hair, eyes, ears and the like), make a match. NovelAI images are checked one character box at a time. Adjust **Match strictness** (30% to 100%, 70% default) beside the Character filter to tune how strictly traits must match.
 
 - The **Character** filter shows each character with a count, and **Group By** can group by character. Detailed View lists the characters found under the file name.
 - **Sort by Character** moves Unsorted images with exactly one character into a board named after it, with **Undo** in its toast. **Remove character boards (N)** takes those boards away again later. The counts in the Character filter are worked out in the background and appear once ready, so the gallery opens without waiting for them.

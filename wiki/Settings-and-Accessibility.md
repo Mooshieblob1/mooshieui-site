@@ -77,6 +77,7 @@ Settings -> Performance controls how ComfyUI uses your GPU.
 - **Import Images from Directory** copies images from a SwarmUI output, ComfyUI output or any other image folder into your gallery, keeping their metadata.
 - **Interrogator** selects a built-in WD v3 tagger or registers a custom folder containing `model.onnx` and `selected_tags.csv`. **Detect artists (Kaloscope 3.0)** and **Detect saved characters** are both on by default for new installs (existing settings are kept); see [[Prompting Guide]].
 - **AI assistants (MCP)** turns on the local MCP server that lets AI assistants generate and search your gallery; see [[AI Assistants and MCP]].
+- **CivitAI** stores your optional API key and **CivitAI Proxy URL** (`http://`, `https://`, `socks5://`, or `socks5h://`, applied only to CivitAI API requests and CivitAI model downloads).
 - **NovelAI** manages your saved API key and Anlas/Opus readout. Users and moderators use their own encrypted key; admins use the owner's key. See [[NovelAI Backend]].
 - **Cloud voice and video** stores ElevenLabs and fal.ai API keys for the [[Anime Scenes]] page, one write-only field per provider. Builds up to v2.3.41 also show a Segmind field; nothing uses that key, and later builds only show it so a saved key can be cleared. A saved key is never shown again, and **Clear** removes it. On a server each account has its own encrypted keys; the owner's keys are never sent to any client.
 

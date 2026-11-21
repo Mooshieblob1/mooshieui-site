@@ -101,7 +101,8 @@ Below the positive and the negative prompt box is an **Add Prompt Block** button
 
 This exists mainly for split-encoder models (Anima and other Qwen-based checkpoints) where the text encoder reads your formatting literally. To keep those prompts clean:
 
-- **ComfyUI prompts** remove `BREAK`/`<break>` markers and flatten line breaks when sent. Your box keeps its layout. (`BREAK` as a whole word is removed; `BREAKFAST` is left alone.) **NovelAI prompts retain line breaks**, including manual `Text:` lettering blocks; added style/chunk tags are placed ahead of that block.
+- **CLIP models (`sd15`, `sdxl`, `illustrious`, `pony`, `mugen`)** keep `BREAK` boundaries and split positive and negative chunks into separate `CLIPTextEncode` nodes chained via ComfyUI's `ConditioningConcat`.
+- **Split-encoder ComfyUI prompts** (Anima, Flux, Qwen, and similar) remove `BREAK`/`<break>` markers and flatten line breaks when sent. Your box keeps its layout. (`BREAK` as a whole word is removed; `BREAKFAST` is left alone.) **NovelAI prompts retain line breaks**, including manual `Text:` lettering blocks; added style/chunk tags are placed ahead of that block.
 - Blank blocks contribute nothing, and duplicate commas from joining are collapsed automatically.
 
 Each block has an optional name field and a **Save as preset** button that drops its content straight into your Prompt Presets, so a reusable block (a quality tail, a negative baseline) can be recalled later or referenced with `@preset:<slug>`. Importing a prompt from an image, or restoring one from history, clears the extra blocks since that restored prompt is already complete.

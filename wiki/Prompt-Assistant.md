@@ -12,9 +12,9 @@ The **Enhance** button above the prompt box opens a chat window. Applying an ans
 
 **Options** under the message box holds **Copy existing prompt** (which pastes your current prompt into the box), and for image models a **Length** (Short, Medium or Detailed) and **Include artists**.
 
-**Use memory notes** (Enhance and Enhance for V5, under **Options** when saved characters have memory) is ticked each time the chat opens. Untick it when a composition keeps failing: that rewrite sends no memory notes and learns nothing, so it works from your text and the saved looks alone. Facts a rewrite learns are saved to memory only when you apply it.
+**Use memory notes** (Enhance and Enhance for V5, under **Options** when saved characters have memory) is ticked each time the chat opens. Untick it when a composition keeps failing: that rewrite sends no memory notes and learns nothing, so it works from your text and the saved looks alone. Character memory works with both external providers and natural-language bundled local models (using tighter context budgets and review-before-save for learned facts on bundled models). On external providers, facts a rewrite learns are saved to memory when you apply it.
 
-**Reference images** attaches up to four pictures to point at, for example "use the outfit from image 1". Add them with **Upload**, **Paste** or **Gallery**, with an optional **Label** each. They need a model that can see images: a vision-capable model on an external provider, or a local Qwen3-VL model (4B or 8B Instruct), Qwen3.6 35B-A3B or Qwen3.8 27B. Other local models cannot see them and write from your text alone.
+**Reference images** attaches up to four pictures to point at, for example "use the outfit from image 1". Add them with **Upload**, **Paste** or **Gallery**, with an optional **Label** each. They need a model that can see images: a vision-capable model on an external provider, or a local Qwen3-VL model (4B or 8B Instruct), Qwen3.6 35B-A3B or Qwen3.8 27B. Other local models cannot see them and write from your text alone. When using **Describe image** in Interrogate while an active external model is text-only, MooshieUI automatically routes the description request to your installed bundled JoyCaption model when available.
 
 Nothing changes until you choose. Each answer arrives in the chat and you can ask follow-up questions or give feedback before applying it. When an answer is ready, the action buttons appear:
 
@@ -108,7 +108,9 @@ Reference images in the Enhance window need a model that can see images: a visio
 
 ### Reasoning effort
 
-**Reasoning effort** sets how long models that think before answering spend thinking: **Low (fastest, recommended)**, **Medium**, **High (slowest)** or **Model default**. It shows only for providers whose models accept an effort, and each model gets the nearest level it supports. Low is the default and suits prompt work. Before v2.3.34 no effort was sent, so some models (Grok 4.6 and 4.7, for example) thought at their slow default and often timed out. Thinking models also get a longer timeout and extra room in their answer budget.
+**Reasoning effort** sets how long models that think before answering spend thinking: **Low (fastest, recommended)**, **Medium**, **High (slowest)** or **Model default**. It shows for providers whose models accept an effort, including **Self-hosted (OpenAI-compatible)** servers such as Ollama and LM Studio (`enable_thinking: false` / reasoning off, falling back automatically if a server rejects extra request fields). Low is the default and suits prompt work. Before v2.3.34 no effort was sent, so some models (Grok 4.6 and 4.7, for example) thought at their slow default and often timed out. Thinking models also get a longer timeout and extra room in their answer budget.
+
+On Anthropic and OpenRouter Anthropic models, NovelAI V5 Enhance also enables ephemeral prompt caching for the static V5 system prompt block to reduce repeated input costs.
 
 ### Fallback models
 

@@ -1,19 +1,20 @@
 # Generation Basics
 
-## Four generation modes
+## Five generation modes
 
 | Mode | Description |
 |------|-------------|
 | **Txt2Img** | Generate from positive and negative prompts |
 | **Img2Img** | Transform an existing image with adjustable denoise strength |
+| **Outpaint** | Extend an image outward with per-side padding and feathered blending |
 | **Inpainting** | Selectively edit parts of an image with a built-in canvas mask editor |
 | **Image Edit** | Edit a reference image by describing the change in the prompt |
 
-Switch modes with a single click. Settings carry over between modes. For the inpaint canvas see [[Inpainting and the Canvas Editor]]. For instruction-driven editing see [[Image Edit Mode]].
+Switch modes with a single click. Settings carry over between modes. For Outpaint and the inpaint canvas see [[Inpainting and the Canvas Editor]]. For instruction-driven editing see [[Image Edit Mode]].
 
-These four are the image modes under **Generate**. In v2.3.7 and later, **Video** has its own entry in primary navigation beside **Generate** and **Music**, on desktop and mobile. Returning to **Generate** restores the image mode you last used during the session. Video has its own models and settings panel; see [[Video Generation]].
+These five are the image modes under **Generate**. In v2.3.7 and later, **Video** has its own entry in primary navigation beside **Generate** and **Music**, on desktop and mobile. Returning to **Generate** restores the image mode you last used during the session. Video has its own models and settings panel; see [[Video Generation]].
 
-With a NovelAI model selected, **Txt2Img**, **Img2Img** and **Inpainting** run on NovelAI. **Video** and the **Image Edit** tab stay available: Video always runs on ComfyUI with its own models, and a plain Image Edit run with a NovelAI model stops with a message instead of spending Anlas. The model picker switches the backend, and the panels adapt: VAE/LoRA and ComfyUI-only controls are hidden, while NovelAI's characters, references and sampling options appear. See [[NovelAI Backend]] for its model limits and costs.
+With a NovelAI model selected, **Txt2Img**, **Img2Img**, **Outpaint** and **Inpainting** run on NovelAI. **Video** and the **Image Edit** tab stay available: Video always runs on ComfyUI with its own models, and a plain Image Edit run with a NovelAI model stops with a message instead of spending Anlas. The model picker switches the backend, and the panels adapt: VAE/LoRA and ComfyUI-only controls are hidden, while NovelAI's characters, references and sampling options appear. See [[NovelAI Backend]] for its model limits and costs.
 
 ## Page layout
 
