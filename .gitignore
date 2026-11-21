@@ -6,6 +6,7 @@ node_modules/
 *.log
 
 .superpowers/
+static/ort/
 
 # npm (package-lock.json) is canonical for Cloudflare Pages deploys;
 # these are local-only pnpm files, never committed

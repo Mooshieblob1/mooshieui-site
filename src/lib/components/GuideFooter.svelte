@@ -8,6 +8,7 @@
 		<span class="meta">MooshieUI · a friendly front-end for ComfyUI</span>
 		<div class="foot-links">
 			<a href="{base}/">Home</a>
+			<a href="{base}/verify">Verify image</a>
 			<a href="{base}/build">Build from source</a>
 			<a href="{base}/docker">Docker guide</a>
 			<a href="{base}/wiki">Wiki</a>
