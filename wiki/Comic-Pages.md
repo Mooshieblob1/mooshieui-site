@@ -1,45 +1,64 @@
 # Comic Pages
 
-In v2.3.49 and later, the **Comic pages** page builds a comic page panel by panel. It is in the desktop navigation and on mobile.
+In v2.3.49 and later, the **Comic page** builder creates multi-page comics and doujin books panel by panel. It is in the desktop navigation and on mobile.
 
 ## Model and settings
 
-In v2.4.2 and later, the **Model and settings** section picks the model, sampler and size for the Comic page. They are kept apart from the Generate page, and the Comic page always generates images, so a Generate page in Video mode does not block it.
+In v2.4.2 and later, the **Model and settings** section picks the model, sampler and pixel budget for your comic. They are kept apart from the Generate page, and the Comic page always generates still images, so a Generate page in Video mode does not block it.
+
+Aspect ratio, batch size, and seed controls are hidden here: each panel's layout box controls its own aspect ratio (or the **Page** shape in **Whole page** mode), while **Resolution** sets the per-panel pixel budget (`~Npx`, shown in the collapsed header).
+
+## Books and pages
+
+- **Book switcher:** use the toolbar dropdown, rename button, `+` (**New book**), and delete button to organize separate multi-page comic projects.
+- **Page Strip:** below the canvas, switch pages or use **+ Add page**, **Duplicate page**, **Move page left**, **Move page right**, and **Delete page**.
+- **Page** shape (**Portrait**, **Square**, **Landscape**), **Gutter** slider, and reading direction (**Reads left to right** / **Reads right to left**) apply across the book.
 
 ## Layout
 
-- Pick one of 15 templates (1 to 6 panels), or split any panel across or down (up to 9 panels) and drag the borders to resize. Undo with the button or Ctrl+Z.
-- Choose a portrait, landscape or square page and set the gutter with the slider.
-- Right-to-left reading order is there for manga. Panel numbers follow the reading order.
+Switch between **Grid** and **Freeform** mode in the toolbar:
 
-## Panels
+- **Grid:** pick one of 15 **Layouts** templates (1 to 6 panels), split any panel across (**Split ⇆**) or down (**Split ⇅**) up to 9 panels, drag dividers to resize, or **Remove panel**. Undo with **Undo** or `Ctrl+Z`.
+- **Freeform:** converts the current grid cleanly into freely movable boxes. Drag a panel to move it (edges and centers snap to neighboring panels and page bounds; hold `Shift` to bypass snapping), drag any of the 8 handles on the selected panel to resize, add boxes with **+ Panel**, and change overlap order with **Layer up** and **Layer down**. Overlapping panels render with a crisp white outer halo.
+- **Non-destructive switching:** switching to a layout with fewer panels (or removing a populated panel) stashes the extra panels and their generated images under a `+{count}` indicator next to **Layouts**, restoring them when you pick a larger layout.
 
-Each panel has a story beat, a prompt, its own negative, a **Dialogue** field and an on switch. Generate one panel or all of them.
+## Panels and prompting
 
-- **Each panel** makes one image per panel at the panel's own shape on the page's own model, then crops them into the page. Very tall or wide panels are clamped to between 1:3 and 3:1.
-- **Whole page** makes the page in one NovelAI image (up to 6 panels), with each panel's prompt placed at its position. It needs a NovelAI model. See [[NovelAI Backend]].
+Tag-assisted fields (**Style for every panel**, **Setting**, **Page setting override**, **Cast** **Appearance**, and each panel's **Prompt**, **Negative**, and **Setting for this panel**) use the same Danbooru tag autocomplete, spellcheck, weight adjustment, and LoRA keyword suggestions as the main Generate page. **Story beat** and **Dialogue** stay plain text.
+
+- **Each panel** makes one image per panel at the panel's own shape and pixel budget, then crops them onto the page. Very tall or wide panels are clamped to between 1:3 and 3:1.
+- **Whole page** makes the active page in one NovelAI image (up to 6 panels), with each panel's prompt placed at its position. It needs a NovelAI model. See [[NovelAI Backend]].
 
 ### Dialogue
 
-The **Dialogue** field holds the spoken words for one panel, one speech bubble per line. On NovelAI models the lines are lettered into speech bubbles automatically. When generating in **Whole page** mode, all bubbles across the page are lettered in reading order.
+The **Dialogue** field holds the spoken words for one panel, one speech bubble per line. On NovelAI models the lines are lettered into speech bubbles automatically (`Text:` block). When generating in **Whole page** mode, all bubbles across the page are lettered in reading order.
 
 Enter only the spoken words, not speaker names or quotation marks.
 
 ### Enhance for V5
 
-When a NovelAI V5 model is selected and a [[Prompt Assistant]] is configured, each panel shows an **Enhance** button (tooltip: "The Prompt Assistant rewrites this panel by the NovelAI V5 Enhance rules, dialogue included"). It rewrites that one panel's prompt and dialogue with the rest of the page as context. **Write prompts from beats** in whole-page mode also applies the V5 Enhance rules when V5 is selected, writing each panel's prompt and dialogue from its story beat.
+When a NovelAI V5 model is selected and a [[Prompt Assistant]] is configured, each panel shows an **Enhance** button. It rewrites that one panel's prompt and dialogue with the rest of the page and prior pages as context. **Write prompts from beats** also applies the V5 Enhance rules when V5 is selected.
 
-## Continuity
+## Continuity and cast
 
-- **Cast:** describe each character once and pick them per panel. Their look is added to every panel they appear in.
-- **Use Panel 1 as character reference:** forwards Panel 1's generated image as a character reference into Panels 2-6 on models that support reference images (NovelAI Precise Reference, Flux/Klein/Qwen/MOSS Image Edit, and Anima Ref Adapter).
-- **Setting:** the page setting is added to every panel, and a panel can override it.
-- **Panel check:** after a panel finishes, the tagger compares it with the cast and setting and flags missing or changed hair, eyes or setting, with a redo button.
-- **Check story** has the [[Prompt Assistant]] read the panels in order and point out contradictions.
-- **Write prompts from beats** has the Prompt Assistant draft each panel's prompt from its one-line story beat. It can be undone.
+- **Cast:** shared across all pages of the book. Use **+ Add character** to describe someone from scratch, or **+ From Characters** to import name, prompt tags, and portrait reference from your saved characters. Assign cast members per panel with the **In panel:** chips.
+- **Setting:** the book **Setting** applies to every panel, with an optional **Page setting override** (for multi-page books) and **Setting for this panel** override.
+- **Character ref:** pass a reference image to generated panels on supported models (NovelAI Precise Reference, Flux/Klein/Qwen/MOSS Image Edit, and Anima Ref Adapter):
+  - **Off:** no image reference.
+  - **Page 1 Panel 1:** reuses Page 1 Panel 1's generated image across all pages of the book.
+  - **Previous panel:** passes the immediately preceding panel's image (crossing from one page's last panel into the next page's Panel 1).
+  - **Cast portraits:** passes the portrait reference images of the cast members assigned to each panel.
+- **Panel check:** with **Check each finished panel with the tagger and flag a changed look or setting** enabled, the tagger compares each finished panel against its cast and setting and flags missing or changed traits, with a **Check again** button.
+- **Check story** and **Write prompts from beats** send the active page plus summaries of earlier pages to the [[Prompt Assistant]] so dialogue, props, and actions stay consistent across pages.
 
-For speech bubbles on NovelAI V5, put only the spoken words in the `Text:` block. See [[NovelAI Backend#enhance-for-v5]].
+## Saving and exporting
 
-## Saving
+- Panel images save to the gallery as they finish and restore on reload.
+- **View page** previews the assembled page; **Save page** saves the active page to the gallery with panel metadata.
+- **Save all** (shown for multi-page books) saves all pages with art to the gallery in order.
+- **Export CBZ** packs all pages with art into a numbered `.cbz` comic archive (`001.png`, `002.png`, ...).
+- **Export PDF** exports all pages with art as a multi-page `.pdf` document matching each page's aspect ratio.
 
-Panel images go to the gallery as they finish and come back after a restart. **Save page** writes the assembled page to the gallery with the panel prompts in its metadata.
+## MCP
+
+AI assistants can generate single comic pages over MCP with `create_comic` (using `layout`, `rows`, or freeform `boxes` with `z` layer order) and remake panels with `redo_comic_panels`. See [[AI Assistants and MCP]].

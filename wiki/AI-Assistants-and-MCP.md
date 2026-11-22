@@ -42,7 +42,7 @@ Both tools return a signed download link for the full-size result.
 
 ## Comics over MCP
 
-Assistants can build a full comic page with `create_comic`. Provide the layout, panel prompts, cast appearance tags, the page setting and optional dialogue per panel. Each panel is generated separately and assembled into the page; panel images and the final page are saved to the gallery. `redo_comic_panels` remakes specific panels without regenerating the whole page.
+Assistants can build a full comic page with `create_comic`. Provide a `layout` template, custom `rows`, or freeform `boxes` (`x`, `y`, `w`, `h` with optional `z` layer order for overlapping panels), along with panel prompts, cast appearance tags, the page setting and optional dialogue per panel. Each panel is generated separately and assembled into the page; panel images and the final page are saved to the gallery. `redo_comic_panels` remakes specific panels without regenerating the whole page.
 
 ## Gallery boards and Eagle
 

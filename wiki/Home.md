@@ -20,6 +20,7 @@ MooshieUI is a beginner-friendly interface for image, video, music and 3D genera
 - [[Video Generation]] - the MiniMax H3 video mode, shot timeline, player and export
 - [[Music Generation]] - YuE2 songs, lyric writing, playlists, shared playback and manual lyric timing
 - [[Anime Scenes]] - voiced, lip-synced character clips through ElevenLabs and fal.ai with your own keys
+- [[Comic Pages]] - multi-page comic and doujin builder with Grid/Freeform layouts, continuity checks and CBZ/PDF export
 - [[Image to 3D]] (experimental) - turn one image into a textured mesh (Pixal3D) or a Gaussian splat (Idol)
 - [[Image Edit Mode]] - Qwen Image Edit/Edit Plus, Flux.1 Kontext, FLUX 3 Klein and Anima ReStyler
 - [[Upscaling and Face Fix]] - tiled diffusion upscaling, guidance nodes, face detailer
