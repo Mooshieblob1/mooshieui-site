@@ -20,6 +20,7 @@ Switch between **Grid** and **Freeform** mode in the toolbar:
 
 - **Grid:** pick one of 15 **Layouts** templates (1 to 6 panels), split any panel across (**Split ⇆**) or down (**Split ⇅**) up to 9 panels, drag dividers to resize, or **Remove panel**. Undo with **Undo** or `Ctrl+Z`.
 - **Freeform:** converts the current grid cleanly into freely movable boxes. Drag a panel to move it (edges and centers snap to neighboring panels and page bounds; hold `Shift` to bypass snapping), drag any of the 8 handles on the selected panel to resize, add boxes with **+ Panel**, and change overlap order with **Layer up** and **Layer down**. Overlapping panels render with a crisp white outer halo.
+- **Pan, zoom, borders, and takes:** enable **Pan** mode (or hold `Alt` and drag) to pan a panel's cropped image, scroll on a selected panel to zoom, and click **Reset crop** to recenter. Pick a panel **Border** style (**Standard**, **Borderless**, **Rounded**, or **Slanted**), and step through **Previous take** and **Next take** to switch between generated variations for that panel.
 - **Non-destructive switching:** switching to a layout with fewer panels (or removing a populated panel) stashes the extra panels and their generated images under a `+{count}` indicator next to **Layouts**, restoring them when you pick a larger layout.
 
 ## Panels and prompting
@@ -29,11 +30,10 @@ Tag-assisted fields (**Style for every panel**, **Setting**, **Page setting over
 - **Each panel** makes one image per panel at the panel's own shape and pixel budget, then crops them onto the page. Very tall or wide panels are clamped to between 1:3 and 3:1.
 - **Whole page** makes the active page in one NovelAI image (up to 6 panels), with each panel's prompt placed at its position. It needs a NovelAI model. See [[NovelAI Backend]].
 
-### Dialogue
+### Dialogue and speech bubbles
 
-The **Dialogue** field holds the spoken words for one panel, one speech bubble per line. On NovelAI models the lines are lettered into speech bubbles automatically (`Text:` block). When generating in **Whole page** mode, all bubbles across the page are lettered in reading order.
-
-Enter only the spoken words, not speaker names or quotation marks.
+- **Dialogue** holds the spoken words for one panel, one speech bubble per line. On NovelAI models the lines are lettered into speech bubbles automatically (`Text:` block). When generating in **Whole page** mode, all bubbles across the page are lettered in reading order. Enter only the spoken words, not speaker names or quotation marks.
+- **Vector speech bubbles:** click **+ Bubble** on the toolbar to place a vector speech bubble on the page, or **From dialogue** on a panel to convert its dialogue lines into vector bubbles across any model. Select a bubble to edit its text, drag its resize or tail handles, and adjust **Shape** (**Speech**, **Thought**, **Shout**, **Caption**), **Font** (**Sans**, **Serif**, **Comic**, **Mono**), **Size**, and **Vertical JP** (top-to-bottom Japanese `tategaki` lettering).
 
 ### Enhance for V5
 

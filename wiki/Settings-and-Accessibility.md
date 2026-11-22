@@ -8,7 +8,7 @@ While the app starts, an "Initializing..." overlay covers the content area until
 
 ## Finding a setting
 
-Settings is split into categories, each on its own page, picked from a sidebar on the left: App Mode, Connection, Appearance, Performance, Quality Tags, GPU Workers, Models, Model Requests, Paths, Notifications, Gallery, Autocomplete, Interrogator, Prompt Assistant, AI assistants (MCP), CivitAI, NovelAI, Cloud voice and video, Queue, Account, Help & Updates, and Developer. Available categories depend on your role and deployment.
+Settings is split into categories, each on its own page, picked from a sidebar on the left: App Mode, Connection, Appearance, Performance, Quality Tags, GPU Workers, Models, Model Requests, Paths, Notifications, Gallery, Autocomplete, Interrogator, Prompt Assistant, AI assistants (MCP), CivitAI, NovelAI, Cloud voice and video, Queue, Account, Shortcuts, Help & Updates, and Developer. Available categories depend on your role and deployment.
 
 - **Search settings** - the search box above the sidebar narrows it to the categories whose name or contents match. If nothing matches, the page says "No settings match your search."
 - The category you were on is remembered, so reopening Settings returns you to it.
@@ -93,7 +93,15 @@ On standalone desktop installs (not managed by a Linux package manager), **Autom
 
 When launching a new version for the first time, the **What's New!** popup displays release notes from the changelog (including any skipped intermediate releases); click **What's new** in Help & Updates to reopen it anytime.
 
+**Backup & Restore** (**Open Backup & Restore** in Help & Updates) exports and restores characters, prompts, styles, LoRA presets, comics, shortcuts, and settings as a single `.zip` archive (models, gallery images, and API keys are never included). Restore supports **Merge** and **Replace** per category; admins can also check **Include app config & wildcards** (with optional **Include machine-local paths**).
+
 A small **Support MooshieUI** card at the bottom of Help & Updates links to **Support on Ko-fi** and **Sponsor on GitHub**. It follows the active theme, and **Hide MooshieUI branding** in Appearance hides it. The About dialog has the same two buttons.
+
+## Keyboard shortcuts
+
+Press `Shift+?` (or click **Keyboard shortcuts** in the left navigation bar) to open the shortcut cheat sheet across Global, Generate, Lightbox, Gallery, Inpaint Canvas, Prompt Editor, and Comic Builder actions.
+
+In Settings -> Shortcuts, click any shortcut to bind a new key combination (press `Escape` to cancel), or click **Reset all** to restore the defaults. Bindings are saved per account and sync between desktop and browser modes.
 
 ## Quality Tags
 
