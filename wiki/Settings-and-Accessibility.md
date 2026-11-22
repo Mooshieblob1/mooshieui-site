@@ -89,6 +89,10 @@ The instance owner can keep API keys out of MooshieUI's config. Under each API k
 
 The update check retries a couple of times before giving up. If GitHub still cannot be reached, Help & Updates says so and offers **Open releases page** next to **Try again**, so you can download the latest version by hand. When MooshieUI on Linux was installed from the apt, dnf or zypper repo (or the AUR package), the update banner and Help & Updates show the package manager's update command instead of a download button.
 
+On standalone desktop installs (not managed by a Linux package manager), **Automatic updates** can be set to **Off** (notify only), **Download in background** (downloads the update silently and asks to install and restart), or **Download and restart when idle** (installs and relaunches after a 5-second cancellable countdown when nothing is generating).
+
+When launching a new version for the first time, the **What's New!** popup displays release notes from the changelog (including any skipped intermediate releases); click **What's new** in Help & Updates to reopen it anytime.
+
 A small **Support MooshieUI** card at the bottom of Help & Updates links to **Support on Ko-fi** and **Sponsor on GitHub**. It follows the active theme, and **Hide MooshieUI branding** in Appearance hides it. The About dialog has the same two buttons.
 
 ## Quality Tags
