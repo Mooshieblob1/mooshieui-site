@@ -10,6 +10,7 @@ export const PAGE_ICONS = {
 	'novelai-backend': 'key',
 	'video-generation': 'film',
 	'anime-scenes': 'clapper',
+	'comic-pages': 'book',
 	'music-generation': 'music',
 	'image-to-3d': 'cube',
 	'upscaling-and-face-fix': 'maximize',
