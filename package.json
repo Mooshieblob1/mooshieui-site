@@ -4,10 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node scripts/copy-ort-wasm.mjs",
     "dev": "vite dev",
+    "prebuild": "node scripts/copy-ort-wasm.mjs",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "test:verify": "node --test scripts/test-verify.mjs",
     "wiki:sync": "node scripts/sync-wiki.mjs"
   },
   "devDependencies": {
@@ -27,5 +30,8 @@
     "tailwindcss": "^4.3.2",
     "typescript": "^6.0.3",
     "vite": "^5.4.0"
+  },
+  "dependencies": {
+    "onnxruntime-web": "^1.31.1"
   }
 }
