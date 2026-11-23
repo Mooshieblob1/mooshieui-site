@@ -12,6 +12,7 @@ export const ADDED_IN = {
 	'novelai-backend': 'v2.2.0',
 	'video-generation': 'v2.0.0',
 	'anime-scenes': 'v2.3.20',
+	'comic-pages': 'v2.3.49',
 	'music-generation': 'v2.3.4',
 	'image-to-3d': 'v2.3.33',
 	'upscaling-and-face-fix': 'v0.1.0',
