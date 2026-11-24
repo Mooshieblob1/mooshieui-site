@@ -25,7 +25,7 @@ Switch between **Grid** and **Freeform** mode in the toolbar:
 
 ## Panels and prompting
 
-Tag-assisted fields (**Style for every panel**, **Setting**, **Page setting override**, **Cast** **Appearance**, and each panel's **Prompt**, **Negative**, and **Setting for this panel**) use the same Danbooru tag autocomplete, spellcheck, weight adjustment, and LoRA keyword suggestions as the main Generate page. **Story beat** and **Dialogue** stay plain text.
+Tag-assisted fields (**Style for every panel**, **Setting**, **Page setting override**, **Cast** **Appearance** and **Negative**, and each panel's **Prompt**, **Negative**, and **Setting for this panel**) use the same Danbooru tag autocomplete, spellcheck, weight adjustment, and LoRA keyword suggestions as the main Generate page. **Story beat** and **Dialogue** stay plain text.
 
 - **Each panel** makes one image per panel at the panel's own shape and pixel budget, then crops them onto the page. Very tall or wide panels are clamped to between 1:3 and 3:1.
 - **Whole page** makes the active page in one NovelAI image (up to 6 panels), with each panel's prompt placed at its position. It needs a NovelAI model. See [[NovelAI Backend]].
@@ -41,7 +41,7 @@ When a NovelAI V5 model is selected and a [[Prompt Assistant]] is configured, ea
 
 ## Continuity and cast
 
-- **Cast:** shared across all pages of the book. Use **+ Add character** to describe someone from scratch, or **+ From Characters** to import name, prompt tags, and portrait reference from your saved characters. Assign cast members per panel with the **In panel:** chips.
+- **Cast:** shared across all pages of the book. Use **+ Add character** to describe someone from scratch, or **+ From Characters** to import name, prompt tags, negative tags, and portrait reference from your saved characters. Each Cast card has both **Appearance** and **Negative** fields, which are appended to assigned panels during generation. Assign cast members per panel with the **In panel:** chips.
 - **Setting:** the book **Setting** applies to every panel, with an optional **Page setting override** (for multi-page books) and **Setting for this panel** override.
 - **Character ref:** pass a reference image to generated panels on supported models (NovelAI Precise Reference, Flux/Klein/Qwen/MOSS Image Edit, and Anima Ref Adapter):
   - **Off:** no image reference.

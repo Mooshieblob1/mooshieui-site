@@ -6,7 +6,7 @@ Open **Music**, then use **Create** to compose a song or **Library** to browse y
 
 Connect to ComfyUI, open **Generation settings**, then **Models and setup**. Choose **Download INT8 · 4.0 GB** or **Download BF16 · 7.8 GB**, then **Refresh** and select the **YuE2 checkpoint**. Downloads follow the account's model-download permissions. The official Comfy-Org checkpoints belong in `ComfyUI/models/checkpoints` and include the generator, text encoder and audio VAE.
 
-If native YuE2 support is missing, a managed installation offers **Update and restart ComfyUI**. It moves the install to the ComfyUI release MooshieUI pins (v0.43.0 as of v2.3.41). YuE2 is native from ComfyUI v0.36.0, and earlier releases do not contain the required music nodes. For a remote ComfyUI server, its operator must update and restart that server. Refresh Music after it reconnects.
+If native YuE2 support is missing, a managed installation offers **Update and restart ComfyUI**. It moves the install to the ComfyUI release MooshieUI pins (v0.46.0). YuE2 is native from ComfyUI v0.36.0, and earlier releases do not contain the required music nodes. For a remote ComfyUI server, its operator must update and restart that server. Refresh Music after it reconnects.
 
 The official BF16 baseline is an NVIDIA GPU with 24 GB VRAM. INT8 generation has been tested on an RTX 5070 with 12 GB, including a 47.6-second song; this does not establish support for every GPU or longer arrangement. Apple Silicon music generation remains unqualified. The checkpoint weights use **CC BY-NC 4.0**, a non-commercial license. See the [official models and license](https://huggingface.co/Comfy-Org/YuE2).
 

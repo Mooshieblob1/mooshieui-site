@@ -117,12 +117,22 @@ On ComfyUI, MooshieUI turns line breaks into `, ` when it sends a prompt (see [[
 
 ## Anima tools in MooshieUI
 
+- **Anima Camera**: optional camera, framing, style and lighting tag builder below the negative prompt in Txt2Img, Img2Img and Inpainting. See below.
 - **Anima Reference Adapter**: keeps a character from a reference image; describe only the scene. See [[ControlNet and Style Transfer]].
 - **Style transfer (Untwisting RoPE)**: training-free style transfer from a reference image, Anima only. See [[ControlNet and Style Transfer]].
 - **Anima ReStyler** in Image Edit redraws a character from a reference in the Anima style. See [[Image Edit Mode]].
 - **ControlNet (Anima LLLite)** needs ComfyUI 0.29 or newer.
 - **TeaCache** and the community **RDBT-Anima LoRA** speed up generation. See [[Generation Basics]].
 - **Autocomplete** suggests tags from the Anima tag database alongside Danbooru's.
+
+### Anima Camera
+
+With an Anima model selected in Txt2Img, Img2Img or Inpainting, expand **Anima Camera** below the negative prompt (or beneath the shared prompt area in combined view) and tick **Enabled** to append weighted camera tags to the positive prompt at send time without altering what you typed. No custom nodes, LoRAs or extra weights are required; Qwen Image Edit's **Camera Angle** picker uses separate settings.
+
+- **3D guide and numeric controls**: drag the handles in the 3D positioning guide (or scroll to zoom), pick presets, or enter exact numbers for **Horizontal angle (°)**, **Elevation (°)** and **Framing / zoom**. Front-quarter presets blend through `three-quarter view` with `facing left` or `facing right` so they stay distinct from side profiles. When WebGL is unavailable, presets and numeric inputs continue to work.
+- **Dutch angle** and **Reset camera**: **Dutch angle** adds `(dutch angle:1.00)`, and **Reset camera** returns all camera settings to defaults without touching your written prompt.
+- **Extra Prompts**: expand for **Extreme viewpoint** (replaces horizontal and elevation tags while keeping framing and **Dutch angle**) plus **Lens / perspective**, **Focus / depth of field**, **Motion effects**, **Composition**, **Illustration style** and **Lighting**, each with presets or **Custom** English text and weight.
+- **Preview and import**: the collapsible preview bar at the bottom shows the exact fragment appended at generation time. Importing an image's positive prompt turns **Enabled** off automatically so imported camera tags are not added a second time.
 
 ## Training LoRAs
 

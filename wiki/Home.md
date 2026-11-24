@@ -24,7 +24,7 @@ MooshieUI is a beginner-friendly interface for image, video, music and 3D genera
 - [[Image to 3D]] (experimental) - turn one image into a textured mesh (Pixal3D) or a Gaussian splat (Idol)
 - [[Image Edit Mode]] - Qwen Image Edit/Edit Plus, Flux.1 Kontext, FLUX 3 Klein and Anima ReStyler
 - [[Upscaling and Face Fix]] - tiled diffusion upscaling, guidance nodes, face detailer
-- [[ControlNet and Style Transfer]] - structural guidance and reference-image style transfer
+- [[ControlNet and Style Transfer]] - structural guidance, style reference and txt2img guide image
 - [[Inpainting and the Canvas Editor]] - multi-layer canvas, mask painting, staging strip
 - [[Compare Grid]] - XYZ-style parameter sweeps with stitched output
 - [[Image Comparison]] - A/B viewer with slider, fade, difference and side-by-side modes

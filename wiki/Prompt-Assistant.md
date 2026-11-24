@@ -35,6 +35,17 @@ Once a session has history, the header shows a **New chat** button to start over
 
 Every answer joins the conversation when it arrives, so feedback on an answer you have not applied revises that answer. When a session grows too long for the model, the oldest exchanges are left out of the request (the window says **older ones not sent**) but stay saved. A tag-only local model such as DanTagGen never receives the session and cannot chat: it only ever writes a prompt.
 
+## Concept recipes
+
+**Concept recipes** are reusable visual instructions (for specific anatomy contours, shading styles, materials, or recurring traits) that adapt to each scene without cluttering your prompt boxes. Open them from **Recipes** in the image prompt toolbar or the Enhance chat header, and toggle active recipes from the recipe list or via the active recipe chips above the prompt box (or in the Enhance chat input bar).
+
+- **Authoring and sharing:** Create a recipe with **New recipe**, draft one from a plain-English description or reference images using **Generate with AI**, or distill a conversation turn with **Save recipe** (you can also ask Enhance chat directly, such as "make this into a recipe" or "update the ... recipe"). Use **Refine with AI** to tune an existing recipe, and **Import** / **Export** to share JSON bundles. Recipes also sync with preferences and single-ZIP backups.
+- **Fields:** **Name**, **Trigger `#slug`** (type `#slug` in a prompt or Enhance message to apply a recipe without keeping it toggled on), **Scope** (**Any**, **Character**, or **Scene**), **Visual goal**, **Cues to include**, **Avoid / UC**, **Never negate in UC** (strips listed parent tags from Undesired Content and character negatives while active), **Adaptation rules** (when to soften, adjust lighting, or skip based on crop or clothing), **Extra triggers** (phrases matched during Enhance chat), and **Apply at Generate** (**AI adapt** or **Tags only**).
+- **Silent Generate-time application:** For image modes, active recipes and inline `#slug` mentions apply behind the scenes when you click Generate without rewriting your visible prompt text:
+  - **AI adapt** adapts outgoing prompts via the Prompt Assistant and caches the result for up to 32 `(prompt, active recipes)` combinations so rerolls and batches reuse it right away. If no LLM is configured or the request fails, it falls back automatically to deterministic tag and UC injection.
+  - **Tags only** merges **Cues to include**, adds **Avoid / UC** tags, strips `#slug` tokens, and removes **Never negate in UC** terms immediately with no LLM call.
+  - Prompts just applied from Enhance chat with the same active recipes skip a duplicate AI pass at Generate time.
+
 ## Minors and explicit content
 
 Enhance, Remember, Update, Use and Write with AI refuse to send a request that pairs a clear minor (child, kid, schoolgirl, an age under 18, or a saved character marked as a minor) with explicit words in what you typed. In all three Enhance flows (since v2.3.42) the check also covers the prompt being edited and your earlier requests in the session, since those are sent too. Since v2.3.40 the check never reads saved memory notes, so a note mentioning a character's age cannot block an unrelated request. Suggestive words alone, ambiguous words, and phrases such as "minor changes" or "remove all sexual content" do not trip it. The refusal names the words that tripped it.

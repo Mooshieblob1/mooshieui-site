@@ -33,7 +33,7 @@ The **Style Transfer** panel uses RFInversion through ComfyUi-Untwisting-RoPE an
 
 ## Style Reference (IP-Adapter / Flux Redux / Anima)
 
-**Style Reference** is a separate section in the generation sidebar (visible in txt2img, img2img, and inpainting). It uploads a reference image and guides the generation toward its colors, textures, and composition without replacing your text prompt. On Anima it works as a character reference instead (see [Anima character reference](#anima-character-reference)). The technique is chosen automatically from the active model family.
+**Style Reference** is a separate section in the generation sidebar (visible in txt2img, img2img, outpainting, and inpainting on ComfyUI models). It uploads a reference image and guides the generation toward its colors, textures, and composition without replacing your text prompt. On Anima it works as a character reference instead (see [Anima character reference](#anima-character-reference)). In **Txt2Img**, the bottom of the same card also holds **Guide Image**, which works across every KSampler model family with no extra model download. The Style Reference technique is chosen automatically from the active model family.
 
 | Model family | Technique | Required |
 |---|---|---|
@@ -96,6 +96,16 @@ Controls:
 - **Picture size (megapixels)** - the reference is shrunk to this area before use, never enlarged. About the size of your output image works best (1 for 1024x1024).
 
 This method adds one model pass per step, so it is slower than the character reference. It has been tested mostly on Anima Turbo.
+
+### Guide Image (txt2img, any model)
+
+At the bottom of the **Style Reference** card in **Txt2Img**, **Guide Image** steers the beginning of sampling toward a reference picture's layout and colours without needing an IP-Adapter, Flux Redux, or Anima adapter download (requires ComfyUI v0.40.0 or newer). Unlike **Img2Img**, sampling still starts from pure noise at full denoise, so the composition follows the reference while detail is generated fresh.
+
+1. Tick **Guide Image** in the **Style Reference** card.
+2. Drop, paste, or **browse** to an image. It is centre-cropped to your output aspect ratio and encoded with the active VAE.
+3. Adjust **Guide strength** (0.00 to 1.00, default 0.60) for how strongly early steps pull toward the guide latent, and **Guide until** (0.00 to 1.00, default 0.35) for the fraction of steps from the start where the guide applies before the model finishes freely.
+
+Guide Image applies only to the base generation pass: hires, face/segment detail passes, and Moody Moss 4K HD skip it.
 
 ### Note on Anima ReStyler
 
