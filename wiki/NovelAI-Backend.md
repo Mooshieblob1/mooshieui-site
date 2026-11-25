@@ -39,7 +39,7 @@ The three Full models show an **18+** pill in the model picker. V5 Curated has n
 
 | Model | Character slots | Vibe Transfer | Precise Reference | Transparent BG |
 |-------|-----------------|---------------|-------------------|----------------|
-| V5 Full / Curated | 22 | Disabled in this release | Disabled in this release | Yes |
+| V5 Full / Curated | 22 | Disabled in this release | Yes | Yes |
 | V4.5 Full | 6 | Yes | Yes | No |
 | V4 Full | 6 | Yes | No | No |
 
@@ -67,8 +67,8 @@ Positioning is only honoured with two or more characters. With a single characte
 
 Two reference types, and they cannot be combined. Adding to one clears the other.
 
-- **Vibe Transfer** carries the mood, palette and style of a reference image into the result. Each new image costs Anlas to encode, and the panel shows the amount before you commit. **Normalize strengths** scales multiple vibes so they add up to 1, matching the option in NovelAI's own client.
-- **Precise Reference** copies a character or a style with more control than Vibe Transfer. Each image picks what to take from it (Character, Style, or Character and style) and carries a **Strength** slider and a **Fidelity** slider, where Fidelity is how closely the result follows the reference image. Reference images are reshaped to one of the three canvas sizes NovelAI's encoder accepts before they are sent, so you can use any aspect ratio and the image you are generating is unaffected. Each Precise Reference costs 5 Anlas per image, even on Opus, and the cost estimate includes it.
+- **Vibe Transfer** carries the mood, palette and style of a reference image into the result (V4 and V4.5 only). Each new image costs Anlas to encode, and the panel shows the amount before you commit. **Normalize strengths** scales multiple vibes so they add up to 1, matching the option in NovelAI's own client.
+- **Precise Reference** (V4.5 and V5) copies a character, a style, both, or (on V5) an outfit with more control than Vibe Transfer. Attach up to 8 images, pick what to take from each (**Character**, **Style**, **Character and style**, or **Outfit** on V5), and set **Strength** (`0` to `5` on V5, `0` to `1` on V4.5, with custom editable numbers). On V5, **Character** and **Character and style** add a **Prefer same outfit** checkbox, while **Fidelity** is V4.5 only. Reference images are fitted to NovelAI's encoder sizes before sending (three letterboxed canvas sizes on V4.5; aspect-ratio buckets cropped cleanly without black bars and keeping transparency on V5), so your output aspect ratio is unaffected. V5 inpainting and outpainting ignore Precise Reference for now without billing them. Each active Precise Reference costs 5 Anlas per image, even on Opus, and the cost estimate includes it.
 
 ## NovelAI options
 
@@ -76,7 +76,7 @@ The **NovelAI options** panel carries the settings that only exist on this backe
 
 - **Quality tags**: Standard, Light, or None. Appends NovelAI's own quality tags to the prompt the same way the official client does. Light is offered on V5 models only.
 - **Undesired content preset**: Heavy, Light, Human focus, Furry focus, or None. The preset's tags are put ahead of your undesired content before sending. Both dropdowns list only what the selected model supports.
-- **Effort**: **Medium** or **High**, shown for V5 Full only. Medium runs NovelAI's distilled V5 Full checkpoint, which NovelAI says costs about 40% fewer Anlas at comparable quality. It fixes 14 steps, Euler Ancestral and the Heavy undesired content preset; your own undesired content is not sent on Medium, so steer unwanted content with negative emphasis in the prompt instead (for example, `-3::hat::`). CFG rescale is also disabled on Medium. High is the default. Face-detail crops always run at High.
+- **Effort**: **Medium** or **High**, shown for V5 Full only. Medium runs NovelAI's distilled V5 Full checkpoint, which NovelAI says costs about 40% fewer Anlas at comparable quality. It fixes 14 steps, Euler Ancestral and the Heavy undesired content preset; your own undesired content is not sent on Medium, so steer unwanted content with negative emphasis in the prompt instead (for example, `-3::hat::`). CFG rescale is also disabled on Medium. High is the default. Precise Reference requires **High** effort (the **Medium** button disables while references are active outside V5 inpainting/outpainting), and face-detail crops always run at High.
 - **Variety+** adds variation to the first steps for livelier compositions.
 - **Dynamic thresholding** reins in oversaturated color at high guidance.
 - **Guidance rescale** and **Undesired content strength**. Setting the latter to anything other than 1.00 costs 30 percent more Anlas, and the panel says so.

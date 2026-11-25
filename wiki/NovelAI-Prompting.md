@@ -94,12 +94,12 @@ Picking a NovelAI model sets 23 steps, guidance 7, Euler Ancestral and Karras. N
 
 Keep steps low while you look for a composition, then refine the one you like with **Enhance** (see [[NovelAI Backend#enhance-upscale-and-variations|Enhance, Upscale and Variations]]). On Opus, NovelAI does not charge Anlas for single images at 28 steps or fewer at normal sizes (V5 has a usage limit on these).
 
-**Effort** (V5 Full only): **Medium** runs NovelAI's distilled model at 14 steps with Euler Ancestral, for about 40% less cost. Guidance still applies, guidance rescale does not, and Undesired Content is fixed as described above.
+**Effort** (V5 Full only): **Medium** runs NovelAI's distilled model at 14 steps with Euler Ancestral, for about 40% less cost. Guidance still applies, guidance rescale does not, Undesired Content is fixed as described above, and active Precise References require **High** effort.
 
 ## Image references
 
 - **Vibe Transfer** (V4 and V4.5 in MooshieUI) carries the mood, colours and style of up to 16 images. Keep all strengths adding up to 1 or less (**Normalize strengths** does it for you). Lowering **Information extracted** drops fine texture first, keeping more composition and less style; it also helps when a reference's plain background keeps leaking in. Encoding a vibe costs 2 Anlas, and each vibe beyond four adds 2 Anlas per image.
-- **Precise Reference** (V4.5) copies a character, a style, or both. **Strength** is how much the reference is followed (high values copy pose and expression too); **Fidelity** is how hard it is to override from the prompt. 5 Anlas per reference per image. It cannot be combined with Vibe Transfer.
+- **Precise Reference** (V4.5 and V5) copies a character, a style, both, or (on V5) an **Outfit** across up to 8 images, with a **Prefer same outfit** toggle for Character / Character and style on V5. **Strength** (`0` to `5` on V5, `0` to `1` on V4.5) sets how much the reference is followed (high values copy pose and expression too); **Fidelity** (V4.5 only) is how hard it is to override from the prompt. 5 Anlas per active reference per image (even on Opus). V5 inpainting and outpainting ignore Precise Reference for now, and it cannot be combined with Vibe Transfer.
 
 ## See also
 
