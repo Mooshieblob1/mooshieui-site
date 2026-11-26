@@ -32,7 +32,7 @@
 	<title>Wiki · MooshieUI</title>
 	<meta
 		name="description"
-		content="The MooshieUI wiki: installation, generation, prompting, NovelAI, video, music, 3D, models, gallery, self-hosting and MCP, with every page also available as Markdown for LLMs."
+		content="The MooshieUI wiki: ComfyUI, NovelAI, installation, prompting, Prompt Assistant, MCP assistants, video, music, comics, 3D, gallery, and self-hosting, with every page available as Markdown for LLMs."
 	/>
 	<link rel="alternate" type="text/plain" href="{base}/llms.txt" title="llms.txt" />
 </svelte:head>
@@ -41,7 +41,10 @@
 	<div class="hero-copy">
 		<span class="eyebrow"><Icon name="book" size={16} />Documentation</span>
 		<h1>MooshieUI <span class="accent-serif">Wiki</span></h1>
-		<p class="lede">Every feature, from first install to NovelAI, video, music, 3D and self-hosting.</p>
+		<p class="lede">
+			Guides for ComfyUI, NovelAI, LLM prompting, MCP assistants, video, music, comics, 3D, and
+			self-hosting.
+		</p>
 		<button class="big-search" type="button" onclick={() => (wikiUi.searchOpen = true)}>
 			<Icon name="search" size={20} />
 			<span>Search {data.stats.pages + data.stats.docs} pages</span>

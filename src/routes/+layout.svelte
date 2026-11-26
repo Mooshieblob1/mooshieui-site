@@ -13,7 +13,7 @@
 	const DEFAULT_SEO = {
 		title: 'MooshieUI',
 		description:
-			'A polished interface for ComfyUI. Explore Windows, Linux, and Apple Silicon macOS desktop options, or run it in your browser.',
+			'An interface for ComfyUI and NovelAI. Generate images, video, music, comics, and 3D with a built-in LLM prompt assistant and MCP server across desktop and browser.',
 		image: '/assets/logo.png',
 		imageAlt: 'MooshieUI logo',
 		width: 512,
@@ -40,10 +40,10 @@
 	<meta name="twitter:image" content={`${SITE_URL}${seo.image}`} />
 	<meta name="twitter:image:alt" content={seo.imageAlt} />
  <link rel="preload" href="{base}/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-	<title>MooshieUI · A friendly interface for ComfyUI</title>
+	<title>MooshieUI - Interface for ComfyUI and NovelAI</title>
 	<meta
 		name="description"
-		content="MooshieUI is a guided interface for ComfyUI. Explore Windows, Linux, and Apple Silicon macOS desktop options, or generate in your browser with prompts, LoRAs, and upscaling."
+		content="MooshieUI is a guided interface for ComfyUI and NovelAI. Generate images, video, music, comics, and 3D locally or via API, with an LLM prompt assistant and MCP server across desktop and browser."
 	/>
 </svelte:head>
 

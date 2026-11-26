@@ -25,6 +25,9 @@ export function flow(columns, caption) {
 const shot = (src, alt, caption) =>
 	`<figure class="wk-fig wk-shot"><div class="wk-shot-frame"><img src="${src}" alt="${alt}" loading="lazy" decoding="async" /></div><figcaption>${caption}</figcaption></figure>`;
 
+const phoneShot = (src, alt, caption) =>
+	`<figure class="wk-fig wk-shot"><div class="wk-shot-frame is-phone"><img src="${src}" alt="${alt}" loading="lazy" decoding="async" /></div><figcaption>${caption}</figcaption></figure>`;
+
 /** Grid of link cards that jump to sections of the same page. */
 const choices = (items, caption) => (headings) => {
 	const cards = items
@@ -43,19 +46,20 @@ export const OVERVIEW_FLOW = flow(
 		{
 			nodes: [
 				{ icon: 'laptop', title: 'Desktop app', sub: 'Windows, Linux, Apple Silicon' },
-				{ icon: 'phone', title: 'Browser or phone', sub: 'Server mode, LAN, Docker' }
+				{ icon: 'phone', title: 'Browser or phone', sub: 'Server mode, LAN, Docker' },
+				{ icon: 'bot', title: 'AI assistants (MCP)', sub: 'Claude, Cursor, ChatGPT' }
 			]
 		},
-		{ nodes: [{ icon: 'sparkles', title: 'MooshieUI', sub: 'Guided UI, gallery, queue', accent: true }] },
+		{ nodes: [{ icon: 'sparkles', title: 'MooshieUI', sub: 'Guided UI, Prompt Assistant, gallery', accent: true }] },
 		{
 			nodes: [
 				{ icon: 'cpu', title: 'ComfyUI', sub: 'Managed, your own, or remote' },
-				{ icon: 'key', title: 'NovelAI API', sub: 'Optional, your key' },
+				{ icon: 'key', title: 'NovelAI API', sub: 'First-class backend, your key' },
 				{ icon: 'cloud', title: 'ElevenLabs, fal.ai', sub: 'Anime Scenes, your keys' }
 			]
 		}
 	],
-	'One interface in front of ComfyUI and optional cloud services.'
+	'One interface across ComfyUI, NovelAI, LLM prompting, and optional cloud services.'
 );
 
 /**
@@ -81,6 +85,66 @@ export const FIGURES = {
 			html: shot('/assets/app-screenshot.avif', 'The MooshieUI Generate page with panels around the preview', 'The Generate page on desktop: left panel, preview, right panel and the generate footer.')
 		}
 	],
+	'prompt-assistant': [
+		{
+			after: 'What it does',
+			html: shot(
+				'/assets/screenshots/ui-enhance-v5.avif',
+				'MooshieUI Prompt Assistant modal in Enhance for V5 mode breaking down base and character prompts with applied recipes',
+				'Enhance for V5 splitting base scene tags and isolated multi-character prompts inside the Prompt Assistant modal.'
+			)
+		}
+	],
+	'novelai-backend': [
+		{
+			after: 'Characters',
+			html: shot(
+				'/assets/screenshots/ui-novelai-workspace.avif',
+				'MooshieUI NovelAI V5 Full workspace with multi-character slots, Precise Reference character cards, and Anlas indicator',
+				'NovelAI V5 Full workspace: per-character positive and undesired prompts, Precise Reference portraits, and Anlas budgeting.'
+			)
+		}
+	],
+	'video-generation': [
+		{
+			after: 'Timeline',
+			html: shot(
+				'/assets/screenshots/ui-video-timeline.avif',
+				'MooshieUI Video mode with the multi-shot Timeline storyboard drawer open showing shot bars and reference tracks',
+				'Video Timeline drawer with multi-shot duration segments, MiniMax prompt format, motion refs, and audio refs.'
+			)
+		}
+	],
+	'music-generation': [
+		{
+			after: 'Compose a song',
+			html: shot(
+				'/assets/screenshots/ui-music-studio.avif',
+				'MooshieUI Music studio YuE2 view with style prompt, section lyrics, vinyl player, waveform scrubber, and FLAC export',
+				'Music studio YuE2 composer with style tags, lyric sections, waveform scrubbing, and lossless FLAC download.'
+			)
+		}
+	],
+	'comic-pages': [
+		{
+			after: 'Layout',
+			html: shot(
+				'/assets/screenshots/ui-comic-pages.avif',
+				'MooshieUI Comic Page editor showing a three-panel layout, vector speech bubbles, model settings, and CBZ or PDF export',
+				'Comic Page editor with multi-panel layout, movable caption and speech bubbles, and CBZ/PDF export.'
+			)
+		}
+	],
+	'gallery-and-metadata': [
+		{
+			after: 'Gallery',
+			html: shot(
+				'/assets/screenshots/ui-gallery.avif',
+				'MooshieUI Gallery filtered by boards with search, rating filters, and character-tagged illustrations',
+				'Gallery page organized into boards with search, metadata filters, star ratings, and favourites.'
+			)
+		}
+	],
 	'server-lan-and-multi-user': [
 		{
 			after: 'Running the server',
@@ -99,6 +163,14 @@ export const FIGURES = {
 					{ nodes: [{ icon: 'cpu', title: 'ComfyUI', sub: 'Your GPU' }] }
 				],
 				'Every device on your network uses the same server and queue.'
+			)
+		},
+		{
+			after: 'Phone layout',
+			html: phoneShot(
+				'/assets/screenshots/ui-mobile.avif',
+				'MooshieUI responsive mobile browser view showing live artwork preview, compact controls, and five-tab navigation',
+				'Phone browser layout over LAN or tunnel with collapsible prompt, model, and library drawers.'
 			)
 		}
 	],
@@ -125,6 +197,14 @@ export const FIGURES = {
 					}
 				],
 				'Assistants reach MooshieUI through the opt-in MCP server.'
+			)
+		},
+		{
+			after: 'Connecting an assistant',
+			html: shot(
+				'/assets/screenshots/ui-mcp-settings.avif',
+				'MooshieUI Settings screen on AI assistants (MCP) showing localhost URL, bearer token, Claude Code command, JSON config, and Cloudflare tunnel',
+				'Settings > AI assistants (MCP) with ready-to-copy client commands, JSON config, and Cloudflare tunnel controls.'
 			)
 		}
 	]

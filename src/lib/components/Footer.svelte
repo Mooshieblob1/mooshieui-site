@@ -20,8 +20,8 @@
 					<span class="word">Mooshie<b>UI</b></span>
 				</a>
 				<p>
-					A beginner-friendly interface for ComfyUI. Generate without hand-editing graphs, on your
-					desktop or in any browser.
+					An interface for ComfyUI and NovelAI with built-in LLM prompting and MCP automation. Run on
+					your desktop or in any browser.
 				</p>
 				<div class="support">
 					<p>MooshieUI is free and always will be. If it saves you some time, consider supporting its development.</p>
@@ -41,6 +41,7 @@
 				<div class="foot-col">
 					<h5>Product</h5>
 					<a href="{base}/#features">Features</a>
+					<a href="{base}/#ai-workflows">AI &amp; MCP</a>
 					<a href="{base}/#modes">How it runs</a>
 					<a href="{base}/#look">A closer look</a>
 					<a href="{base}/#download">Download</a>

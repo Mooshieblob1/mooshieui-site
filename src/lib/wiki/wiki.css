@@ -319,6 +319,10 @@ html:has(.wiki-shell) {
 	width: 100%;
 	border-radius: calc(var(--radius-xl) - 6px);
 }
+.wk-shot-frame.is-phone {
+	max-width: 340px;
+	margin-inline: auto;
+}
 
 .wk-flow {
 	padding: 22px;
