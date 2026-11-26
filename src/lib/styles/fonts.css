@@ -1,4 +1,12 @@
-/* Same self-hosted Hanken Grotesk variable fonts as the MooshieUI app. */
+/* Same self-hosted Hanken Grotesk variable fonts as the MooshieUI app, plus Archivo Wide for the landing stage display type. */
+@font-face {
+ font-family: 'Archivo Wide';
+ font-style: normal;
+ font-weight: 300 600;
+ font-stretch: 62% 125%;
+ font-display: swap;
+ src: url('/fonts/archivo-variable-latin.woff2') format('woff2');
+}
 @font-face {
  font-family: 'Hanken Grotesk';
  font-style: normal;

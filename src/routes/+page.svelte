@@ -1,8 +1,9 @@
 <script>
 	import { onMount, untrack } from 'svelte';
+	import { base } from '$app/paths';
 	import { fetchLatestRelease } from '$lib/release.js';
+	import CinematicStage from '$lib/components/CinematicStage.svelte';
 	import Nav from '$lib/components/Nav.svelte';
-	import Hero from '$lib/components/Hero.svelte';
 	import Features from '$lib/components/Features.svelte';
 	import Modes from '$lib/components/Modes.svelte';
 	import CloserLook from '$lib/components/CloserLook.svelte';
@@ -21,13 +22,26 @@
 	});
 </script>
 
-<Nav variant="landing" />
-<main id="top" tabindex="-1">
-	<Hero />
-	<Features />
-	<Modes {release} />
-	<CloserLook />
-	<Download {release} />
-	<Support />
-</main>
-<Footer {release} />
+<svelte:head>
+	<link
+		rel="preload"
+		href="{base}/fonts/archivo-variable-latin.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin="anonymous"
+	/>
+</svelte:head>
+
+<CinematicStage {release} />
+
+<div id="below-stage" class="below-stage">
+	<Nav variant="landing" showSkipLink={false} />
+	<main id="top" tabindex="-1">
+		<Features />
+		<Modes {release} />
+		<CloserLook />
+		<Download {release} />
+		<Support />
+	</main>
+	<Footer {release} />
+</div>

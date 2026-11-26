@@ -2,7 +2,7 @@
  import Icon from '$lib/icons/Icon.svelte';
  import { Button } from '$lib/components/ui/button';
  import { base } from '$app/paths';
- let { variant = 'landing' } = $props();
+ let { variant = 'landing', showSkipLink = true } = $props();
  let open = $state(false);
  let toggle = $state();
  const repo = 'https://github.com/Mooshieblob1/MooshieUI';
@@ -10,7 +10,9 @@
  function onKeydown(event) { if (event.key === 'Escape' && open) { open = false; toggle?.focus(); } }
 </script>
 <svelte:window onkeydown={onKeydown} />
-<a class="skip-link" href={variant === 'landing' ? '#top' : '#guide-content'}>Skip to content</a>
+{#if showSkipLink}
+ <a class="skip-link" href={variant === 'landing' ? '#top' : '#guide-content'}>Skip to content</a>
+{/if}
 <header class="nav" class:guide={variant === 'guide'}>
  <div class="wrap nav-inner">
   <a class="brand" href="{base}/" aria-label="MooshieUI home"><img src="{base}/assets/logo.png" alt="" width="36" height="36" /><span class="word">Mooshie<b>UI</b></span></a>
