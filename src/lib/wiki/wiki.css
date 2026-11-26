@@ -317,6 +317,7 @@ html:has(.wiki-shell) {
 .wk-shot-frame img {
 	display: block;
 	width: 100%;
+	height: auto;
 	border-radius: calc(var(--radius-xl) - 6px);
 }
 .wk-shot-frame.is-phone {
