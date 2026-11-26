@@ -61,6 +61,7 @@ Settings -> Performance controls how ComfyUI uses your GPU.
 
 - **VRAM Mode** - High / Normal / Low / None. Auto-detected during setup; lower it if you run out of VRAM, raise it if generation is slow and you have headroom. High is meant for 24 GB and up, and is dropped when the largest installed model would leave less than 6 GB free.
 - **Keep ComfyUI running after app closes** - leaves the ComfyUI process alive in the background. Off by default, since it keeps using VRAM while the app is closed. With it off, a ComfyUI left running by a crashed or killed MooshieUI is stopped on the next launch instead of reused, and on Windows the managed ComfyUI closes with the app however it exits.
+- **ComfyUI version** and **Rollback snapshots** (admin, desktop) - compares the installed ComfyUI tag or commit against the target release tested with this build. Before updating, **Update ComfyUI** saves a snapshot of the previous commit, installed Python packages and custom-node commits (keeping up to five); **Roll back** restores a saved snapshot after confirmation.
 - **Attention Backend** - swaps ComfyUI's attention implementation for a faster one: **Default (PyTorch SDPA)**, **SageAttention v1/v2**, or **FlashAttention v1/v2**. These are NVIDIA-only accelerators, so each option is greyed out when your hardware cannot use it, with the reason shown inline:
   - "Requires an NVIDIA GPU" when no supported GPU is detected.
   - "Requires compute capability N+ (detected M)" when the GPU is too old for that backend.
@@ -119,7 +120,7 @@ Shows each detected GPU with its VRAM, utilization, temperature, power draw and 
 - **Rerun Setup Wizard** - reopens first-run setup to pick a different GPU or reinstall ComfyUI and PyTorch.
 - **ComfyUI Installation** and **Python Virtual Environment** - the folders the managed ComfyUI runs from.
 - **Shared Model Directories** - point MooshieUI at a models folder from another tool (ComfyUI, A1111, Forge). Subfolders such as `checkpoints/`, `loras/` and `vae/` are picked up automatically, and **Auto-Detect** scans for folders from other AI tools.
-- **Extra CLI Arguments** - extra arguments passed to ComfyUI when it launches, for example `--force-channels-last`.
+- **Extra CLI Arguments** - extra arguments passed to ComfyUI when it launches, for example `--force-channels-last`. ComfyUI removed `--directml` in v0.46.0, so MooshieUI blocks launching with `--directml` and prompts you to use CUDA, ROCm, XPU, MPS or `--cpu` instead.
 
 ## Queue
 

@@ -19,6 +19,7 @@ Image Edit needs a model trained for instruction editing. These families are sup
 | **MiniMax-H3-Image** | up to 16 | Stock ComfyUI nodes (ComfyUI v0.45.0 or newer) |
 | **MOSS-Image** | 1 to 4 | Uses the MOSS-Image Edit LoRA, downloaded automatically |
 | **Ming-Image Design** | up to 8 | Stock ComfyUI nodes |
+| **SenseNova U1.6** | up to 16 | Stock ComfyUI nodes (ComfyUI v0.46.0 or newer); supports **Self-correction** |
 | **Krea 2** | 1 or 2 | Needs an edit LoRA; pick the method under Edit LoRA |
 | **Anima ReStyler** | 1 | Needs the Anima Edit LoRA |
 

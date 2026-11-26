@@ -2,9 +2,9 @@
 
 ## Smart model detection and architecture presets
 
-MooshieUI recognizes a broad set of model architectures and auto-applies an optimal sampler, scheduler, steps, CFG, and resolution for each. Families include (among others): SD 1.5, SD 2.x, SDXL, Illustrious/NoobAI, Pony Diffusion, SD3/SD3.5, the Flux family (Flux.1 Dev/Schnell/Krea, Flux 2 Klein variants and FLUX 3 Image Klein), MOSS-Image, Chroma, Z-Image, Wan, Qwen, Krea 2, Ideogram 4 (Flux2 VAE path), AuraFlow, PixArt, HunyuanDiT, Stable Cascade, Kolors, Ming-Image, Anima (COSMOS), Mugen (SDXL + Flux2 VAE), and Nanosaur (1.2B DiT).
+MooshieUI recognizes a broad set of model architectures and auto-applies an optimal sampler, scheduler, steps, CFG, and resolution for each. Families include (among others): SD 1.5, SD 2.x, SDXL, Illustrious/NoobAI, Pony Diffusion, SD3/SD3.5, the Flux family (Flux.1 Dev/Schnell/Krea, Flux 2 Klein variants and FLUX 3 Image Klein), MOSS-Image, Chroma, Z-Image, Wan, Qwen, Krea 2, Ideogram 4 (Flux2 VAE path), AuraFlow, PixArt, HunyuanDiT, Stable Cascade, Kolors, Ming-Image, Anima (COSMOS), Mugen (SDXL + Flux2 VAE), Nanosaur (1.2B DiT), and SenseNova U1.6 (8B MoT).
 
-The instruction-editing families (Qwen Image Edit, Qwen Image Edit Plus, Flux.1 Kontext, Flux.2 Klein, FLUX 3 Klein, MiniMax-H3-Image, MOSS-Image and Ming-Image Design) are detected too, and unlock [[Image Edit Mode]] when loaded.
+The instruction-editing families (Qwen Image Edit, Qwen Image Edit Plus, Flux.1 Kontext, Flux.2 Klein, FLUX 3 Klein, MiniMax-H3-Image, MOSS-Image, Ming-Image Design and SenseNova U1.6) are detected too, and unlock [[Image Edit Mode]] when loaded.
 
 Behavior worth knowing:
 
@@ -116,6 +116,10 @@ inclusionAI's Ming-Image comes as two models:
 OpenMOSS's MOSS-Image comes as MOSS-Image (SFT) and MOSS-Image Base, for txt2img, img2img and [[Image Edit Mode]]. Both are detected from Comfy-Org and community file names, CivitAI base model names and the file's own tensors; only a `base` marker in the name selects Base, since both share the same tensors. The preset follows Comfy-Org's templates: 25 steps at CFG 2.5, er_sde on simple, 1024x1024, with the negative prompt kept on. MOSS-Image needs the Qwen3.5 9B text encoder and the Flux 2 VAE. If either is missing it downloads on its own, and generating with a different encoder or VAE stops with a message naming the right one. It needs ComfyUI v0.43.0 or newer, which the managed ComfyUI uses from v2.3.34.
 
 The Model Hub quick links include **MOSS-Image INT8**, **MOSS-Image Base INT8** and **Qwen3.5 9B W4A8 (MOSS-Image)**, from Comfy-Org's ungated repo. ComfyUI loads these INT8 files itself, so leave the INT8-Fast loader off for MOSS-Image.
+
+## SenseNova U1.6
+
+SenseNova U1.6 (8B MoT) runs txt2img and [[Image Edit Mode]] (up to 16 reference images) through ComfyUI v0.46.0+ core nodes without external encoders or extra node packs. All-in-one INT8 (~17.6 GB) and BF16 (~35.1 GB) checkpoints are available in the Model Hub (defaults: 50 steps, CFG 4, euler/simple, 2048x2048). Turn on **Self-correction** under Dimension controls to review the generated output and refine text or layout mistakes across up to five passes.
 
 ## PixArt Sigma and PixArt Alpha
 

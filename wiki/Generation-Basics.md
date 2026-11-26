@@ -96,6 +96,7 @@ The Generate button shows the progress (for example "Generating 3/10"), and the 
 - **Swap dimensions** - one-click width/height swap.
 - **Resolution slider** - 64px to 2048px, dimensions computed from your aspect ratio.
 - **Lock resolution** - toggle next to the resolution controls. Switching checkpoints normally resets width/height to that model's default resolution; enabling the lock keeps your current dimensions fixed through model swaps, the Anima minimum size at generate time, and image edit reference uploads.
+- **Self-correction** - shown when a SenseNova U1.6 model is selected; reviews generated output and refines text or layout errors across up to five passes.
 
 ## Smart model detection
 

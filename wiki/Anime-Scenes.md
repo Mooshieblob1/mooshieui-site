@@ -22,6 +22,10 @@ Pick one of your ElevenLabs voices, or **Design a new voice**: describe it with 
 
 Then write the scene's lines and record them as takes. Takes are cached per account, so the same take is never paid for twice; a fresh take of a line is only made when you ask for one. Pick the take you want for each line.
 
+## Sound Effects (SFX v3)
+
+Under **Sound Effects (SFX v3)**, generate sound effects using your ElevenLabs key (`eleven_text_to_sound_v3`). Enter a **Description**, leave **Auto duration** checked or set a manual **Duration** (0.5 to 30 seconds), tune **Prompt influence**, and optionally check **Seamless loop**. **Generate SFX** creates and saves each clip locally; use **Load audio** to play inline, **Download** to export, or **Delete** to remove it.
+
 ## Keyframes (optional)
 
 With a NovelAI key, each shot can get a NovelAI V4.5 keyframe made from the character image with Precise Reference. It keeps the character on model and the shot framed as described, lands in the gallery, and becomes that shot's reference image.

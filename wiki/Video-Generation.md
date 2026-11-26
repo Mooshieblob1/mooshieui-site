@@ -12,6 +12,7 @@ Video mode does not use your image checkpoints. Each quality tier is a stack of 
 |------|------|-------|
 | **NVFP4** | 12.5 GB | Blackwell (RTX 50 series) only. On older cards the weights are widened at runtime, which costs both speed and memory. |
 | **int8** | 21 GB | Recommended. |
+| **Tiny 17B int8** | 18.1 GB | Pruned 17B weights. Incompatible with 33B Turbo LoRAs; switch **Generation method** to **Standard**. |
 | **fp8** | 21 GB | |
 | **bf16** | 40 GB | Unquantized bfloat16 weights. |
 | **Custom** | varies | Bring your own files. |
@@ -93,6 +94,8 @@ In v2.3.6 and later, use **Generation method** to choose **Standard** or **Turbo
 | LightX2V FL2V v1.2 | 4 | First/last-frame workflow |
 | LightX2V FL2V v1.0 | 8 | First/last-frame workflow |
 | LightX2V Ref2V v1.0 | 8 | Reference workflow |
+| LightX2V Turbo Fusion Ref2V · 4 | 4 | Reference workflow |
+| LightX2V Turbo Fusion Ref2V · 8 | 8 | Reference workflow |
 | PDD FL2VA · 8 | 8 | First/last-frame workflow |
 | PDD Ref2VA · 8 | 8 | Reference workflow |
 
@@ -111,6 +114,8 @@ Historical VDN selections migrate to Standard. VDN is no longer selectable after
 **Engine** picks which interpolator runs. RIFE is fast and light. GMFSS is slower but built for anime, with cleaner line art and flat shading and less warping. Both ship in the same node pack, so switching needs no extra install, but GMFSS downloads its own checkpoints on first use and that first job pauses for a while with no progress shown.
 
 You can also smooth a clip after the fact: the **Smooth** action on a gallery video runs interpolation on it without regenerating, with the same RIFE or GMFSS choice. Length and audio stay the same.
+
+**Deflicker** reduces frame-to-frame brightness and texture shimmer on a finished gallery video (requires ComfyUI v0.46.0 or newer and the 21 MB RAFT-large optical flow model, downloaded inside the popover into `models/optical_flow/`). Adjust **Strength**, **Direction** (**Bidirectional** or **Forward**) and **Threshold**; the processed clip is saved as a new gallery video with audio and FPS preserved.
 
 ## Concise motion and Live2D prompts
 

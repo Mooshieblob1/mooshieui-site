@@ -27,7 +27,7 @@ While PyTorch downloads, the status line shows how much has arrived and the spee
 
 ### Music runtime
 
-Music requires native YuE2 support, which ComfyUI includes from v0.36.0. Managed installs and the default Docker build use a pinned, tested ComfyUI release (v0.46.0). Older installations missing those nodes can use **Update and restart ComfyUI** from Music, then download a YuE2 checkpoint. Remote hosts need their operator to update and restart ComfyUI. See [[Music Generation]] for setup, model requirements and license details.
+Music requires native YuE2 support, which ComfyUI includes from v0.36.0. Managed installs and the default Docker build use a pinned, tested ComfyUI release (v0.46.2). Older installations missing those nodes can use **Update and restart ComfyUI** from Music, then download a YuE2 checkpoint. Remote hosts need their operator to update and restart ComfyUI. See [[Music Generation]] for setup, model requirements and license details.
 
 ### AMD ROCm on Windows (preview)
 
@@ -75,7 +75,7 @@ See [[Server, LAN and Multi-User]] for roles, auth, and LAN exposure.
 
 MooshieUI's managed install always puts ComfyUI in its own Python environment. If you would rather run ComfyUI yourself, with your system Python, conda, a portable build or anything else, MooshieUI can connect to it instead and skips its own install completely.
 
-1. **Install and start ComfyUI your way.** Use ComfyUI v0.46.0 or newer, which is the version managed installs use (MOSS-Image needs at least v0.43.0, and MiniMax-H3-Image needs at least v0.45.0).
+1. **Install and start ComfyUI your way.** Use ComfyUI v0.46.2 or newer, which is the version managed installs use (MOSS-Image needs at least v0.43.0, and MiniMax-H3-Image needs at least v0.45.0).
 2. **Add MooshieUI's custom nodes.** From a clone of this repository, run the installer against your ComfyUI folder:
    ```bash
    git clone https://github.com/Mooshieblob1/MooshieUI

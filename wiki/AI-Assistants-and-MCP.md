@@ -25,7 +25,7 @@ Copy the **Connector URL** and, in Claude, paste it under **Settings > Connector
 
 Assistants never pick sampler, encoder or family settings on their own. Each time you run a plain txt2img generation with a model, MooshieUI saves those settings (without the prompt or input images) as that model's setup, and assistants start from it. The panel shows how many models are ready.
 
-A model becomes usable once you have generated one txt2img image with it. NovelAI, img2img, outpainting, inpainting, Image Edit and video runs do not create setups. An assistant can change the prompt, negative prompt, model, size, steps, CFG, seed, batch size (1 to 8), sampler, scheduler and LoRAs (as well as outpaint padding with `source_image` on local models). Images are saved to your gallery with normal metadata and show up in an open window right away.
+A model becomes usable once you have generated one txt2img image with it. NovelAI, img2img, outpainting, inpainting, Image Edit and video runs do not create setups. An assistant can change the prompt, negative prompt, model, size, steps, CFG, seed, batch size (1 to 8), sampler, scheduler and LoRAs (as well as outpaint padding with `source_image` and `self_correction` on SenseNova U1.6 for local models). Images are saved to your gallery with normal metadata and show up in an open window right away.
 
 **NovelAI over MCP** is available inside the Opus free window only (at most 1 MP, 28 steps, one image per request), so it never spends Anlas. NovelAI models appear in the model list when a key is saved.
 
@@ -35,7 +35,7 @@ A model becomes usable once you have generated one txt2img image with it. NovelA
 
 Two additional tools let assistants work on images already in the gallery:
 
-- `edit_image` - edits a gallery image with an instruction using an Image Edit model (Qwen Image Edit, Flux.1 Kontext, FLUX 3 Klein, Anima ReStyler). Pass the gallery image ID and a text instruction; the result is saved to the gallery like any other generation.
+- `edit_image` - edits a gallery image with an instruction using an Image Edit model (Qwen Image Edit, Flux.1 Kontext, FLUX 3 Klein, SenseNova U1.6, Anima ReStyler). Pass the gallery image ID and a text instruction; the result is saved to the gallery like any other generation.
 - `upscale_image` - upscales and refines a gallery image the way MooshieUI's Refine button does, using the setup of the model that made it.
 
 Both tools return a signed download link for the full-size result.
