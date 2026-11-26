@@ -6,40 +6,40 @@
 		{
 			icon: 'sliders',
 			title: 'Guided, not wired',
-			body: 'Prompts, dimensions, samplers, and models are laid out as plain controls. Switch settings without ever touching a node or a connection.'
+			body: 'Prompts, dimensions, samplers, and model presets live in clean controls. Switch between local ComfyUI workflows and NovelAI without wiring a single node.'
+		},
+		{
+			icon: 'sparkles',
+			title: 'First-class NovelAI',
+			body: 'Full NovelAI V4 and V5 integration with your own API key, multi-character prompts, Precise Reference portraits, Vibe Transfer, Anlas budgeting, and optional local finishing.'
 		},
 		{
 			icon: 'image',
-			title: 'Images, video, music and more',
-			body: 'Text to image, image to image, inpainting, outpainting and instruction-based Image Edit, plus video, music and experimental image to 3D. NovelAI is an optional image backend with your own API key.'
+			title: 'Images, video, music & comics',
+			body: 'Generate txt2img, img2img, inpainting, outpainting, and Image Edit alongside storyboarded H3 video timelines, YuE2 music, Comic Pages, and image to 3D.'
 		},
 		{
 			icon: 'layers',
-			title: 'LoRAs & Artist Styles',
-			body: 'Stack LoRAs with independent model and CLIP strength, and save your own Artist Styles that inject tags without cluttering your prompt.'
+			title: 'LoRAs, Styles & Characters',
+			body: 'Stack LoRAs with independent model and CLIP strength, curate Artist Styles without cluttering your prompt, and reuse saved Character sheets across projects.'
 		},
 		{
 			icon: 'wand',
-			title: 'Built-in refiner',
-			body: 'Tiled-diffusion upscaling with OmniSR. Every tile is denoised simultaneously each step for seamless, high-quality results.'
-		},
-		{
-			icon: 'grid',
-			title: 'Compare side by side',
-			body: 'Generate batches and line results up in a compare grid to find the seed, sampler, or prompt tweak that actually worked.'
+			title: 'Refine, detail & edit',
+			body: 'Clean tiled-diffusion upscaling with OmniSR, face detailing, instruction-based image editing, and compare grids to test seeds, samplers, or prompts side by side.'
 		},
 		{
 			icon: 'phone',
-			title: 'Works on your phone',
-			body: 'The browser build is mobile-aware, so you can kick off and check on generations from any device on your network.'
+			title: 'Desktop, LAN & mobile',
+			body: 'Run as a fast Tauri desktop app or self-host the web server over LAN and Docker with a responsive layout built down to phone screens.'
 		}
 	];
 </script>
 <section class="section" id="features" aria-labelledby="features-heading">
  <div class="wrap">
   <div class="section-heading" use:reveal>
-   <div><span class="eyebrow">What's inside</span><h2 id="features-heading">Everything you generate,<br />none of the <span class="accent-serif">graph-wrangling</span></h2></div>
-   <p>MooshieUI keeps ComfyUI's power and hides its complexity behind controls that make sense.</p>
+   <div><span class="eyebrow">What's inside</span><h2 id="features-heading">Everything you generate,<br />across <span class="accent-serif">ComfyUI</span> and NovelAI</h2></div>
+   <p>Run local ComfyUI models, connect your NovelAI subscription, and create without wrangling raw node graphs.</p>
   </div>
   <div class="features">
    {#each features as feature}

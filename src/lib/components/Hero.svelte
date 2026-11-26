@@ -9,9 +9,9 @@
  <div class="wrap">
   <div class="hero-shell">
    <div class="hero-heading" use:reveal>
-    <h1 id="hero-heading">All the power of ComfyUI.<span>None of the node graph.</span></h1>
+    <h1 id="hero-heading">ComfyUI and NovelAI.<span>One focused interface.</span></h1>
     <div class="hero-intro">
-     <p>Make images. Not node graphs.</p>
+     <p>Generate images, video, music, comics, and 3D locally with ComfyUI or through NovelAI, with a built-in LLM prompt assistant and MCP server for external AI.</p>
      <div class="hero-actions">
       <Button href="#download"><Icon name="download" size={18} />Download</Button>
       <Button variant="secondary" href="#modes"><Icon name="browser" size={18} />Two ways to run</Button>
@@ -20,7 +20,7 @@
    </div>
    <div class="screenshot" use:reveal>
     <img src="{base}/assets/app-screenshot.avif" width="1718" height="1376" fetchpriority="high"
-     alt="MooshieUI generation workspace with prompt controls, a generated illustration, NovelAI settings, and saved characters." />
+     alt="MooshieUI generation workspace showing prompt controls, character sheets, backend settings, and generated artwork." />
    </div>
   </div>
  </div>

@@ -468,7 +468,7 @@ export function llmsIndex(origin) {
 	const lines = [
 		'# MooshieUI',
 		'',
-		'> MooshieUI is a beginner-friendly interface for image, video, music and 3D generation through ComfyUI, with optional NovelAI image generation. It runs as a desktop app (Windows, Linux, Apple Silicon macOS) or as a browser/server app (LAN, Docker, mobile).',
+		'> MooshieUI is a guided interface for ComfyUI and NovelAI, supporting image, video, music, comic pages, and experimental image-to-3D workflows with a built-in LLM prompt assistant and opt-in MCP server. It runs as a desktop app (Windows, Linux, Apple Silicon macOS) or as a browser/server app (LAN, Docker, mobile).',
 		'',
 		`The whole wiki and the repository docs as one markdown file: ${origin}/llms-full.txt. Every page below is plain markdown; the "added in" version is the MooshieUI release the feature first shipped in.`,
 		''

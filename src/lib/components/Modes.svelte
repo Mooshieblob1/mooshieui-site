@@ -14,7 +14,7 @@
 	const desktopPoints = [
 		'Native window, file dialogs, and automatic updates',
 		'Tiny footprint thanks to the Rust backend',
-		'Installs ComfyUI for you with one-click setup'
+		'Optional one-click ComfyUI setup, or start right away with NovelAI'
 	];
 	const browserPoints = [
 		'One server, many devices over your network',

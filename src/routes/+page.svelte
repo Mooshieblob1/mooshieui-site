@@ -4,6 +4,7 @@
 	import Nav from '$lib/components/Nav.svelte';
 	import Hero from '$lib/components/Hero.svelte';
 	import Features from '$lib/components/Features.svelte';
+	import AiWorkflows from '$lib/components/AiWorkflows.svelte';
 	import Modes from '$lib/components/Modes.svelte';
 	import CloserLook from '$lib/components/CloserLook.svelte';
 	import Download from '$lib/components/Download.svelte';
@@ -25,6 +26,7 @@
 <main id="top" tabindex="-1">
 	<Hero />
 	<Features />
+	<AiWorkflows />
 	<Modes {release} />
 	<CloserLook />
 	<Download {release} />
