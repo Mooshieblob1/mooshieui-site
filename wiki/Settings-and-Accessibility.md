@@ -24,6 +24,7 @@ Settings is split into categories, each on its own page, picked from a sidebar o
 - **Layout** - **Switch to mobile layout** or **Switch to desktop layout** picks between the touch layout and the full desktop interface on this device.
 - **Style presets** - optional Fooocus-style presets can be enabled to show in the prompt panel (off by default).
 - **Experimental: Image to 3D** - shows the [[Image to 3D]] page and the gallery's **3D** button. Off by default, saved per device.
+- **Experimental: Multi-character Precise Reference isolation** - shows the **Isolate character references (Experimental)** toggle under NovelAI **Precise Reference** (off by default, saved per device). See [[NovelAI Backend#isolating-multiple-character-references-experimental|NovelAI Backend]].
 
 ## Autocomplete settings
 
@@ -61,7 +62,7 @@ Settings -> Performance controls how ComfyUI uses your GPU.
 
 - **VRAM Mode** - High / Normal / Low / None. Auto-detected during setup; lower it if you run out of VRAM, raise it if generation is slow and you have headroom. High is meant for 24 GB and up, and is dropped when the largest installed model would leave less than 6 GB free.
 - **Keep ComfyUI running after app closes** - leaves the ComfyUI process alive in the background. Off by default, since it keeps using VRAM while the app is closed. With it off, a ComfyUI left running by a crashed or killed MooshieUI is stopped on the next launch instead of reused, and on Windows the managed ComfyUI closes with the app however it exits.
-- **ComfyUI version** and **Rollback snapshots** (admin, desktop) - compares the installed ComfyUI tag or commit against the target release tested with this build. Before updating, **Update ComfyUI** saves a snapshot of the previous commit, installed Python packages and custom-node commits (keeping up to five); **Roll back** restores a saved snapshot after confirmation.
+- **ComfyUI version** and **Rollback snapshots** (admin, desktop) - compares the installed ComfyUI tag or commit against the target release tested with this build. Before updating, **Update ComfyUI** saves a snapshot of the previous commit, installed Python packages and custom-node commits (keeping up to three); **Roll back** restores a saved snapshot after confirmation.
 - **Attention Backend** - swaps ComfyUI's attention implementation for a faster one: **Default (PyTorch SDPA)**, **SageAttention v1/v2**, or **FlashAttention v1/v2**. These are NVIDIA-only accelerators, so each option is greyed out when your hardware cannot use it, with the reason shown inline:
   - "Requires an NVIDIA GPU" when no supported GPU is detected.
   - "Requires compute capability N+ (detected M)" when the GPU is too old for that backend.

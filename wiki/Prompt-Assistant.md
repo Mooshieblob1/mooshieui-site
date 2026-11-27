@@ -23,7 +23,7 @@ Nothing changes until you choose. Each answer arrives in the chat and you can as
 - **Apply** applies the answer directly.
 - **Review** opens the side-by-side review for V5 rewrites, where you can pick individual fields before applying.
 
-**Undo** next to the Enhance button reverses the last apply. Pressing **Stop** while an answer is generating cancels it.
+**Undo** next to the Enhance button reverses the last apply. Pressing **Stop** while an answer is generating cancels it. You can also click **Edit character** in the Enhance chat window to switch to **Edit Character with AI** (modifying a saved character card with **Attach card picture**, Undo-backed **Update character**, or **Save as variant** without touching your scene prompts), and click **Scene Enhance** to switch back.
 
 For models that accept natural-language prompts (Krea 2, Flux, Z-Image, Chroma, Qwen-Image, and similar), Enhance writes full sentences instead of danbooru-style tags. Names, counts and positional descriptions (left/right) are preserved in prose form. Tag upsamplers such as DanTagGen still write tags regardless of the loaded model.
 
