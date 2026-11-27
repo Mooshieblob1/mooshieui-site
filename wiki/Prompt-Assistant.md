@@ -65,6 +65,8 @@ In Music, **Enhance style** and **Generate lyrics** use the configured assistant
 - The local server runs with a 16k context so sessions fit. That takes roughly 0.7 to 1.7 GB more VRAM than before, which the GPU check accounts for; on a 4 GB card the recommended model now runs on the CPU.
 - The bundled model list includes bigger opt-in models for cards that can run them: Qwen3-VL 8B Instruct (sees images), Qwen3 30B-A3B, Qwen3.6 35B-A3B and Qwen3.8 27B. They are never the automatic pick, and variants that won't fit are greyed out. Mixture-of-experts models (30B-A3B, 35B-A3B) too big for your GPU can run with their experts in system RAM, marked **experts in RAM**: slower than fully on the GPU, much faster than CPU only.
 - The bundled llama.cpp is b12500, which the newest Qwen models need. Thinking is turned off per request, so replies stay quick and in the format asked for.
+- **Prompt detail tier** (**Settings > Prompt Assistant**) tunes instruction size and output format for your model: **Auto** selects **Compact (4B-14B / local)** for small or local models, **Standard (27B-35B / mini)** for mid-sized open weights, mini cloud models, or local OpenAI-compatible servers, and **Full (frontier models)** for frontier APIs. Compact and Standard slice NovelAI V5 and MiniMax H3 rules down to only what the current request triggers, rank long character memory notes by relevance to your request, and enable structured JSON output (falling back automatically if a server rejects `response_format`).
+- **Danbooru grounding & Online Danbooru character & tag lookup**: Enhance and character chat match canonical character tags, copyrights/series, artists, and general tags offline from MooshieUI's baked-in Danbooru corpus. Turning on **Online Danbooru character & tag lookup** under **Settings > Prompt Assistant** lets MooshieUI query Danbooru's read-only tag, wiki, and related-tag endpoints for unknown proper names on demand (never sending your prompts) and caches results in a local SQLite database for 30 days.
 - An idle watchdog stops the server automatically when it has not been used for a while, freeing memory.
 
 ## External LLM endpoint
@@ -119,9 +121,9 @@ Reference images in the Enhance window need a model that can see images: a visio
 
 ### Reasoning effort
 
-**Reasoning effort** sets how long models that think before answering spend thinking: **Low (fastest, recommended)**, **Medium**, **High (slowest)** or **Model default**. It shows for providers whose models accept an effort, including **Self-hosted (OpenAI-compatible)** servers such as Ollama and LM Studio (`enable_thinking: false` / reasoning off, falling back automatically if a server rejects extra request fields). Low is the default and suits prompt work. Before v2.3.34 no effort was sent, so some models (Grok 4.6 and 4.7, for example) thought at their slow default and often timed out. Thinking models also get a longer timeout and extra room in their answer budget.
+**Reasoning effort** sets how long models that think before answering spend thinking: **Low (fastest, recommended)**, **Medium**, **High (slowest)** or **Model default**. It shows for providers whose models accept an effort, including **Nous Research** (for Hermes 4 reasoning models) and **Self-hosted (OpenAI-compatible)** servers such as Ollama and LM Studio (`enable_thinking: false` / reasoning off, falling back automatically if a server rejects extra request fields). Low is the default and suits prompt work. Before v2.3.34 no effort was sent, so some models (Grok 4.6 and 4.7, for example) thought at their slow default and often timed out. Thinking models also get a longer timeout and extra room in their answer budget.
 
-On Anthropic and OpenRouter Anthropic models, NovelAI V5 Enhance also enables ephemeral prompt caching for the static V5 system prompt block to reduce repeated input costs.
+On Anthropic and OpenRouter Anthropic models, NovelAI V5 Enhance also enables ephemeral prompt caching for the static **Full** V5 system prompt block to reduce repeated input costs.
 
 ### Fallback models
 
